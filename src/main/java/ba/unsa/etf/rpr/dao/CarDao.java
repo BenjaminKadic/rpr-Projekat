@@ -10,5 +10,6 @@ public interface CarDao extends Dao<Car>{
     List<Car> searchByTransmission(Transmission transmission);
     List<Car> searchByColor(Color color);
     List<Car> searchByMakeYear(int start, int end);
+    List<Car> searchByHorsepower(int horsepower);
 
 }
