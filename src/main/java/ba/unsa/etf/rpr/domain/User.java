@@ -8,6 +8,7 @@ public class User {
     private int age;
     private String mail;
     private String phoneNumber;
+    private String password;
 
     public int getId() {
         return id;
@@ -64,4 +65,13 @@ public class User {
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
 }
