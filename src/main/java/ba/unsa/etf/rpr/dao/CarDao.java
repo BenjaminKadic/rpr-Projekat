@@ -9,5 +9,6 @@ import java.util.List;
 public interface CarDao extends Dao<Car>{
     List<Car> searchByTransmission(Transmission transmission);
     List<Car> searchByColor(Color color);
+    List<Car> searchByMakeYear(int start, int end);
 
 }
