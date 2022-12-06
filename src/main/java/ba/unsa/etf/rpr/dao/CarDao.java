@@ -12,5 +12,6 @@ public interface CarDao extends Dao<Car>{
     List<Car> searchByFuel(Fuel fuel);
     List<Car> searchByMake(String make);
     List<Car> searchByModel(String model);
+    List<Car> searchByPriceRange(int min, int max);
 
 }
