@@ -1,8 +1,6 @@
 package ba.unsa.etf.rpr.dao;
 
-import ba.unsa.etf.rpr.domain.Car;
-import ba.unsa.etf.rpr.domain.Color;
-import ba.unsa.etf.rpr.domain.Transmission;
+import ba.unsa.etf.rpr.domain.*;
 
 import java.util.List;
 
@@ -11,5 +9,6 @@ public interface CarDao extends Dao<Car>{
     List<Car> searchByColor(Color color);
     List<Car> searchByMakeYear(int start, int end);
     List<Car> searchByHorsepower(int horsepower);
+    List<Car> searchByFuel(Fuel fuel);
 
 }
