@@ -48,4 +48,14 @@ public class Rent {
     public void setEndDate(Date endDate) {
         this.endDate = endDate;
     }
+
+    @Override
+    public String toString() {
+        return "Rent{" +
+                "car=" + car +
+                ", user=" + user +
+                ", startDate=" + startDate +
+                ", endDate=" + endDate +
+                '}';
+    }
 }
