@@ -6,13 +6,13 @@ public class Car {
     private int id;
     private String make;
     private String model;
-    private String color;
+    private Color color;
     private String registration;
-    private int make_year;
+    private int makeYear;
     private int price;
     private boolean rented;
-    private String fuel;
-    private String transmission;
+    private Fuel fuel;
+    private Transmission transmission;
     private int mileage;
     private int horsepower;
 
@@ -40,11 +40,11 @@ public class Car {
         this.model = model;
     }
 
-    public String getColor() {
+    public Color getColor() {
         return color;
     }
 
-    public void setColor(String color) {
+    public void setColor(Color color) {
         this.color = color;
     }
 
@@ -56,12 +56,12 @@ public class Car {
         this.registration = registration;
     }
 
-    public int getMake_year() {
-        return make_year;
+    public int getMakeYear() {
+        return makeYear;
     }
 
-    public void setMake_year(int make_year) {
-        this.make_year = make_year;
+    public void setMakeYear(int makeYear) {
+        this.makeYear = makeYear;
     }
 
     public int getPrice() {
@@ -80,19 +80,19 @@ public class Car {
         this.rented = rented;
     }
 
-    public String getFuel() {
+    public Fuel getFuel() {
         return fuel;
     }
 
-    public void setFuel(String fuel) {
+    public void setFuel(Fuel fuel) {
         this.fuel = fuel;
     }
 
-    public String getTransmission() {
+    public Transmission getTransmission() {
         return transmission;
     }
 
-    public void setTransmission(String transmission) {
+    public void setTransmission(Transmission transmission) {
         this.transmission = transmission;
     }
 
@@ -119,7 +119,7 @@ public class Car {
                 ", make='" + make + '\'' +
                 ", model='" + model + '\'' +
                 ", color='" + color + '\'' +
-                ", make_year=" + make_year +
+                ", make_year=" + makeYear +
                 ", price=" + price +
                 ", fuel='" + fuel + '\'' +
                 ", transmission='" + transmission + '\'' +
