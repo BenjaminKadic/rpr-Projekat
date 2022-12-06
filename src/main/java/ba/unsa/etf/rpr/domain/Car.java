@@ -1,5 +1,7 @@
 package ba.unsa.etf.rpr.domain;
 
+import java.util.Objects;
+
 public class Car {
     private int id;
     private String make;
@@ -109,4 +111,21 @@ public class Car {
     public void setHorsepower(int horsepower) {
         this.horsepower = horsepower;
     }
+
+    @Override
+    public String toString() {
+        return "Car{" +
+                "id=" + id +
+                ", make='" + make + '\'' +
+                ", model='" + model + '\'' +
+                ", color='" + color + '\'' +
+                ", make_year=" + make_year +
+                ", price=" + price +
+                ", fuel='" + fuel + '\'' +
+                ", transmission='" + transmission + '\'' +
+                ", horsepower=" + horsepower +
+                '}';
+    }
+
+
 }
