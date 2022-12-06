@@ -11,5 +11,6 @@ public interface CarDao extends Dao<Car>{
     List<Car> searchByHorsepower(int horsepower);
     List<Car> searchByFuel(Fuel fuel);
     List<Car> searchByMake(String make);
+    List<Car> searchByModel(String model);
 
 }
