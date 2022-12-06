@@ -134,6 +134,9 @@ public class Car {
         return id == car.id;
     }
 
-
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
+    }
 
 }
