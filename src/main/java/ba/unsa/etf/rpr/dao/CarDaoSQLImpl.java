@@ -96,6 +96,45 @@ public class CarDaoSQLImpl implements CarDao{
     }
 
     @Override
+    public List<Car> searchAvailable() {
+        String query = "SELECT * FROM car c WHERE c.id NOT IN (SELECT r.car_id FROM Rents WHERE r.returned = 0)";
+        try{
+            PreparedStatement stmt = this.connection.prepareStatement(query);
+            ResultSet rs = stmt.executeQuery();
+            ArrayList<Car> carLista = new ArrayList<>();
+            while (rs.next()) {
+                Car car = new Car(rs);
+                carLista.add(car);
+            }
+            return carLista;
+        }catch(SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    /**
+     * returns next id for adding cars to database
+     *
+     * @return int value of next id
+     */
+    private int getMaxId(){
+        int id=1;
+        try {
+            PreparedStatement statement = this.connection.prepareStatement("SELECT MAX(id)+1 FROM Cars");
+            ResultSet rs = statement.executeQuery();
+            if(rs.next()) {
+                id = rs.getInt(1);
+                rs.close();
+                return id;
+            }
+        } catch (SQLException e) {
+            System.out.println("Problem pri radu sa bazom podataka");
+            System.out.println(e.getMessage());
+        }
+        return id;
+    }
+    @Override
     public Car add(Car item) {
         return null;
     }
