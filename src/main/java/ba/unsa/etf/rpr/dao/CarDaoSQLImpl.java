@@ -88,7 +88,8 @@ public class CarDaoSQLImpl implements CarDao{
 
     @Override
     public List<Car> searchByMake(String make) {
-        return null;
+        String query = "SELECT * FROM quotes WHERE UPPER(make) LIKE concat('%', ?, '%')";
+        return returnSearched(query, make.toUpperCase());
     }
 
     @Override
