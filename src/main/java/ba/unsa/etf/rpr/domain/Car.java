@@ -11,7 +11,6 @@ public class Car {
     private Color color;
     private String registration;
     private int price;
-    private boolean rented;
     public Car(){}
     public Car(ResultSet rs){
         try{
@@ -21,7 +20,6 @@ public class Car {
             this.setColor(Color.valueOf(rs.getString("color").toUpperCase()));
             this.setRegistration(rs.getString("registration"));
             this.setPrice(rs.getInt("price"));
-            this.setRented(rs.getBoolean("rented"));
         }catch (SQLException e) {
             e.printStackTrace();
         }
@@ -74,14 +72,6 @@ public class Car {
 
     public void setPrice(int price) {
         this.price = price;
-    }
-
-    public boolean isRented() {
-        return rented;
-    }
-
-    public void setRented(boolean rented) {
-        this.rented = rented;
     }
 
 
