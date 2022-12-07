@@ -1,5 +1,8 @@
 package ba.unsa.etf.rpr.domain;
 
 public enum Fuel {
-    DIESEL, PETROL
+    DIESEL("Diesel"), PETROL("Petrol");
+
+    Fuel(String fuel) {
+    }
 }
