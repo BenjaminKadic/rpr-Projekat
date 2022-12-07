@@ -82,7 +82,8 @@ public class CarDaoSQLImpl implements CarDao{
 
     @Override
     public List<Car> searchByFuel(Fuel fuel) {
-        return null;
+        String query = "SELECT * FROM quotes WHERE UPPER(fuel) = ?";
+        return returnSearched(query, String.valueOf(fuel));
     }
 
     @Override
