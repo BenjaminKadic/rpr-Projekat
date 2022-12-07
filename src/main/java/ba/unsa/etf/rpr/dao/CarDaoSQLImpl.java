@@ -6,6 +6,7 @@ import ba.unsa.etf.rpr.domain.Fuel;
 import ba.unsa.etf.rpr.domain.Transmission;
 
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class CarDaoSQLImpl implements CarDao{
@@ -17,6 +18,28 @@ public class CarDaoSQLImpl implements CarDao{
             e.printStackTrace();
         }
     }
+
+    Car createCar(ResultSet rs){
+        Car car = new Car();
+        try{
+            car.setId(rs.getInt("id"));
+            car.setMake(rs.getString("make"));
+            car.setModel(rs.getString("model"));
+            car.setColor(Color.valueOf(rs.getString("color")));
+            car.setRegistration(rs.getString("registration"));
+            car.setMakeYear(rs.getInt("make_year"));
+            car.setPrice(rs.getInt("price"));
+            car.setRented(rs.getBoolean("rented"));
+            car.setFuel(Fuel.valueOf(rs.getString("fuel")));
+            car.setTransmission(Transmission.valueOf(rs.getString("transmission")));
+            car.setMileage(rs.getInt("mileage"));
+            car.setHorsepower(rs.getInt("horsepower"));
+        }catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return car;
+    }
+
     @Override
     public List<Car> searchByTransmission(Transmission transmission) {
         return null;
@@ -70,19 +93,7 @@ public class CarDaoSQLImpl implements CarDao{
             stmt.setInt(1, id);
             ResultSet rs = stmt.executeQuery();
             if (rs.next()){ // result set is iterator.
-                Car car = new Car();
-                car.setId(rs.getInt("id"));
-                car.setMake(rs.getString("make"));
-                car.setModel(rs.getString("model"));
-                car.setColor(Color.valueOf(rs.getString("color")));
-                car.setRegistration(rs.getString("registration"));
-                car.setMakeYear(rs.getInt("make_year"));
-                car.setPrice(rs.getInt("price"));
-                car.setRented(rs.getBoolean("rented"));
-                car.setFuel(Fuel.valueOf(rs.getString("fuel")));
-                car.setTransmission(Transmission.valueOf(rs.getString("transmission")));
-                car.setMileage(rs.getInt("mileage"));
-                car.setHorsepower(rs.getInt("horsepower"));
+                Car car = createCar(rs);
                 rs.close();
                 return car;
             }else{
