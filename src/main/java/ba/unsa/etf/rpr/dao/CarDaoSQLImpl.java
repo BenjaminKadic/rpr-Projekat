@@ -19,7 +19,7 @@ public class CarDaoSQLImpl implements CarDao{
         }
     }
 
-    Car createCar(ResultSet rs){
+    private Car createCar(ResultSet rs){
         Car car = new Car();
         try{
             car.setId(rs.getInt("id"));
@@ -38,6 +38,23 @@ public class CarDaoSQLImpl implements CarDao{
             e.printStackTrace();
         }
         return car;
+    }
+
+    private List<Car> returnSearched(String query){
+        try {
+            PreparedStatement stmt = this.connection.prepareStatement(query);
+            //stmt.setInt(1, category.getId());
+            ResultSet rs = stmt.executeQuery();
+            ArrayList<Car> carLista = new ArrayList<>();
+            while (rs.next()) {
+                Car car = createCar(rs);
+                carLista.add(car);
+            }
+            return carLista;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     @Override
