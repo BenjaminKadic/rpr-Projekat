@@ -25,13 +25,13 @@ public class CarDaoSQLImpl implements CarDao{
             car.setId(rs.getInt("id"));
             car.setMake(rs.getString("make"));
             car.setModel(rs.getString("model"));
-            car.setColor(Color.valueOf(rs.getString("color")));
+            car.setColor(Color.valueOf(rs.getString("color").toUpperCase()));
             car.setRegistration(rs.getString("registration"));
             car.setMakeYear(rs.getInt("make_year"));
             car.setPrice(rs.getInt("price"));
             car.setRented(rs.getBoolean("rented"));
-            car.setFuel(Fuel.valueOf(rs.getString("fuel")));
-            car.setTransmission(Transmission.valueOf(rs.getString("transmission")));
+            car.setFuel(Fuel.valueOf(rs.getString("fuel").toUpperCase()));
+            car.setTransmission(Transmission.valueOf(rs.getString("transmission").toUpperCase()));
             car.setMileage(rs.getInt("mileage"));
             car.setHorsepower(rs.getInt("horsepower"));
         }catch (SQLException e) {
@@ -40,10 +40,10 @@ public class CarDaoSQLImpl implements CarDao{
         return car;
     }
 
-    private List<Car> returnSearched(String query){
+    private List<Car> returnSearched(String query, String parameter){
         try {
             PreparedStatement stmt = this.connection.prepareStatement(query);
-            //stmt.setInt(1, category.getId());
+            stmt.setString(1, parameter);
             ResultSet rs = stmt.executeQuery();
             ArrayList<Car> carLista = new ArrayList<>();
             while (rs.next()) {
@@ -59,8 +59,8 @@ public class CarDaoSQLImpl implements CarDao{
 
     @Override
     public List<Car> searchByTransmission(Transmission transmission) {
-        String query = "SELECT * FROM quotes WHERE category = ?";
-        return returnSearched(query);
+        String query = "SELECT * FROM quotes WHERE UPPER(transmission) = ?";
+        return returnSearched(query, String.valueOf(transmission));
     }
 
     @Override
