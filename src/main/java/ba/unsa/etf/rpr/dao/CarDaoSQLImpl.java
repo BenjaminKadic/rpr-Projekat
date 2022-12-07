@@ -40,10 +40,10 @@ public class CarDaoSQLImpl implements CarDao{
         return car;
     }
 
-    private List<Car> returnSearched(String query, String parameter){
+    private List<Car> returnSearched(String query, Object parameter){
         try {
             PreparedStatement stmt = this.connection.prepareStatement(query);
-            stmt.setString(1, parameter);
+            stmt.setObject(1, parameter);
             ResultSet rs = stmt.executeQuery();
             ArrayList<Car> carLista = new ArrayList<>();
             while (rs.next()) {
@@ -65,7 +65,8 @@ public class CarDaoSQLImpl implements CarDao{
 
     @Override
     public List<Car> searchByColor(Color color) {
-        return null;
+        String query = "SELECT * FROM quotes WHERE UPPER(color) = ?";
+        return returnSearched(query, String.valueOf(color));
     }
 
     @Override
