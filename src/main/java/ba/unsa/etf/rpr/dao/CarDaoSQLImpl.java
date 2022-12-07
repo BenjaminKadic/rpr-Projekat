@@ -159,6 +159,21 @@ public class CarDaoSQLImpl implements CarDao{
 
     @Override
     public Car update(Car item) {
+        String query = "UPDATE Cars SET make=?, model=?, color=?, registration=?, price=? WHERE id=?";
+        try{
+            PreparedStatement stmt = this.connection.prepareStatement(query);
+            stmt.setString(1,item.getMake());
+            stmt.setString(2,item.getModel());
+            stmt.setString(3, item.getColor().value);
+            stmt.setString(4,item.getRegistration());
+            stmt.setInt(5, item.getPrice());
+            stmt.setInt(6, item.getId());
+            stmt.executeUpdate();
+            return item;
+        }catch (SQLException e){
+            System.out.println("Problem pri radu sa bazom podataka");
+            System.out.println(e.getMessage());
+        }
         return null;
     }
 
