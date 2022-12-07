@@ -94,7 +94,8 @@ public class CarDaoSQLImpl implements CarDao{
 
     @Override
     public List<Car> searchByModel(String model) {
-        return null;
+        String query = "SELECT * FROM quotes WHERE UPPER(model) LIKE concat('%', ?, '%')";
+        return returnSearched(query, model.toUpperCase());
     }
 
     @Override
