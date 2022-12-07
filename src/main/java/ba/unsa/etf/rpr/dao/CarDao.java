@@ -40,4 +40,11 @@ public interface CarDao extends Dao<Car>{
      */
     List<Car> searchByPriceRange(int min, int max);
 
+    /**
+     * Returns all cars that are not rented
+     *
+     * @return list of cars
+     */
+    List<Car> searchAvailable();
+
 }
