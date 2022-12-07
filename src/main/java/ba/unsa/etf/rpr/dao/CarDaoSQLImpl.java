@@ -33,6 +33,7 @@ public class CarDaoSQLImpl implements CarDao{
                 Car car = new Car(rs);
                 carLista.add(car);
             }
+            rs.close();
             return carLista;
         } catch (SQLException e) {
             e.printStackTrace();
@@ -72,6 +73,7 @@ public class CarDaoSQLImpl implements CarDao{
                 Car car = new Car(rs);
                 carLista.add(car);
             }
+            rs.close();
             return carLista;
         }catch (SQLException e){
             e.printStackTrace(); // poor error handling
@@ -111,6 +113,7 @@ public class CarDaoSQLImpl implements CarDao{
                 Car car = new Car(rs);
                 carLista.add(car);
             }
+            rs.close();
             return carLista;
         }catch(SQLException e) {
             e.printStackTrace();
@@ -206,6 +209,7 @@ public class CarDaoSQLImpl implements CarDao{
                 Car car = new Car(rs);
                 carLista.add(car);
             }
+            rs.close();
             return carLista;
         } catch (SQLException e) {
             e.printStackTrace();
