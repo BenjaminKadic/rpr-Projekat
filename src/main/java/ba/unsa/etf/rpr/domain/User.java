@@ -1,5 +1,8 @@
 package ba.unsa.etf.rpr.domain;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.Date;
 import java.util.Objects;
 
 public class User {
@@ -7,10 +10,22 @@ public class User {
     private String username;
     private String firstName;
     private String lastName;
-    private int age;
-    private String mail;
-    private String phoneNumber;
+    private Date birthdate;
     private String password;
+
+    public User(){}
+    public User(ResultSet rs){
+        try{
+            this.setId(rs.getInt("id"));
+            this.setUsername(rs.getString("username"));
+            this.setFirstName(rs.getString("first_name"));
+            this.setLastName(rs.getString("last_name"));
+            this.setBirthdate(rs.getDate("birthdate"));
+            this.setPassword(rs.getString("password"));
+        }catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 
     public int getId() {
         return id;
@@ -44,28 +59,12 @@ public class User {
         this.lastName = lastName;
     }
 
-    public int getAge() {
-        return age;
+    public Date getBirthdate() {
+        return birthdate;
     }
 
-    public void setAge(int age) {
-        this.age = age;
-    }
-
-    public String getMail() {
-        return mail;
-    }
-
-    public void setMail(String mail) {
-        this.mail = mail;
-    }
-
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
+    public void setBirthdate(Date birthdate) {
+        this.birthdate = birthdate;
     }
 
     public String getPassword() {
