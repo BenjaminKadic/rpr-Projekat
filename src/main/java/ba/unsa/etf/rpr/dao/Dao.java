@@ -25,14 +25,14 @@ public interface Dao<T> {
 
     /**
      * Fully updates entity in database based on id (primary) match.
-     * @param item - bean to be updated. id must be populated
+     * @param item  bean to be updated. id must be populated
      * @return updated version of bean
      */
     T update(T item);
 
     /**
      * Hard delete of item from database with given id
-     * @param id - primary key of entity
+     * @param id primary key of entity
      */
     void delete(int id);
 
