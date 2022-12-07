@@ -1,5 +1,7 @@
 package ba.unsa.etf.rpr.domain;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Objects;
 
 public class Car {
@@ -14,6 +16,24 @@ public class Car {
     private Fuel fuel;
     private Transmission transmission;
     private int horsepower;
+    public Car(){}
+    public Car(ResultSet rs){
+        try{
+            this.setId(rs.getInt("id"));
+            this.setMake(rs.getString("make"));
+            this.setModel(rs.getString("model"));
+            this.setColor(Color.valueOf(rs.getString("color").toUpperCase()));
+            this.setRegistration(rs.getString("registration"));
+            this.setMakeYear(rs.getInt("make_year"));
+            this.setPrice(rs.getInt("price"));
+            this.setRented(rs.getBoolean("rented"));
+            this.setFuel(Fuel.valueOf(rs.getString("fuel").toUpperCase()));
+            this.setTransmission(Transmission.valueOf(rs.getString("transmission").toUpperCase()));
+            this.setHorsepower(rs.getInt("horsepower"));
+        }catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 
     public int getId() {
         return id;
