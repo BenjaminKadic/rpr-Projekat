@@ -19,25 +19,6 @@ public class CarDaoSQLImpl implements CarDao{
         }
     }
 
-    private Car createCar(ResultSet rs){
-        Car car = new Car();
-        try{
-            car.setId(rs.getInt("id"));
-            car.setMake(rs.getString("make"));
-            car.setModel(rs.getString("model"));
-            car.setColor(Color.valueOf(rs.getString("color").toUpperCase()));
-            car.setRegistration(rs.getString("registration"));
-            car.setMakeYear(rs.getInt("make_year"));
-            car.setPrice(rs.getInt("price"));
-            car.setRented(rs.getBoolean("rented"));
-            car.setFuel(Fuel.valueOf(rs.getString("fuel").toUpperCase()));
-            car.setTransmission(Transmission.valueOf(rs.getString("transmission").toUpperCase()));
-            car.setHorsepower(rs.getInt("horsepower"));
-        }catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return car;
-    }
 
     private List<Car> returnSearched(String query, Object parameter){
         try {
@@ -46,7 +27,7 @@ public class CarDaoSQLImpl implements CarDao{
             ResultSet rs = stmt.executeQuery();
             ArrayList<Car> carLista = new ArrayList<>();
             while (rs.next()) {
-                Car car = createCar(rs);
+                Car car = new Car(rs);
                 carLista.add(car);
             }
             return carLista;
@@ -78,7 +59,7 @@ public class CarDaoSQLImpl implements CarDao{
             ResultSet rs = stmt.executeQuery();
             ArrayList<Car> carLista = new ArrayList<>();
             while (rs.next()) {
-                Car car = createCar(rs);
+                Car car = new Car(rs);
                 carLista.add(car);
             }
             return carLista;
@@ -123,7 +104,7 @@ public class CarDaoSQLImpl implements CarDao{
             ResultSet rs = stmt.executeQuery();
             ArrayList<Car> carLista = new ArrayList<>();
             while (rs.next()) {
-                Car car = createCar(rs);
+                Car car = new Car(rs);
                 carLista.add(car);
             }
             return carLista;
@@ -142,7 +123,7 @@ public class CarDaoSQLImpl implements CarDao{
             stmt.setInt(1, id);
             ResultSet rs = stmt.executeQuery();
             if (rs.next()){ // result set is iterator.
-                Car car = createCar(rs);
+                Car car = new Car(rs);
                 rs.close();
                 return car;
             }else{
