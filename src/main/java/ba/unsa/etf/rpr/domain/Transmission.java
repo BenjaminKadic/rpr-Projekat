@@ -1,5 +1,8 @@
 package ba.unsa.etf.rpr.domain;
 
 public enum Transmission {
-    MANUAL, AUTOMATIC
+    MANUAL("Manual"), AUTOMATIC("Automatic");
+
+    Transmission(String transmission) {
+    }
 }
