@@ -9,13 +9,7 @@ import java.util.List;
  * @author Benjamin Kadic
  */
 public interface CarDao extends Dao<Car>{
-    /**
-     * Returns all cars with given transmission.
-     *
-     * @param transmission search transmission for cars
-     * @return list of cars
-     */
-    List<Car> searchByTransmission(Transmission transmission);
+
     /**
      * Returns all cars with given color.
      *
@@ -23,28 +17,6 @@ public interface CarDao extends Dao<Car>{
      * @return list of cars
      */
     List<Car> searchByColor(Color color);
-    /**
-     * Returns all cars produced in given year range
-     *
-     * @param start start year
-     * @param end end year
-     * @return list of cars
-     */
-    List<Car> searchByMakeYearRange(int start, int end);
-    /**
-     * Returns all cars with given horsepower.
-     *
-     * @param horsepower search horsepower for cars
-     * @return list of cars
-     */
-    List<Car> searchByHorsepower(int horsepower);
-    /**
-     * Returns all cars with given fuel.
-     *
-     * @param fuel search fuel for cars
-     * @return list of cars
-     */
-    List<Car> searchByFuel(Fuel fuel);
     /**
      * Returns all cars of given make.
      *

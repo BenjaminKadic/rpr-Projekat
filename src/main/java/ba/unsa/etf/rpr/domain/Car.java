@@ -10,12 +10,8 @@ public class Car {
     private String model;
     private Color color;
     private String registration;
-    private int makeYear;
     private int price;
     private boolean rented;
-    private Fuel fuel;
-    private Transmission transmission;
-    private int horsepower;
     public Car(){}
     public Car(ResultSet rs){
         try{
@@ -24,12 +20,8 @@ public class Car {
             this.setModel(rs.getString("model"));
             this.setColor(Color.valueOf(rs.getString("color").toUpperCase()));
             this.setRegistration(rs.getString("registration"));
-            this.setMakeYear(rs.getInt("make_year"));
             this.setPrice(rs.getInt("price"));
             this.setRented(rs.getBoolean("rented"));
-            this.setFuel(Fuel.valueOf(rs.getString("fuel").toUpperCase()));
-            this.setTransmission(Transmission.valueOf(rs.getString("transmission").toUpperCase()));
-            this.setHorsepower(rs.getInt("horsepower"));
         }catch (SQLException e) {
             e.printStackTrace();
         }
@@ -75,13 +67,6 @@ public class Car {
         this.registration = registration;
     }
 
-    public int getMakeYear() {
-        return makeYear;
-    }
-
-    public void setMakeYear(int makeYear) {
-        this.makeYear = makeYear;
-    }
 
     public int getPrice() {
         return price;
@@ -99,29 +84,7 @@ public class Car {
         this.rented = rented;
     }
 
-    public Fuel getFuel() {
-        return fuel;
-    }
 
-    public void setFuel(Fuel fuel) {
-        this.fuel = fuel;
-    }
-
-    public Transmission getTransmission() {
-        return transmission;
-    }
-
-    public void setTransmission(Transmission transmission) {
-        this.transmission = transmission;
-    }
-
-    public int getHorsepower() {
-        return horsepower;
-    }
-
-    public void setHorsepower(int horsepower) {
-        this.horsepower = horsepower;
-    }
 
     @Override
     public String toString() {
@@ -129,12 +92,7 @@ public class Car {
                 "id=" + id +
                 ", make='" + make + '\'' +
                 ", model='" + model + '\'' +
-                ", color='" + color + '\'' +
-                ", make_year=" + makeYear +
-                ", price=" + price +
-                ", fuel='" + fuel + '\'' +
-                ", transmission='" + transmission + '\'' +
-                ", horsepower=" + horsepower +
+                ", color='" + color +
                 '}';
     }
     @Override

@@ -2,8 +2,6 @@ package ba.unsa.etf.rpr.dao;
 
 import ba.unsa.etf.rpr.domain.Car;
 import ba.unsa.etf.rpr.domain.Color;
-import ba.unsa.etf.rpr.domain.Fuel;
-import ba.unsa.etf.rpr.domain.Transmission;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -37,49 +35,11 @@ public class CarDaoSQLImpl implements CarDao{
         return null;
     }
 
-    @Override
-    public List<Car> searchByTransmission(Transmission transmission) {
-        String query = "SELECT * FROM quotes WHERE UPPER(transmission) = ?";
-        return returnSearched(query, String.valueOf(transmission));
-    }
 
     @Override
     public List<Car> searchByColor(Color color) {
         String query = "SELECT * FROM quotes WHERE UPPER(color) = ?";
         return returnSearched(query, String.valueOf(color));
-    }
-
-    @Override
-    public List<Car> searchByMakeYearRange(int start, int end) {
-        String query = "SELECT * FROM Cars WHERE make_year BETWEEN ? and ?";
-        try{
-            PreparedStatement stmt = this.connection.prepareStatement(query);
-            stmt.setInt(1, start);
-            stmt.setInt(2, end);
-            ResultSet rs = stmt.executeQuery();
-            ArrayList<Car> carLista = new ArrayList<>();
-            while (rs.next()) {
-                Car car = new Car(rs);
-                carLista.add(car);
-            }
-            return carLista;
-        }catch (SQLException e){
-            e.printStackTrace(); // poor error handling
-        }
-        return null;
-    }
-
-
-    @Override
-    public List<Car> searchByHorsepower(int horsepower) {
-        String query = "SELECT * FROM quotes WHERE horsepower = ?";
-        return returnSearched(query, horsepower);
-    }
-
-    @Override
-    public List<Car> searchByFuel(Fuel fuel) {
-        String query = "SELECT * FROM quotes WHERE UPPER(fuel) = ?";
-        return returnSearched(query, String.valueOf(fuel));
     }
 
     @Override
