@@ -13,7 +13,6 @@ public class Car {
     private boolean rented;
     private Fuel fuel;
     private Transmission transmission;
-    private int mileage;
     private int horsepower;
 
     public int getId() {
@@ -94,14 +93,6 @@ public class Car {
 
     public void setTransmission(Transmission transmission) {
         this.transmission = transmission;
-    }
-
-    public int getMileage() {
-        return mileage;
-    }
-
-    public void setMileage(int mileage) {
-        this.mileage = mileage;
     }
 
     public int getHorsepower() {

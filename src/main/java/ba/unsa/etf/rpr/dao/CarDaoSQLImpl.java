@@ -32,7 +32,6 @@ public class CarDaoSQLImpl implements CarDao{
             car.setRented(rs.getBoolean("rented"));
             car.setFuel(Fuel.valueOf(rs.getString("fuel").toUpperCase()));
             car.setTransmission(Transmission.valueOf(rs.getString("transmission").toUpperCase()));
-            car.setMileage(rs.getInt("mileage"));
             car.setHorsepower(rs.getInt("horsepower"));
         }catch (SQLException e) {
             e.printStackTrace();
