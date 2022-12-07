@@ -116,6 +116,21 @@ public class CarDaoSQLImpl implements CarDao{
 
     @Override
     public List<Car> searchByPriceRange(int min, int max) {
+        String query = "SELECT * FROM Cars WHERE price BETWEEN ? and ?";
+        try{
+            PreparedStatement stmt = this.connection.prepareStatement(query);
+            stmt.setInt(1, min);
+            stmt.setInt(2, max);
+            ResultSet rs = stmt.executeQuery();
+            ArrayList<Car> carLista = new ArrayList<>();
+            while (rs.next()) {
+                Car car = createCar(rs);
+                carLista.add(car);
+            }
+            return carLista;
+        }catch (SQLException e){
+            e.printStackTrace(); // poor error handling
+        }
         return null;
     }
 
