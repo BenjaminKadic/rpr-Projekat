@@ -76,7 +76,8 @@ public class CarDaoSQLImpl implements CarDao{
 
     @Override
     public List<Car> searchByHorsepower(int horsepower) {
-        return null;
+        String query = "SELECT * FROM quotes WHERE horsepower = ?";
+        return returnSearched(query, horsepower);
     }
 
     @Override
