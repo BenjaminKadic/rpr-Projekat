@@ -36,7 +36,7 @@ public class UserDaoSQLImpl implements UserDao{
     }
 
     /**
-     * returns next id for adding cars to database
+     * returns next id for adding users to database
      *
      * @return int value of next id
      */
