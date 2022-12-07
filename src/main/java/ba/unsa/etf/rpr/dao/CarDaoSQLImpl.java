@@ -71,8 +71,24 @@ public class CarDaoSQLImpl implements CarDao{
 
     @Override
     public List<Car> searchByMakeYearRange(int start, int end) {
+        String query = "SELECT * FROM Cars WHERE make_year BETWEEN ? and ?";
+        try{
+            PreparedStatement stmt = this.connection.prepareStatement(query);
+            stmt.setInt(1, start);
+            stmt.setInt(2, end);
+            ResultSet rs = stmt.executeQuery();
+            ArrayList<Car> carLista = new ArrayList<>();
+            while (rs.next()) {
+                Car car = createCar(rs);
+                carLista.add(car);
+            }
+            return carLista;
+        }catch (SQLException e){
+            e.printStackTrace(); // poor error handling
+        }
         return null;
     }
+
 
     @Override
     public List<Car> searchByHorsepower(int horsepower) {
@@ -103,10 +119,6 @@ public class CarDaoSQLImpl implements CarDao{
         return null;
     }
 
-    @Override
-    public boolean checkIfRented(Car car) {
-        return false;
-    }
 
     @Override
     public Car getById(int id) {
