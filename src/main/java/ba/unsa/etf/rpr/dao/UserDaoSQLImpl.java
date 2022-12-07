@@ -58,6 +58,23 @@ public class UserDaoSQLImpl implements UserDao{
     }
     @Override
     public User add(User item) {
+        int id = getMaxId();
+        String query = "INSERT INTO Users VALUES (?,?,?,?,?,?)";
+        try {
+            PreparedStatement stmt = this.connection.prepareStatement(query );
+            item.setId(id);
+            stmt.setInt(1, item.getId());
+            stmt.setString(2,item.getUsername());
+            stmt.setString(3,item.getFirstName());
+            stmt.setString(4, item.getLastName());
+            stmt.setDate(5,item.getBirthdate());
+            stmt.setString(6, item.getPassword());
+            stmt.executeUpdate();
+            return item;
+        } catch (SQLException e) {
+            System.out.println("Problem pri radu sa bazom podataka");
+            System.out.println(e.getMessage());
+        }
         return null;
     }
 
