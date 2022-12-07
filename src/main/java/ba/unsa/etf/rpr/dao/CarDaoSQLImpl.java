@@ -59,7 +59,8 @@ public class CarDaoSQLImpl implements CarDao{
 
     @Override
     public List<Car> searchByTransmission(Transmission transmission) {
-        return null;
+        String query = "SELECT * FROM quotes WHERE category = ?";
+        return returnSearched(query);
     }
 
     @Override
