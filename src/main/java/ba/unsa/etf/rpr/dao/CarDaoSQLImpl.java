@@ -179,7 +179,15 @@ public class CarDaoSQLImpl implements CarDao{
 
     @Override
     public void delete(int id) {
-
+        String query = "DELETE FROM Cars WHERE id = ?";
+        try{
+            PreparedStatement stmt = this.connection.prepareStatement(query);
+            stmt.setInt(1, id);
+            stmt.executeUpdate();
+        }catch (SQLException e){
+            System.out.println("Problem pri radu sa bazom podataka");
+            System.out.println(e.getMessage());
+        }
     }
 
     @Override
