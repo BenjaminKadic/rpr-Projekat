@@ -4,7 +4,6 @@ import ba.unsa.etf.rpr.domain.Car;
 import ba.unsa.etf.rpr.domain.Color;
 import ba.unsa.etf.rpr.domain.Fuel;
 import ba.unsa.etf.rpr.domain.Transmission;
-import jdk.jfr.Category;
 
 import java.sql.*;
 import java.util.List;
