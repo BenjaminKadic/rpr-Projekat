@@ -1,5 +1,7 @@
 package ba.unsa.etf.rpr.domain;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Date;
 import java.util.Objects;
 
@@ -7,6 +9,7 @@ public class Rent {
     private int id;
     private Car car;
     private User user;
+    private boolean returned;
     private Date startDate;
     private Date endDate;
 
@@ -32,6 +35,14 @@ public class Rent {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public boolean isReturned() {
+        return returned;
+    }
+
+    public void setReturned(boolean returned) {
+        this.returned = returned;
     }
 
     public Date getStartDate() {
