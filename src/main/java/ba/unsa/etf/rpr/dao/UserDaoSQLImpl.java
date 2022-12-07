@@ -3,6 +3,7 @@ package ba.unsa.etf.rpr.dao;
 import ba.unsa.etf.rpr.domain.User;
 
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class UserDaoSQLImpl implements UserDao{
@@ -113,6 +114,20 @@ public class UserDaoSQLImpl implements UserDao{
 
     @Override
     public List<User> getAll() {
+        String query = "SELECT * FROM Cars";
+        try {
+            PreparedStatement stmt = this.connection.prepareStatement(query);
+            ResultSet rs = stmt.executeQuery();
+            ArrayList<User> userLista = new ArrayList<>();
+            while (rs.next()) {
+                User user = new User(rs);
+                userLista.add(user);
+            }
+            rs.close();
+            return userLista;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return null;
     }
 }
