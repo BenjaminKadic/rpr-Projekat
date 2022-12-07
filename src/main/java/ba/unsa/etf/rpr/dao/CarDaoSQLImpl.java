@@ -73,6 +73,18 @@ public class CarDaoSQLImpl implements CarDao{
                 Car car = new Car();
                 car.setId(rs.getInt("id"));
                 car.setMake(rs.getString("make"));
+                car.setModel(rs.getString("model"));
+                car.setColor(Color.valueOf(rs.getString("color")));
+                car.setRegistration(rs.getString("registration"));
+                car.setMakeYear(rs.getInt("make_year"));
+                car.setPrice(rs.getInt("price"));
+                car.setRented(rs.getBoolean("rented"));
+                car.setFuel(Fuel.valueOf(rs.getString("fuel")));
+                car.setTransmission(Transmission.valueOf(rs.getString("transmission")));
+                car.setMileage(rs.getInt("mileage"));
+                car.setHorsepower(rs.getInt("horsepower"));
+                rs.close();
+                return car;
             }else{
                 return null; // if there is no elements in the result set return null
             }
