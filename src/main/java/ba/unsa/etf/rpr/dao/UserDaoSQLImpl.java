@@ -1,6 +1,5 @@
 package ba.unsa.etf.rpr.dao;
 
-import ba.unsa.etf.rpr.domain.Car;
 import ba.unsa.etf.rpr.domain.User;
 
 import java.sql.*;
