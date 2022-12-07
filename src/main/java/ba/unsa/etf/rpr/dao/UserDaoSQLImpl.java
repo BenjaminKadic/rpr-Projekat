@@ -17,6 +17,21 @@ public class UserDaoSQLImpl implements UserDao{
     }
     @Override
     public User getById(int id) {
+        String query = "SELECT * FROM Users WHERE id = ?";
+        try{
+            PreparedStatement stmt = this.connection.prepareStatement(query);
+            stmt.setInt(1, id);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()){ // result set is iterator.
+                User user = new User(rs);
+                rs.close();
+                return user;
+            }else{
+                return null; // if there is no elements in the result set return null
+            }
+        }catch (SQLException e){
+            e.printStackTrace(); // poor error handling
+        }
         return null;
     }
 
