@@ -17,7 +17,12 @@ public class CarDaoSQLImpl implements CarDao{
         }
     }
 
-
+    /**
+     * returns a list of cars that fit the search query
+     * @param query query to be executed
+     * @param parameter query parameter that replaces '?'
+     * @return list of cars
+     */
     private List<Car> returnSearched(String query, Object parameter){
         try {
             PreparedStatement stmt = this.connection.prepareStatement(query);
