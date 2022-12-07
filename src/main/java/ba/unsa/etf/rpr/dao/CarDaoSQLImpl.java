@@ -38,8 +38,8 @@ public class CarDaoSQLImpl implements CarDao{
 
     @Override
     public List<Car> searchByColor(Color color) {
-        String query = "SELECT * FROM quotes WHERE UPPER(color) = ?";
-        return returnSearched(query, String.valueOf(color));
+        String query = "SELECT * FROM quotes WHERE color = ?";
+        return returnSearched(query, color.value);
     }
 
     @Override
@@ -120,8 +120,9 @@ public class CarDaoSQLImpl implements CarDao{
      */
     private int getMaxId(){
         int id=1;
+        String query = "SELECT MAX(id)+1 FROM Cars";
         try {
-            PreparedStatement statement = this.connection.prepareStatement("SELECT MAX(id)+1 FROM Cars");
+            PreparedStatement statement = this.connection.prepareStatement(query);
             ResultSet rs = statement.executeQuery();
             if(rs.next()) {
                 id = rs.getInt(1);
@@ -136,6 +137,23 @@ public class CarDaoSQLImpl implements CarDao{
     }
     @Override
     public Car add(Car item) {
+        int id = getMaxId();
+        String query = "INSERT INTO Cars VALUES (?,?,?,?,?,?)";
+        try {
+            PreparedStatement stmt = this.connection.prepareStatement(query );
+            item.setId(id);
+            stmt.setInt(1, item.getId());
+            stmt.setString(2,item.getMake());
+            stmt.setString(3,item.getModel());
+            stmt.setString(4, item.getColor().value);
+            stmt.setString(5,item.getRegistration());
+            stmt.setInt(6, item.getPrice());
+            stmt.executeUpdate();
+            return item;
+        } catch (SQLException e) {
+            System.out.println("Problem pri radu sa bazom podataka");
+            System.out.println(e.getMessage());
+        }
         return null;
     }
 
