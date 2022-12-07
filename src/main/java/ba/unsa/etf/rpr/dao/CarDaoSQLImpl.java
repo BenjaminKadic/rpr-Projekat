@@ -192,6 +192,19 @@ public class CarDaoSQLImpl implements CarDao{
 
     @Override
     public List<Car> getAll() {
+        String query = "SELECT * FROM Cars";
+        try {
+            PreparedStatement stmt = this.connection.prepareStatement(query);
+            ResultSet rs = stmt.executeQuery();
+            ArrayList<Car> carLista = new ArrayList<>();
+            while (rs.next()) {
+                Car car = new Car(rs);
+                carLista.add(car);
+            }
+            return carLista;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return null;
     }
 }
