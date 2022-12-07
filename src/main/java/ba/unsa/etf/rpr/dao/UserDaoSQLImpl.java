@@ -61,7 +61,7 @@ public class UserDaoSQLImpl implements UserDao{
         int id = getMaxId();
         String query = "INSERT INTO Users VALUES (?,?,?,?,?,?)";
         try {
-            PreparedStatement stmt = this.connection.prepareStatement(query );
+            PreparedStatement stmt = this.connection.prepareStatement(query);
             item.setId(id);
             stmt.setInt(1, item.getId());
             stmt.setString(2,item.getUsername());
@@ -80,6 +80,21 @@ public class UserDaoSQLImpl implements UserDao{
 
     @Override
     public User update(User item) {
+        String query = "UPDATE Cars SET username=?, first_name=?, last_name=?, birthdate=?, password=? WHERE id=?";
+        try {
+            PreparedStatement stmt = this.connection.prepareStatement(query);
+            stmt.setString(1,item.getUsername());
+            stmt.setString(2,item.getFirstName());
+            stmt.setString(3, item.getLastName());
+            stmt.setDate(4,item.getBirthdate());
+            stmt.setString(5, item.getPassword());
+            stmt.setInt(6, item.getId());
+            stmt.executeUpdate();
+            return item;
+        } catch (SQLException e) {
+            System.out.println("Problem pri radu sa bazom podataka");
+            System.out.println(e.getMessage());
+        }
         return null;
     }
 
