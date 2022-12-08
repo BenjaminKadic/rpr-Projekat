@@ -87,6 +87,21 @@ public class RentDaoSQLImpl implements RentDao{
 
     @Override
     public Rent update(Rent item) {
+        String query = "UPDATE Rents SET make=?, model=?, color=?, registration=?, price=? WHERE id=?";
+        try {
+            PreparedStatement stmt = this.connection.prepareStatement(query);
+            stmt.setInt(1,item.getCar().getId());
+            stmt.setInt(2,item.getUser().getId());
+            stmt.setBoolean(3, item.isReturned());
+            stmt.setDate(4,item.getStartDate());
+            stmt.setDate(5, item.getEndDate());
+            stmt.setInt(6, item.getId());
+            stmt.executeUpdate();
+            return item;
+        } catch (SQLException e) {
+            System.out.println("Problem pri radu sa bazom podataka");
+            System.out.println(e.getMessage());
+        }
         return null;
     }
 
