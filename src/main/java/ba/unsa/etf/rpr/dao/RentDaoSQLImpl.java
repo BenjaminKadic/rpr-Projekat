@@ -3,6 +3,7 @@ package ba.unsa.etf.rpr.dao;
 import ba.unsa.etf.rpr.domain.Rent;
 
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -120,6 +121,26 @@ public class RentDaoSQLImpl implements RentDao{
 
     @Override
     public List<Rent> getAll() {
+        String query = "SELECT * FROM Rents";
+        try {
+            PreparedStatement stmt = this.connection.prepareStatement(query);
+            ResultSet rs = stmt.executeQuery();
+            ArrayList<Rent> rentsLista = new ArrayList<>();
+            while (rs.next()) {
+                Rent rent = new Rent();
+                rent.setId(rs.getInt("id"));
+                rent.setCar(new CarDaoSQLImpl().getById(rs.getInt("car_id")));
+                rent.setUser(new UserDaoSQLImpl().getById(rs.getInt("user_id")));
+                rent.setReturned(rs.getBoolean("returned"));
+                rent.setStartDate(rs.getDate("start"));
+                rent.setEndDate(rs.getDate("end"));
+                rentsLista.add(rent);
+            }
+            rs.close();
+            return rentsLista;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return null;
     }
 
