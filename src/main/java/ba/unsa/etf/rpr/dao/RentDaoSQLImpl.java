@@ -4,7 +4,6 @@ import ba.unsa.etf.rpr.domain.Rent;
 
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class RentDaoSQLImpl implements RentDao{
@@ -146,6 +145,30 @@ public class RentDaoSQLImpl implements RentDao{
 
     @Override
     public List<Rent> getByDateRange(Date start, Date end) {
+        String query = "SELECT * FROM Rents WHERE start BETWEEN ? and ? AND end BETWEEN ? and ?";
+        try{
+            PreparedStatement stmt = this.connection.prepareStatement(query);
+            stmt.setDate(1, start);
+            stmt.setDate(2, end);
+            stmt.setDate(3, start);
+            stmt.setDate(4, end);
+            ResultSet rs = stmt.executeQuery();
+            ArrayList<Rent> rentsLista = new ArrayList<>();
+            while (rs.next()) {
+                Rent rent = new Rent();
+                rent.setId(rs.getInt("id"));
+                rent.setCar(new CarDaoSQLImpl().getById(rs.getInt("car_id")));
+                rent.setUser(new UserDaoSQLImpl().getById(rs.getInt("user_id")));
+                rent.setReturned(rs.getBoolean("returned"));
+                rent.setStartDate(rs.getDate("start"));
+                rent.setEndDate(rs.getDate("end"));
+                rentsLista.add(rent);
+            }
+            rs.close();
+            return rentsLista;
+        }catch (SQLException e){
+            e.printStackTrace(); // poor error handling
+        }
         return null;
     }
 }
