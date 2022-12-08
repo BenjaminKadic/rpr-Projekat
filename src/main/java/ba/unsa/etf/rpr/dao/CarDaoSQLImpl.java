@@ -148,7 +148,7 @@ public class CarDaoSQLImpl implements CarDao{
         int id = getMaxId();
         String query = "INSERT INTO Cars VALUES (?,?,?,?,?,?)";
         try {
-            PreparedStatement stmt = this.connection.prepareStatement(query );
+            PreparedStatement stmt = this.connection.prepareStatement(query);
             item.setId(id);
             stmt.setInt(1, item.getId());
             stmt.setString(2,item.getMake());
