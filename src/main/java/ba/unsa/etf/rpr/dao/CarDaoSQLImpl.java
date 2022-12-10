@@ -11,7 +11,7 @@ public class CarDaoSQLImpl implements CarDao{
     private Connection connection;
     public CarDaoSQLImpl() {
         try {
-            this.connection= DriverManager.getConnection("", "", "");
+            this.connection= DriverManager.getConnection(DBConnection.getUrl(), DBConnection.getUsername(),DBConnection.getPassword());
         }catch(Exception e) {
             e.printStackTrace();
         }
