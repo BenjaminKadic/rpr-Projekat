@@ -3,15 +3,18 @@ package ba.unsa.etf.rpr.dao;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.sql.*;
 import java.util.Properties;
 
+
 public class DBConnection {
-    static Properties props = new Properties();
-    FileInputStream in;
+    private final Properties props = new Properties();
+
 
     {
         try {
-            in = new FileInputStream("src/main/resources/DBConnection.properties");
+            FileInputStream in;
+            in = new FileInputStream("C:\\Users\\Thinkpad\\IdeaProjects\\rpr-Projekat\\src\\main\\resources\\DBConnection.properties");
             props.load(in);
             in.close();
         } catch (FileNotFoundException e) {
@@ -21,22 +24,20 @@ public class DBConnection {
             throw new RuntimeException(e);
         }
     }
-    final static String url = props.getProperty("url");
-    final static String username = props.getProperty("username");
-    final static String password = props.getProperty("password");
 
-    public static String getUrl() {
-        return url;
+    private final String url = props.getProperty("url");
+    private final String username = props.getProperty("username");
+    private final String password = props.getProperty("password");
+
+
+    public Connection connect() {
+        Connection connection;
+        try{
+            connection= DriverManager.getConnection(url, username,password);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return connection;
     }
-
-    public static String getUsername() {
-        return username;
-    }
-
-    public static String getPassword() {
-        return password;
-    }
-
-
 
 }
