@@ -10,7 +10,7 @@ public class RentDaoSQLImpl implements RentDao{
     private Connection connection;
     public RentDaoSQLImpl() {
         try {
-            this.connection= DriverManager.getConnection("", "", "");
+            this.connection= DriverManager.getConnection(DBConnection.getUrl(), DBConnection.getUsername(),DBConnection.getPassword());
         }catch(Exception e) {
             e.printStackTrace();
         }
