@@ -21,6 +21,21 @@ public class DBConnection {
             throw new RuntimeException(e);
         }
     }
+    final static String url = props.getProperty("url");
+    final static String username = props.getProperty("username");
+    final static String password = props.getProperty("password");
+
+    public static String getUrl() {
+        return url;
+    }
+
+    public static String getUsername() {
+        return username;
+    }
+
+    public static String getPassword() {
+        return password;
+    }
 
 
 
