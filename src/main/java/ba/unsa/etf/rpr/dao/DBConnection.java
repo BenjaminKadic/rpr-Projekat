@@ -6,10 +6,13 @@ import java.io.IOException;
 import java.sql.*;
 import java.util.Properties;
 
-
+/**
+ * Class that is used to read database credentials from a .properties file
+ *
+ * @author Benjamin Kadic
+ */
 public class DBConnection {
     private final Properties props = new Properties();
-
 
     {
         try {
@@ -29,7 +32,11 @@ public class DBConnection {
     private final String username = props.getProperty("username");
     private final String password = props.getProperty("password");
 
-
+    /**
+     * method that creates a connection to
+     * a database with stored credentials
+     * @return connection
+     */
     public Connection connect() {
         Connection connection;
         try{
