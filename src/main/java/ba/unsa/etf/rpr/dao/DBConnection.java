@@ -8,6 +8,7 @@ import java.util.Properties;
 
 /**
  * Class that is used to read database credentials from a .properties file
+ * and create a singleton connection
  *
  * @author Benjamin Kadic
  */
@@ -27,24 +28,28 @@ public class DBConnection {
             throw new RuntimeException(e);
         }
     }
-
-    private final String url = props.getProperty("url");
-    private final String username = props.getProperty("username");
-    private final String password = props.getProperty("password");
-
-    /**
-     * method that creates a connection to
-     * a database with stored credentials
-     * @return connection
-     */
-    public Connection connect() {
-        Connection connection;
+    private final Connection connection;
+    private static DBConnection instance;
+    private DBConnection() {
+        String url = props.getProperty("url");
+        String username = props.getProperty("username");
+        String password = props.getProperty("password");
         try{
             connection= DriverManager.getConnection(url, username,password);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+    }
+    public Connection getConnection(){
         return connection;
+    }
+    public static DBConnection getInstance() throws SQLException{
+        if(instance == null){
+            instance = new DBConnection();
+        }else if(instance.getConnection().isClosed()){
+            instance=new DBConnection();
+        }
+        return instance;
     }
 
 }
