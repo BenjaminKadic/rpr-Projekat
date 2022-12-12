@@ -10,10 +10,8 @@ public class UserDaoSQLImpl implements UserDao{
     private Connection connection;
 
     public UserDaoSQLImpl() {
-        DBConnection DBConn;
         try {
-            DBConn=new DBConnection();
-            this.connection=DBConn.connect();
+            this.connection=DBConnection.getInstance().getConnection();
         }catch(Exception e) {
             e.printStackTrace();
         }

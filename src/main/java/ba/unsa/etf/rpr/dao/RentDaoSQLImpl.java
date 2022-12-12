@@ -10,14 +10,13 @@ public class RentDaoSQLImpl implements RentDao{
     private Connection connection;
 
     public RentDaoSQLImpl() {
-        DBConnection DBConn;
         try {
-            DBConn=new DBConnection();
-            this.connection=DBConn.connect();
+            this.connection=DBConnection.getInstance().getConnection();
         }catch(Exception e) {
             e.printStackTrace();
         }
     }
+
     @Override
     public Rent getById(int id) {
         String query = "SELECT * FROM Rents WHERE id = ?";

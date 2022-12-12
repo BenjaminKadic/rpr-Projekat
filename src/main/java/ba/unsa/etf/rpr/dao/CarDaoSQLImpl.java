@@ -10,10 +10,8 @@ import java.util.List;
 public class CarDaoSQLImpl implements CarDao{
     private Connection connection;
     public CarDaoSQLImpl() {
-        DBConnection DBConn;
         try {
-            DBConn=new DBConnection();
-            this.connection=DBConn.connect();
+            this.connection=DBConnection.getInstance().getConnection();
         }catch(Exception e) {
             e.printStackTrace();
         }
