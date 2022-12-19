@@ -44,19 +44,19 @@ public class CarDaoSQLImpl implements CarDao{
 
     @Override
     public List<Car> searchByColor(Color color) {
-        String query = "SELECT * FROM quotes WHERE color = ?";
+        String query = "SELECT * FROM Cars WHERE color = ?";
         return returnSearched(query, color.value);
     }
 
     @Override
     public List<Car> searchByMake(String make) {
-        String query = "SELECT * FROM quotes WHERE UPPER(make) LIKE concat('%', ?, '%')";
+        String query = "SELECT * FROM Cars WHERE UPPER(make) LIKE concat('%', ?, '%')";
         return returnSearched(query, make.toUpperCase());
     }
 
     @Override
     public List<Car> searchByModel(String model) {
-        String query = "SELECT * FROM quotes WHERE UPPER(model) LIKE concat('%', ?, '%')";
+        String query = "SELECT * FROM Cars WHERE UPPER(model) LIKE concat('%', ?, '%')";
         return returnSearched(query, model.toUpperCase());
     }
 
