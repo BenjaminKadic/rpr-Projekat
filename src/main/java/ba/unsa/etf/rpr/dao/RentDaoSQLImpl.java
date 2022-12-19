@@ -89,7 +89,7 @@ public class RentDaoSQLImpl implements RentDao{
 
     @Override
     public Rent update(Rent item) {
-        String query = "UPDATE Rents SET make=?, model=?, color=?, registration=?, price=? WHERE id=?";
+        String query = "UPDATE Rents SET car_id=?, user_id=?, returned=?, start=?, end=? WHERE id=?";
         try {
             PreparedStatement stmt = this.connection.prepareStatement(query);
             stmt.setInt(1,item.getCar().getId());
