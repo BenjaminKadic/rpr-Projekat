@@ -15,8 +15,8 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<GridPane prefWidth="600.0" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
-  <columnConstraints>
+<GridPane prefWidth="600.0" style="-fx-background-color: #000000;" stylesheets="@../css/login.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ba.unsa.etf.rpr.controller.LoginController">
+    <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
   </columnConstraints>
@@ -57,7 +57,7 @@
                <children>
                   <ButtonBar>
                     <buttons>
-                        <Button fx:id="button_login" defaultButton="true" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-border-color: #f9f9fb;" text="Log in" textFill="#f9f9fb">
+                        <Button fx:id="button_login" defaultButton="true" mnemonicParsing="false" text="Log in" textFill="#f9f9fb">
                            <font>
                               <Font name="Segoe UI Semilight" size="13.0" />
                            </font>
