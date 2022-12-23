@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<GridPane prefWidth="600.0" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<GridPane prefWidth="600.0" style="-fx-background-color: #000000;" stylesheets="@../css/register.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ba.unsa.etf.rpr.controller.RegisterController">
     <columnConstraints>
         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -83,7 +83,7 @@
             </HBox>
             <HBox alignment="CENTER">
                <children>
-                  <DatePicker fx:id="dp_registerBirthdate" promptText="Date of Birth" style="-fx-primary-color: #c2600; -fx-secondary-color: #864500; -fx-light-grey-color: #d1d1d1;" />
+                  <DatePicker fx:id="dp_registerBirthdate" prefHeight="30.0" prefWidth="185.0" promptText="Date of Birth" style="-fx-primary-color: #c2600; -fx-secondary-color: #864500; -fx-light-grey-color: #d1d1d1;" />
                </children>
                <padding>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
@@ -93,7 +93,7 @@
                     <children>
                         <ButtonBar>
                             <buttons>
-                                <Button fx:id="button_register" defaultButton="true" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-border-color: #f9f9fb;" text="Register" textFill="#f9f9fb">
+                                <Button fx:id="button_register" defaultButton="true" mnemonicParsing="false" text="Register" textFill="#f9f9fb">
                                     <font>
                                         <Font name="Segoe UI Semilight" size="13.0" />
                                     </font>
