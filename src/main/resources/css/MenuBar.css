@@ -5,9 +5,10 @@
     -fx-my-menu-font-color-highlighted: black;
 }
 
-
 .menu-bar {
     -fx-background-color: -fx-my-menu-color;
+    -fx-border-color: #2A2A2A;
+    -fx-border-width: 0px 0px 2px 0px;
 }
 
 /*** Top-level menu itself (not selected / hovered) ***/
