@@ -1,6 +1,7 @@
 package ba.unsa.etf.rpr.dao;
 
 import ba.unsa.etf.rpr.domain.Rent;
+import ba.unsa.etf.rpr.exceptions.RentACarException;
 
 import java.sql.Date;
 import java.util.List;
@@ -18,5 +19,5 @@ public interface RentDao extends Dao<Rent>{
      * @param end end date
      * @return List of rents from rents table
      */
-    List<Rent> getByDateRange(Date start, Date end);
+    List<Rent> getByDateRange(Date start, Date end) throws RentACarException;
 }

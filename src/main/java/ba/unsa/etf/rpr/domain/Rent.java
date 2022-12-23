@@ -35,7 +35,7 @@ public class Rent implements Idable{
         this.user = user;
     }
 
-    public boolean isReturned() {
+    public boolean getReturned() {
         return returned;
     }
 

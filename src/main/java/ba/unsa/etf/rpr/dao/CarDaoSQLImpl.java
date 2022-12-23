@@ -2,218 +2,138 @@ package ba.unsa.etf.rpr.dao;
 
 import ba.unsa.etf.rpr.domain.Car;
 import ba.unsa.etf.rpr.domain.Color;
+import ba.unsa.etf.rpr.exceptions.RentACarException;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
-public class CarDaoSQLImpl implements CarDao{
-    private Connection connection;
-    public CarDaoSQLImpl() {
+/**
+ * MySQL Implementation of DAO
+ * @author Benjamin Kadic
+ */
+public class CarDaoSQLImpl extends AbstractDao<Car> implements CarDao{
+    public CarDaoSQLImpl(){
+        super("Cars");
+    }
+
+    @Override
+    public Car row2object(ResultSet rs) throws RentACarException {
         try {
-            this.connection=DBConnection.getInstance().getConnection();
-        }catch(Exception e) {
-            e.printStackTrace();
+            Car car = new Car();
+            car.setId(rs.getInt("id"));
+            car.setMake(rs.getString("make"));
+            car.setModel(rs.getString("model"));
+            car.setColor(Color.valueOf(rs.getString("color").toUpperCase()));
+            car.setRegistration(rs.getString("registration"));
+            car.setPrice(rs.getInt("price"));
+            return car;
+        } catch (Exception e) {
+            throw new RentACarException(e.getMessage(), e);
         }
     }
 
-    /**
-     * returns a list of cars that fit the search query
-     * @param query query to be executed
-     * @param parameter query parameter that replaces '?'
-     * @return list of cars
-     */
-    private List<Car> returnSearched(String query, Object parameter){
-        try {
-            PreparedStatement stmt = this.connection.prepareStatement(query);
-            stmt.setObject(1, parameter);
-            ResultSet rs = stmt.executeQuery();
-            ArrayList<Car> carLista = new ArrayList<>();
+    @Override
+    public Map<String, Object> object2row(Car object) {
+        Map<String, Object> item = new TreeMap<>();
+        item.put("id", object.getId());
+        item.put("make", object.getMake());
+        item.put("model", object.getModel());
+        item.put("color", object.getColor().value);
+        item.put("registration", object.getRegistration());
+        item.put("price", object.getPrice());
+        return item;
+    }
+
+
+    @Override
+    public List<Car> searchByColor(Color color) throws RentACarException {
+        String query = "SELECT * FROM Cars WHERE color = ?";
+        try{
+            PreparedStatement stmt = getConnection().prepareStatement(query);
+            stmt.setString(1, color.value);ResultSet rs = stmt.executeQuery();
+            ArrayList<Car> cars = new ArrayList<>();
             while (rs.next()) {
-                Car car = new Car(rs);
-                carLista.add(car);
+                cars.add(row2object(rs));
             }
             rs.close();
-            return carLista;
+            return cars;
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RentACarException(e.getMessage(), e);
         }
-        return null;
-    }
-
-
-    @Override
-    public List<Car> searchByColor(Color color) {
-        String query = "SELECT * FROM Cars WHERE color = ?";
-        return returnSearched(query, color.value);
     }
 
     @Override
-    public List<Car> searchByMake(String make) {
+    public List<Car> searchByMake(String make) throws RentACarException {
         String query = "SELECT * FROM Cars WHERE UPPER(make) LIKE concat('%', ?, '%')";
-        return returnSearched(query, make.toUpperCase());
+        try{
+            PreparedStatement stmt = getConnection().prepareStatement(query);
+            stmt.setString(1, make.toUpperCase());
+            ResultSet rs = stmt.executeQuery();
+            ArrayList<Car> cars = new ArrayList<>();
+            while (rs.next()) {
+                cars.add(row2object(rs));
+            }
+            rs.close();
+            return cars;
+        } catch (SQLException e) {
+            throw new RentACarException(e.getMessage(), e);
+        }
     }
 
     @Override
-    public List<Car> searchByModel(String model) {
+    public List<Car> searchByModel(String model) throws RentACarException {
         String query = "SELECT * FROM Cars WHERE UPPER(model) LIKE concat('%', ?, '%')";
-        return returnSearched(query, model.toUpperCase());
+        try{
+            PreparedStatement stmt = getConnection().prepareStatement(query);
+            stmt.setString(1, model.toUpperCase());
+            ResultSet rs = stmt.executeQuery();
+            ArrayList<Car> cars = new ArrayList<>();
+            while (rs.next()) {
+                cars.add(row2object(rs));
+            }
+            rs.close();
+            return cars;
+        } catch (SQLException e) {
+            throw new RentACarException(e.getMessage(), e);
+        }
     }
 
     @Override
-    public List<Car> searchByPriceRange(int min, int max) {
+    public List<Car> searchByPriceRange(int min, int max) throws RentACarException {
         String query = "SELECT * FROM Cars WHERE price BETWEEN ? and ?";
         try{
-            PreparedStatement stmt = this.connection.prepareStatement(query);
+            PreparedStatement stmt = getConnection().prepareStatement(query);
             stmt.setInt(1, min);
             stmt.setInt(2, max);
             ResultSet rs = stmt.executeQuery();
-            ArrayList<Car> carLista = new ArrayList<>();
+            ArrayList<Car> cars = new ArrayList<>();
             while (rs.next()) {
-                Car car = new Car(rs);
-                carLista.add(car);
+                cars.add(row2object(rs));
             }
             rs.close();
-            return carLista;
-        }catch (SQLException e){
-            e.printStackTrace(); // poor error handling
+            return cars;
+        } catch (SQLException e) {
+            throw new RentACarException(e.getMessage(), e);
         }
-        return null;
-    }
-
-
-    @Override
-    public Car getById(int id) {
-        String query = "SELECT * FROM Cars WHERE id = ?";
-        try{
-            PreparedStatement stmt = this.connection.prepareStatement(query);
-            stmt.setInt(1, id);
-            ResultSet rs = stmt.executeQuery();
-            if (rs.next()){ // result set is iterator.
-                Car car = new Car(rs);
-                rs.close();
-                return car;
-            }else{
-                return null; // if there is no elements in the result set return null
-            }
-        }catch (SQLException e){
-            e.printStackTrace(); // poor error handling
-        }
-        return null;
     }
 
     @Override
-    public List<Car> searchAvailable() {
+    public List<Car> searchAvailable() throws RentACarException {
         String query = "SELECT * FROM car c WHERE c.id NOT IN (SELECT r.car_id FROM Rents WHERE r.returned = 0)";
         try{
-            PreparedStatement stmt = this.connection.prepareStatement(query);
+            PreparedStatement stmt = getConnection().prepareStatement(query);
             ResultSet rs = stmt.executeQuery();
-            ArrayList<Car> carLista = new ArrayList<>();
+            ArrayList<Car> cars = new ArrayList<>();
             while (rs.next()) {
-                Car car = new Car(rs);
-                carLista.add(car);
+                cars.add(row2object(rs));
             }
             rs.close();
-            return carLista;
-        }catch(SQLException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-
-    /**
-     * returns next id for adding cars to database
-     *
-     * @return int value of next id
-     */
-    private int getMaxId(){
-        int id=1;
-        String query = "SELECT MAX(id)+1 FROM Cars";
-        try {
-            PreparedStatement statement = this.connection.prepareStatement(query);
-            ResultSet rs = statement.executeQuery();
-            if(rs.next()) {
-                id = rs.getInt(1);
-                rs.close();
-                return id;
-            }
+            return cars;
         } catch (SQLException e) {
-            System.out.println("Problem pri radu sa bazom podataka");
-            System.out.println(e.getMessage());
+            throw new RentACarException(e.getMessage(), e);
         }
-        return id;
-    }
-    @Override
-    public Car add(Car item) {
-        int id = getMaxId();
-        String query = "INSERT INTO Cars VALUES (?,?,?,?,?,?)";
-        try {
-            PreparedStatement stmt = this.connection.prepareStatement(query);
-            item.setId(id);
-            stmt.setInt(1, item.getId());
-            stmt.setString(2,item.getMake());
-            stmt.setString(3,item.getModel());
-            stmt.setString(4, item.getColor().value);
-            stmt.setString(5,item.getRegistration());
-            stmt.setInt(6, item.getPrice());
-            stmt.executeUpdate();
-            return item;
-        } catch (SQLException e) {
-            System.out.println("Problem pri radu sa bazom podataka");
-            System.out.println(e.getMessage());
-        }
-        return null;
-    }
-
-    @Override
-    public Car update(Car item) {
-        String query = "UPDATE Cars SET make=?, model=?, color=?, registration=?, price=? WHERE id=?";
-        try{
-            PreparedStatement stmt = this.connection.prepareStatement(query);
-            stmt.setString(1,item.getMake());
-            stmt.setString(2,item.getModel());
-            stmt.setString(3, item.getColor().value);
-            stmt.setString(4,item.getRegistration());
-            stmt.setInt(5, item.getPrice());
-            stmt.setInt(6, item.getId());
-            stmt.executeUpdate();
-            return item;
-        }catch (SQLException e){
-            System.out.println("Problem pri radu sa bazom podataka");
-            System.out.println(e.getMessage());
-        }
-        return null;
-    }
-
-    @Override
-    public void delete(int id) {
-        String query = "DELETE FROM Cars WHERE id = ?";
-        try{
-            PreparedStatement stmt = this.connection.prepareStatement(query);
-            stmt.setInt(1, id);
-            stmt.executeUpdate();
-        }catch (SQLException e){
-            System.out.println("Problem pri radu sa bazom podataka");
-            System.out.println(e.getMessage());
-        }
-    }
-
-    @Override
-    public List<Car> getAll() {
-        String query = "SELECT * FROM Cars";
-        try {
-            PreparedStatement stmt = this.connection.prepareStatement(query);
-            ResultSet rs = stmt.executeQuery();
-            ArrayList<Car> carLista = new ArrayList<>();
-            while (rs.next()) {
-                Car car = new Car(rs);
-                carLista.add(car);
-            }
-            rs.close();
-            return carLista;
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return null;
     }
 }
