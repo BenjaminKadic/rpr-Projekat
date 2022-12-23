@@ -1,10 +1,8 @@
 package ba.unsa.etf.rpr.domain;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.Objects;
 
-public class Car {
+public class Car implements Idable{
     private int id;
     private String make;
     private String model;
@@ -12,18 +10,6 @@ public class Car {
     private String registration;
     private int price;
     public Car(){}
-    public Car(ResultSet rs){
-        try{
-            this.setId(rs.getInt("id"));
-            this.setMake(rs.getString("make"));
-            this.setModel(rs.getString("model"));
-            this.setColor(Color.valueOf(rs.getString("color").toUpperCase()));
-            this.setRegistration(rs.getString("registration"));
-            this.setPrice(rs.getInt("price"));
-        }catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
 
     public int getId() {
         return id;

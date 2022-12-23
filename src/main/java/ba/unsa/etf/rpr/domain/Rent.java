@@ -3,7 +3,7 @@ package ba.unsa.etf.rpr.domain;
 import java.sql.Date;
 import java.util.Objects;
 
-public class Rent {
+public class Rent implements Idable{
     private int id;
     private Car car;
     private User user;
