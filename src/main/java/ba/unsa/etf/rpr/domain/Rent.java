@@ -79,6 +79,6 @@ public class Rent {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id);
+        return Objects.hash(id, car, user, returned, startDate, endDate);
     }
 }

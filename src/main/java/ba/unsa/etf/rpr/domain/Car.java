@@ -95,7 +95,6 @@ public class Car {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id);
+        return Objects.hash(id, make, model, color, registration, price);
     }
-
 }
