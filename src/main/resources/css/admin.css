@@ -1,0 +1,19 @@
+.button{
+    -fx-background-color: transparent;
+    -fx-border-color: #f9f9fb;
+}
+.button:hover{
+    -fx-border-color: transparent;
+    -fx-background-color: #f9f9fb;
+    -fx-text-fill: black;
+}
+.text-field {
+	-fx-background-color: transparent;
+    -fx-text-fill: #f9f9fb;
+    -fx-border-color: #f9f9fb;
+    -fx-border-width: 0px 0px 1px 0px;
+    -fx-text-inner-color: #ffffff;
+}
+.text-field:focused {
+	-fx-background-color: -fx-primary-color, white;
+}
