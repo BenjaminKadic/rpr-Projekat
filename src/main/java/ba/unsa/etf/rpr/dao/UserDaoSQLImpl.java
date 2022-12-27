@@ -4,7 +4,6 @@ import ba.unsa.etf.rpr.domain.User;
 import ba.unsa.etf.rpr.exceptions.RentACarException;
 
 import java.sql.*;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
@@ -46,18 +45,6 @@ public class UserDaoSQLImpl extends AbstractDao<User> implements UserDao{
     @Override
     public List<User> searchByUsername(String username) throws RentACarException {
         String query = "SELECT * FROM Users WHERE UPPER(username) LIKE concat('%', ?, '%')";
-        try{
-            PreparedStatement stmt = getConnection().prepareStatement(query);
-            stmt.setString(1, username.toUpperCase());
-            ResultSet rs = stmt.executeQuery();
-            ArrayList<User> users = new ArrayList<>();
-            while (rs.next()) {
-                users.add(row2object(rs));
-            }
-            rs.close();
-            return users;
-        } catch (SQLException e) {
-            throw new RentACarException(e.getMessage(), e);
-        }
+        return executeQuery(query, new Object[]{username});
     }
 }
