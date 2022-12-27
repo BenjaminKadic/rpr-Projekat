@@ -5,7 +5,7 @@ import ba.unsa.etf.rpr.dao.DaoFactory;
 import ba.unsa.etf.rpr.domain.Car;
 import ba.unsa.etf.rpr.domain.Rent;
 import ba.unsa.etf.rpr.exceptions.RentACarException;
-import java.sql.*;
+import java.sql.Date;
 import java.util.List;
 
 import static ba.unsa.etf.rpr.dao.DaoFactory.*;
