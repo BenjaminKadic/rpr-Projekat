@@ -17,7 +17,7 @@ public interface CarDao extends Dao<Car>{
      * @param color search color for cars
      * @return list of cars
      */
-    List<Car> searchByColor(Color color) throws RentACarException;
+    List<Car> searchByColor(String color) throws RentACarException;
     /**
      * Returns all cars of given make.
      *

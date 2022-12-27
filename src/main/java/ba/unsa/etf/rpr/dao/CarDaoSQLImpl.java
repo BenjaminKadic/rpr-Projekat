@@ -1,7 +1,6 @@
 package ba.unsa.etf.rpr.dao;
 
 import ba.unsa.etf.rpr.domain.Car;
-import ba.unsa.etf.rpr.domain.Color;
 import ba.unsa.etf.rpr.exceptions.RentACarException;
 
 import java.sql.*;
@@ -25,7 +24,7 @@ public class CarDaoSQLImpl extends AbstractDao<Car> implements CarDao{
             car.setId(rs.getInt("id"));
             car.setMake(rs.getString("make"));
             car.setModel(rs.getString("model"));
-            car.setColor(Color.valueOf(rs.getString("color").toUpperCase()));
+            car.setColor(rs.getString("color"));
             car.setRegistration(rs.getString("registration"));
             car.setPrice(rs.getInt("price"));
             return car;
@@ -40,7 +39,7 @@ public class CarDaoSQLImpl extends AbstractDao<Car> implements CarDao{
         item.put("id", object.getId());
         item.put("make", object.getMake());
         item.put("model", object.getModel());
-        item.put("color", object.getColor().value);
+        item.put("color", object.getColor());
         item.put("registration", object.getRegistration());
         item.put("price", object.getPrice());
         return item;
@@ -48,9 +47,9 @@ public class CarDaoSQLImpl extends AbstractDao<Car> implements CarDao{
 
 
     @Override
-    public List<Car> searchByColor(Color color) throws RentACarException {
+    public List<Car> searchByColor(String color) throws RentACarException {
         String query = "SELECT * FROM Cars WHERE color = ?";
-        return executeQuery(query, new Object[]{color.value});
+        return executeQuery(query, new Object[]{color});
     }
 
     @Override

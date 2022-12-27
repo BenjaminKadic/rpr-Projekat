@@ -6,7 +6,7 @@ public class Car implements Idable{
     private int id;
     private String make;
     private String model;
-    private Color color;
+    private String color;
     private String registration;
     private int price;
     public Car(){}
@@ -35,11 +35,11 @@ public class Car implements Idable{
         this.model = model;
     }
 
-    public Color getColor() {
+    public String getColor() {
         return color;
     }
 
-    public void setColor(Color color) {
+    public void setColor(String color) {
         this.color = color;
     }
 
