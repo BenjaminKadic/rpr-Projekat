@@ -8,6 +8,11 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+/**
+ * Business Logic Layer for management of Cars
+ *
+ * @author Benjamin Kadic
+ */
 public class CarManager {
     public List<Car> getAll() throws RentACarException {
         return DaoFactory.carDao().getAll();
