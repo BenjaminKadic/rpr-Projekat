@@ -25,5 +25,12 @@ public class UserManager {
         }
     }
 
+    public void validateAge(Date birthdate) throws RentACarException{
+        java.sql.Date date = Date.valueOf(new Date(System.currentTimeMillis()).toLocalDate().minusYears(18));
+        if(birthdate==null || birthdate.after(date)){
+            throw new RentACarException("You must be 18+ in order to make an account");
+        }
+    }
+
 
 }
