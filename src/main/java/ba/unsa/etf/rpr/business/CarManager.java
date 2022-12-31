@@ -14,6 +14,12 @@ import java.util.Set;
  * @author Benjamin Kadic
  */
 public class CarManager {
+
+    public void validateRegistration(String registration) throws RentACarException{
+        if (registration == null || registration.length() != 7){
+            throw new RentACarException("Registration must contain 7 characters");
+        }
+    }
     public List<Car> getAll() throws RentACarException {
         return DaoFactory.carDao().getAll();
     }
@@ -33,12 +39,28 @@ public class CarManager {
         return DaoFactory.carDao().getById(carId);
     }
 
-    public void update(Car q) throws RentACarException{
-        DaoFactory.carDao().update(q);
+    public Car update(Car car) throws RentACarException{
+        validateRegistration(car.getRegistration());
+        try{
+            return DaoFactory.carDao().update(car);
+        }catch (RentACarException e){
+            if (e.getMessage().contains("UQ_NAME")){
+                throw new RentACarException("Car with same registration already exists");
+            }
+            throw e;
+        }
     }
 
-    public Car add(Car q) throws RentACarException{
-        return DaoFactory.carDao().add(q);
+    public Car add(Car car) throws RentACarException{
+        validateRegistration(car.getRegistration());
+        try{
+            return DaoFactory.carDao().add(car);
+        }catch (RentACarException e){
+            if (e.getMessage().contains("UQ_NAME")){
+                throw new RentACarException("Car with same registration already exists");
+            }
+            throw e;
+        }
     }
 
 }
