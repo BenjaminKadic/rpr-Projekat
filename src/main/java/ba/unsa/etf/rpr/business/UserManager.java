@@ -49,5 +49,25 @@ public class UserManager {
         }
     }
 
+    public void delete(int categoryId) throws RentACarException{
+        DaoFactory.userDao().delete(categoryId);
+    }
 
+    public User update(User user) throws RentACarException{
+        validateUsername(user.getUsername());
+        validatePassword(user.getPassword());
+        validateAge(user.getBirthdate());
+        try{
+            return DaoFactory.userDao().update(user);
+        }catch (RentACarException e){
+            if (e.getMessage().contains("UQ_NAME")){
+                throw new RentACarException("User with same username already exists");
+            }
+            throw e;
+        }
+    }
+
+    public List<User> getAll() throws RentACarException{
+        return DaoFactory.userDao().getAll();
+    }
 }
