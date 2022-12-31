@@ -19,5 +19,11 @@ public class UserManager {
         }
     }
 
+    public void validatePassword(String password) throws RentACarException {
+        if (password == null || password.length() > 45 || password.length() < 8){
+            throw new RentACarException("Password must contain at least 8 characters");
+        }
+    }
+
 
 }
