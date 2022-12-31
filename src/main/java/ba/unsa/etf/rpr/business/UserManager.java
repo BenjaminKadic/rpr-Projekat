@@ -13,5 +13,11 @@ import java.util.List;
  * @author Benjamin Kadic
  */
 public class UserManager {
+    public void validateUsername(String username) throws RentACarException {
+        if (username == null || username.length() > 45 || username.length() < 4){
+            throw new RentACarException("Username must contain between 4 and 45 characters");
+        }
+    }
+
 
 }
