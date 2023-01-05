@@ -44,7 +44,7 @@ public class CarManager {
         try{
             return DaoFactory.carDao().update(car);
         }catch (RentACarException e){
-            if (e.getMessage().contains("UQ_NAME")){
+            if (e.getMessage().contains("UQ_REGISTRATION")){
                 throw new RentACarException("Car with same registration already exists");
             }
             throw e;
@@ -56,7 +56,7 @@ public class CarManager {
         try{
             return DaoFactory.carDao().add(car);
         }catch (RentACarException e){
-            if (e.getMessage().contains("UQ_NAME")){
+            if (e.getMessage().contains("UQ_REGISTRATION")){
                 throw new RentACarException("Car with same registration already exists");
             }
             throw e;
