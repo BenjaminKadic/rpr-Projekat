@@ -26,6 +26,7 @@ public abstract class AbstractDao<T extends Idable> implements Dao<T>{
     public Connection getConnection(){
         return this.connection;
     }
+    public static void closeConnection() { DBConnection.closeConnection(); }
 
     public abstract T row2object(ResultSet rs) throws RentACarException;
 
