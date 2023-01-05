@@ -7,9 +7,9 @@ package ba.unsa.etf.rpr.dao;
  */
 public class DaoFactory {
 
-    private static final CarDao carDao = new CarDaoSQLImpl();
-    private static final UserDao userDao = new UserDaoSQLImpl();
-    private static final RentDao rentDao = new RentDaoSQLImpl();
+    private static final CarDao carDao = CarDaoSQLImpl.getInstance();
+    private static final UserDao userDao = UserDaoSQLImpl.getInstance();
+    private static final RentDao rentDao = RentDaoSQLImpl.getInstance();
 
     private DaoFactory(){
     }
