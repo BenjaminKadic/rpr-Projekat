@@ -9,9 +9,19 @@ import java.util.Map;
 import java.util.TreeMap;
 
 public class RentDaoSQLImpl extends AbstractDao<Rent> implements RentDao{
-
+    private static RentDaoSQLImpl instance=null;
     public RentDaoSQLImpl() {
         super("Rents");
+    }
+    public static RentDaoSQLImpl getInstance(){
+        if(instance==null)
+            instance = new RentDaoSQLImpl();
+        return instance;
+    }
+
+    public static void removeInstance(){
+        if(instance!=null)
+            instance=null;
     }
 
     @Override
@@ -19,8 +29,8 @@ public class RentDaoSQLImpl extends AbstractDao<Rent> implements RentDao{
         try{
             Rent rent = new Rent();
             rent.setId(rs.getInt("id"));
-            rent.setCar(new CarDaoSQLImpl().getById(rs.getInt("car_id")));
-            rent.setUser(new UserDaoSQLImpl().getById(rs.getInt("user_id")));
+            rent.setCar(DaoFactory.carDao().getById(rs.getInt("car_id")));
+            rent.setUser(DaoFactory.userDao().getById(rs.getInt("user_id")));
             rent.setReturned(rs.getBoolean("returned"));
             rent.setStartDate(rs.getDate("start"));
             rent.setEndDate(rs.getDate("end"));

@@ -13,8 +13,20 @@ import java.util.TreeMap;
  * @author Benjamin Kadic
  */
 public class CarDaoSQLImpl extends AbstractDao<Car> implements CarDao{
+    private static CarDaoSQLImpl instance=null;
     public CarDaoSQLImpl(){
         super("Cars");
+    }
+
+    public static CarDaoSQLImpl getInstance(){
+        if(instance==null)
+            instance = new CarDaoSQLImpl();
+        return instance;
+    }
+
+    public static void removeInstance(){
+        if(instance!=null)
+            instance=null;
     }
 
     @Override
