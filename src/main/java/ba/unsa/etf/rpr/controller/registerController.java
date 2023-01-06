@@ -5,7 +5,7 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
-public class RegisterController {
+public class registerController {
     public TextField tf_registerUsername;
     public TextField tf_registerFirstName;
     public TextField tf_registerLastName;

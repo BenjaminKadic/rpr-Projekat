@@ -18,4 +18,5 @@ public interface UserDao extends Dao<User>{
      * @return list of Users
      */
     List<User> searchByUsername(String username) throws RentACarException;
+    boolean checkUser(String username, String password);
 }

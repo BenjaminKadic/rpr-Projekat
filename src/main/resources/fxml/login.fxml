@@ -8,29 +8,32 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<GridPane prefWidth="600.0" style="-fx-background-color: #000000;" stylesheets="@../css/login.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ba.unsa.etf.rpr.controller.LoginController">
+<GridPane fx:id="gp_login" prefHeight="300.0" prefWidth="600.0" style="-fx-background-color: #000000;" stylesheets="@../css/login.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ba.unsa.etf.rpr.controller.loginController">
     <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
   </columnConstraints>
   <rowConstraints>
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
       <RowConstraints vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <ImageView fitHeight="400.0" fitWidth="681.0" pickOnBounds="true" preserveRatio="true" GridPane.columnSpan="2" GridPane.halignment="RIGHT" GridPane.hgrow="ALWAYS" GridPane.rowSpan="2" GridPane.vgrow="ALWAYS">
+      <ImageView fitHeight="400.0" fitWidth="681.0" pickOnBounds="true" preserveRatio="true" GridPane.columnSpan="2" GridPane.halignment="RIGHT" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.rowSpan="2" GridPane.vgrow="ALWAYS">
          <image>
             <Image url="@../img/FullLoginCar.png" />
          </image>
       </ImageView>
-      <VBox alignment="CENTER" GridPane.rowSpan="2">
+      <VBox alignment="CENTER" GridPane.rowIndex="1" GridPane.rowSpan="2">
          <children>
             <HBox alignment="CENTER">
                <children>
@@ -69,6 +72,7 @@
                   </ButtonBar>
                </children>
             </HBox>
+            <Text fx:id="text_error" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" />
             <HBox alignment="CENTER">
                <children>
                   <ButtonBar>
@@ -81,7 +85,7 @@
                               <Font name="Segoe UI Semilight" size="15.0" />
                            </font>
                         </Label>
-                        <Button fx:id="button_toRegister" defaultButton="true" mnemonicParsing="false" style="-fx-background-color: transparent;" text="Register" textFill="#f9f9fb">
+                        <Button fx:id="button_toRegister" defaultButton="true" mnemonicParsing="false" onAction="#toRegisterPane" style="-fx-background-color: transparent;" text="Register" textFill="#f9f9fb">
                            <font>
                               <Font name="Segoe UI Semibold" size="14.0" />
                            </font>
@@ -92,5 +96,17 @@
             </HBox>
          </children>
       </VBox>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
+         <children>
+            <Button fx:id="button_close" layoutX="226.0" layoutY="3.0" mnemonicParsing="false" onAction="#closeWindow" style="-fx-background-color: transparent;" text="X" textFill="WHITE">
+               <font>
+                  <Font name="SansSerif Regular" size="18.0" />
+               </font>
+            </Button>
+         </children>
+         <GridPane.margin>
+            <Insets top="10.0" />
+         </GridPane.margin>
+      </AnchorPane>
    </children>
 </GridPane>
