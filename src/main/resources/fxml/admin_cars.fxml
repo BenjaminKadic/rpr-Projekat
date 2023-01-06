@@ -12,14 +12,14 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #242424;" stylesheets="@../css/admin.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #242424;" stylesheets="@../css/admin.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ba.unsa.etf.rpr.controller.adminCarsController">
     <top>
         <MenuBar stylesheets="@../css/MenuBar.css" BorderPane.alignment="CENTER">
             <menus>
                 <Menu mnemonicParsing="false" text="File">
                     <items>
                         <MenuItem fx:id="mi_logout" mnemonicParsing="false" text="Log out" />
-                        <MenuItem fx:id="mi_close" mnemonicParsing="false" text="Close" />
+                        <MenuItem fx:id="mi_close" mnemonicParsing="false" text="Close"/>
                     </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="Edit">
@@ -61,7 +61,7 @@
                         <Insets bottom="10.0" top="10.0" />
                     </VBox.margin>
                 </HBox>
-                <TableView fx:id="tv_users" minWidth="200.0" prefWidth="200.0" />
+                <TableView fx:id="tv_cars" minWidth="200.0" prefWidth="200.0" />
             </children>
             <BorderPane.margin>
                 <Insets bottom="30.0" right="30.0" />
@@ -87,7 +87,7 @@
                   <Font name="Segoe UI Semilight" size="17.0" />
                </font>
             </Button>
-            <Button fx:id="button_return1" mnemonicParsing="false" prefWidth="205.0" text="Rented Cars" textFill="#f9f9fb">
+            <Button fx:id="button_rented" mnemonicParsing="false" prefWidth="205.0" text="Rented Cars" textFill="#f9f9fb">
                <font>
                   <Font name="Segoe UI Semilight" size="17.0" />
                </font>

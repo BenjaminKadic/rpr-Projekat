@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #242424;" stylesheets="@../css/admin.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #242424;" stylesheets="@../css/admin.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ba.unsa.etf.rpr.controller.adminUsersController">
     <top>
         <MenuBar stylesheets="@../css/MenuBar.css" BorderPane.alignment="CENTER">
             <menus>
@@ -35,7 +35,7 @@
     <left>
         <VBox alignment="TOP_CENTER" BorderPane.alignment="CENTER">
             <children>
-            <Button fx:id="button_return1" mnemonicParsing="false" prefWidth="205.0" text="Users with Rents" textFill="#f9f9fb">
+            <Button fx:id="button_UsersWithRents" mnemonicParsing="false" prefWidth="205.0" text="Users with Rents" textFill="#f9f9fb">
                <font>
                   <Font name="Segoe UI Semilight" size="17.0" />
                </font>

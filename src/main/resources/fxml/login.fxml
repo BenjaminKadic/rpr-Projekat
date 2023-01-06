@@ -57,7 +57,7 @@
                <children>
                   <ButtonBar>
                     <buttons>
-                        <Button fx:id="button_login" defaultButton="true" mnemonicParsing="false" text="Log in" textFill="#f9f9fb">
+                        <Button fx:id="button_login" defaultButton="true" mnemonicParsing="false" onAction="#userLogin" text="Log in" textFill="#f9f9fb">
                            <font>
                               <Font name="Segoe UI Semilight" size="13.0" />
                            </font>
@@ -81,7 +81,7 @@
                               <Font name="Segoe UI Semilight" size="15.0" />
                            </font>
                         </Label>
-                        <Button fx:id="button_register" defaultButton="true" mnemonicParsing="false" style="-fx-background-color: transparent;" text="Register" textFill="#f9f9fb">
+                        <Button fx:id="button_toRegister" defaultButton="true" mnemonicParsing="false" style="-fx-background-color: transparent;" text="Register" textFill="#f9f9fb">
                            <font>
                               <Font name="Segoe UI Semibold" size="14.0" />
                            </font>
