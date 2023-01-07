@@ -57,6 +57,7 @@ public class UserDaoSQLImpl extends AbstractDao<User> implements UserDao{
         String query = "SELECT * FROM Users WHERE UPPER(username) LIKE concat('%', ?, '%')";
         return executeQuery(query, new Object[]{username});
     }
+    @Override
     public boolean checkUser(String username, String password) {
         String sql = "SELECT * FROM Users WHERE username = ? AND password = ?";
         try {
@@ -64,7 +65,7 @@ public class UserDaoSQLImpl extends AbstractDao<User> implements UserDao{
             s.setString(1, username);
             s.setString(2, password);
             ResultSet r = s.executeQuery();
-            while(r.next()){
+            if(r.next()){
                 return true;
             }
         } catch (SQLException e) {
