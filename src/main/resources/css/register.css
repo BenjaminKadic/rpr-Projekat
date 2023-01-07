@@ -2,7 +2,14 @@
     -fx-background-color: transparent;
     -fx-border-color: #f9f9fb;
 }
+
 #button_register:hover{
+    -fx-border-color: transparent;
+    -fx-background-color: #f9f9fb;
+    -fx-text-fill: black;
+}
+
+#button_register:focused{
     -fx-border-color: transparent;
     -fx-background-color: #f9f9fb;
     -fx-text-fill: black;
@@ -82,4 +89,14 @@
 .date-picker-popup .spinner .button:hover .left-arrow,
 .date-picker-popup .spinner .button:hover .right-arrow {
 	-fx-background-color: black;
+}
+.button{
+    -fx-text-fill:#f9f9fb;
+}
+
+.button:hover{
+    -fx-text-fill: darkgrey;
+}
+.button:focused{
+    -fx-text-fill: darkgrey;
 }

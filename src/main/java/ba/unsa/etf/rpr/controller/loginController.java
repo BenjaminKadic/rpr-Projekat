@@ -8,10 +8,11 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-import static ba.unsa.etf.rpr.dao.DaoFactory.userDao;
-import static javafx.scene.control.PopupControl.USE_COMPUTED_SIZE;
 
-public class loginController {
+import static ba.unsa.etf.rpr.dao.DaoFactory.userDao;
+
+public class loginController extends MainController{
+    public Button focus;
     public TextField tf_username;
     public PasswordField pf_password;
     public Button button_login;
@@ -23,8 +24,13 @@ public class loginController {
 
     @FXML
     public void initialize(){
+        focus.setFocusTraversable(false);
         tf_username.setFocusTraversable(true);
         pf_password.setFocusTraversable(true);
+        button_login.setFocusTraversable(true);
+        button_toRegister.setFocusTraversable(true);
+        button_close.setFocusTraversable(true);
+
     }
     public void userLogin(){
         if(tf_username.getText().isBlank() && pf_password.getText().isBlank()){
@@ -58,24 +64,12 @@ public class loginController {
         }
     }
     public void toRegisterPane(){
-        closeWindow();
-        openDialog("Register", "/fxml/register.fxml");
+        Stage stage = (Stage) button_toRegister.getScene().getWindow();
+        switchScene("Register", "/fxml/register.fxml", stage);
     }
     public void closeWindow() {
         Stage stage = (Stage) button_close.getScene().getWindow();
         stage.close();
     }
-    private void openDialog(String title, String file){
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource(file));
-            Stage stage = new Stage();
-            stage.setScene(new Scene(loader.load(), USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
-            stage.setTitle(title);
-            stage.show();
-        }catch (Exception e){
-            new Alert(Alert.AlertType.NONE, e.getMessage(), ButtonType.OK).show();
-        }
-    }
-
 
 }

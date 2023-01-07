@@ -15,6 +15,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <GridPane prefWidth="600.0" style="-fx-background-color: #000000;" stylesheets="@../css/register.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ba.unsa.etf.rpr.controller.registerController">
     <columnConstraints>
@@ -91,28 +92,26 @@
             </HBox>
                 <HBox alignment="CENTER">
                     <children>
-                        <ButtonBar>
-                            <buttons>
-                                <Button fx:id="button_register" defaultButton="true" mnemonicParsing="false" text="Register" textFill="#f9f9fb">
-                                    <font>
-                                        <Font name="Segoe UI Semilight" size="13.0" />
-                                    </font>
-                                </Button>
-                            </buttons>
-                     <opaqueInsets>
-                        <Insets />
-                     </opaqueInsets>
+                          <Button fx:id="button_register" defaultButton="true" mnemonicParsing="false" onAction="#userRegister" text="Register" textFill="#f9f9fb">
+                              <font>
+                                  <Font name="Segoe UI Semilight" size="13.0" />
+                              </font>
                      <HBox.margin>
                         <Insets top="10.0" />
                      </HBox.margin>
-                        </ButtonBar>
+                          </Button>
                     </children>
                 </HBox>
+            <Text fx:id="text_error" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0">
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </Text>
                 <HBox alignment="CENTER">
                     <children>
                         <ButtonBar>
                             <padding>
-                                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                                <Insets bottom="20.0" left="20.0" right="20.0" top="10.0" />
                             </padding>
                             <buttons>
                                 <Label prefHeight="21.0" prefWidth="175.0" text="Already registered?" textFill="#f9f9fb">
@@ -120,7 +119,7 @@
                                         <Font name="Segoe UI Semilight" size="15.0" />
                                     </font>
                                 </Label>
-                                <Button fx:id="button_toLogin" defaultButton="true" mnemonicParsing="false" style="-fx-background-color: transparent;" text="Log in" textFill="#f9f9fb">
+                                <Button fx:id="button_toLogin" defaultButton="true" mnemonicParsing="false" onAction="#toLoginPane" style="-fx-background-color: transparent;" text="Log in" textFill="#f9f9fb">
                                     <font>
                                         <Font name="Segoe UI Semibold" size="14.0" />
                                     </font>

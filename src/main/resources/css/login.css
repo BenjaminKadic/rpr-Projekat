@@ -7,8 +7,20 @@
     -fx-background-color: #f9f9fb;
     -fx-text-fill: black;
 }
+#button_login:focused{
+    -fx-border-color: transparent;
+    -fx-background-color: #f9f9fb;
+    -fx-text-fill: black;
+}
+
+.button{
+    -fx-text-fill:#f9f9fb;
+}
 
 .button:hover{
+    -fx-text-fill: darkgrey;
+}
+.button:focused{
     -fx-text-fill: darkgrey;
 }
 
