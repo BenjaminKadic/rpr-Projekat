@@ -23,8 +23,8 @@ public class loginController {
 
     @FXML
     public void initialize(){
-        tf_username.setFocusTraversable(false);
-        pf_password.setFocusTraversable(false);
+        tf_username.setFocusTraversable(true);
+        pf_password.setFocusTraversable(true);
     }
     public void userLogin(){
         if(tf_username.getText().isBlank() && pf_password.getText().isBlank()){
