@@ -42,7 +42,7 @@ public class UserManager {
         try{
             return DaoFactory.userDao().add(user);
         }catch (RentACarException e){
-            if (e.getMessage().contains("UQ_username")){
+            if (e.getMessage().contains("username_UNIQUE")){
                 throw new RentACarException("User with same username already exists");
             }
             throw e;
@@ -60,7 +60,7 @@ public class UserManager {
         try{
             return DaoFactory.userDao().update(user);
         }catch (RentACarException e){
-            if (e.getMessage().contains("UQ_username")){
+            if (e.getMessage().contains("username_UNIQUE")){
                 throw new RentACarException("User with same username already exists");
             }
             throw e;
