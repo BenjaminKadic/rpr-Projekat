@@ -15,5 +15,5 @@
     -fx-text-inner-color: #ffffff;
 }
 .text-field:focused {
-	-fx-background-color: -fx-primary-color, white;
+	-fx-background-color: white;
 }
