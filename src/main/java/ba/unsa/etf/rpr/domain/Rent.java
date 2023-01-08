@@ -3,11 +3,16 @@ package ba.unsa.etf.rpr.domain;
 import java.sql.Date;
 import java.util.Objects;
 
+/**
+ * Holds history of all previous and current rents
+ *
+ * @author Benjamin Kadic
+ */
+
 public class Rent implements Idable{
     private int id;
     private Car car;
     private User user;
-    private boolean returned;
     private Date startDate;
     private Date endDate;
 
@@ -33,14 +38,6 @@ public class Rent implements Idable{
 
     public void setUser(User user) {
         this.user = user;
-    }
-
-    public boolean getReturned() {
-        return returned;
-    }
-
-    public void setReturned(boolean returned) {
-        this.returned = returned;
     }
 
     public Date getStartDate() {
@@ -79,6 +76,6 @@ public class Rent implements Idable{
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, car, user, returned, startDate, endDate);
+        return Objects.hash(id, car, user, startDate, endDate);
     }
 }

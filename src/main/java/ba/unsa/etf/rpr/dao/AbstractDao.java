@@ -7,6 +7,8 @@ import java.util.*;
 
 /**
  * Abstract class that implements core DAO CRUD methods for every entity
+ *
+ * @author Benjamin Kadic
  */
 public abstract class AbstractDao<T extends Idable> implements Dao<T>{
     private Connection connection;
@@ -28,7 +30,20 @@ public abstract class AbstractDao<T extends Idable> implements Dao<T>{
     }
     public static void closeConnection() { DBConnection.closeConnection(); }
 
+    /**
+     * Method for mapping ResultSet into Object
+     * @param rs - result set from database
+     * @return a Bean object for specific table
+     * @throws RentACarException in case of error with db
+     */
+
     public abstract T row2object(ResultSet rs) throws RentACarException;
+
+    /**
+     * Method for mapping Object into Map
+     * @param object - a bean object for specific table
+     * @return key, value sorted map of object
+     */
 
     public abstract Map<String, Object> object2row(T object);
 
@@ -135,7 +150,8 @@ public abstract class AbstractDao<T extends Idable> implements Dao<T>{
     }
 
     /**
-     * Accepts KV storage of column names and return CSV of columns and question marks for insert statement
+     * Accepts KV storage of column names and return CSV of columns
+     * and question marks for insert statement
      * Example: (id, name, date) ?,?,?
      */
     private Map.Entry<String, String> prepareInsertParts(Map<String, Object> row){

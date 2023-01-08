@@ -8,7 +8,7 @@ import java.util.Properties;
 
 /**
  * Class that is used to read database credentials from
- * a .properties file and create a singleton connection
+ * .properties file and create a singleton connection
  *
  * @author Benjamin Kadic
  */

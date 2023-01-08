@@ -16,7 +16,20 @@ import java.time.LocalDate;
 
 import static javafx.scene.control.PopupControl.USE_COMPUTED_SIZE;
 
+/**
+ * Main controller that contains models and functions
+ * that are needed in multiple Controllers
+ *
+ * @author Benjamin Kadic
+ */
+
 public class MainController {
+
+    /**
+     * opens a new window
+     * @param title title of new window
+     * @param file fxml file that contains new window
+     */
     protected void openDialog(String title, String file){
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(file));
@@ -29,6 +42,13 @@ public class MainController {
         }
     }
 
+    /**
+     * switches scenes in same stage
+     * @param title to be displayed when switch occurs
+     * @param file fxml file that contains a new scene
+     * @param stage on which scene is to be switched
+     */
+
     protected void switchScene(String title, String file, Stage stage){
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(file));
@@ -39,7 +59,11 @@ public class MainController {
             new Alert(Alert.AlertType.NONE, e.getMessage(), ButtonType.OK).show();
         }
     }
-    protected class CarModel {
+
+    /**
+     * Helper Model class that supports 2 way data binding with form for Car management
+     */
+    protected static class CarModel {
         public SimpleStringProperty make = new SimpleStringProperty("");
         public SimpleStringProperty model = new SimpleStringProperty("");
         public SimpleStringProperty color = new SimpleStringProperty("");
@@ -63,7 +87,10 @@ public class MainController {
         }
     }
 
-    protected class UserModel {
+    /**
+     * Helper Model class that supports 2 way data binding with form for User management
+     */
+    protected static class UserModel {
         public SimpleStringProperty username = new SimpleStringProperty("");
         public SimpleStringProperty firstName = new SimpleStringProperty("");
         public SimpleStringProperty lastName = new SimpleStringProperty("");

@@ -5,6 +5,12 @@ import java.sql.SQLException;
 import java.sql.Date;
 import java.util.Objects;
 
+/**
+ * bean for User
+ *
+ * @author Benjamin Kadic
+ */
+
 public class User implements Idable{
     private int id;
     private String username;

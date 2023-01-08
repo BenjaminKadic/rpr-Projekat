@@ -9,9 +9,15 @@ import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+/**
+ * Controller for register page
+ *
+ * @author Benjamin Kadic
+ */
+
 public class registerController extends MainController {
     private final UserManager userManager = new UserManager();
-    private UserModel model = new UserModel();
+    private final UserModel model = new UserModel();
     public TextField tf_registerUsername;
     public TextField tf_registerFirstName;
     public TextField tf_registerLastName;
@@ -33,6 +39,9 @@ public class registerController extends MainController {
         button_toLogin.setFocusTraversable(true);
     }
 
+    /**
+     * event handler for user registering
+     */
     public void userRegister() {
         if(tf_registerUsername.getText().isBlank())  text_error.setText("Username can't be empty!");
         else if(tf_registerFirstName.getText().isBlank()) text_error.setText("First Name can't be empty!");
@@ -54,10 +63,11 @@ public class registerController extends MainController {
         }
     }
 
+    /**
+     * event handler for switching to user login
+     */
     public void toLoginPane() {
         Stage stage = (Stage) button_toLogin.getScene().getWindow();
         switchScene("Login", "/fxml/login.fxml", stage);
     }
-
-
 }

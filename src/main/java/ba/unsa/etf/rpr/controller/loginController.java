@@ -1,8 +1,6 @@
 package ba.unsa.etf.rpr.controller;
 import ba.unsa.etf.rpr.dao.UserDao;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
@@ -10,6 +8,12 @@ import javafx.stage.Stage;
 
 
 import static ba.unsa.etf.rpr.dao.DaoFactory.userDao;
+
+/**
+ * Controller for login page
+ *
+ * @author Benjamin Kadic
+ */
 
 public class loginController extends MainController{
     public Button focus;
@@ -32,6 +36,10 @@ public class loginController extends MainController{
         button_close.setFocusTraversable(true);
 
     }
+
+    /**
+     * event handler for user login
+     */
     public void userLogin(){
         if(tf_username.getText().isBlank() && pf_password.getText().isBlank()){
             text_error.setText("Please enter your username and password.");
@@ -63,10 +71,18 @@ public class loginController extends MainController{
 
         }
     }
+
+    /**
+     * event handler for switching to user register
+     */
     public void toRegisterPane(){
         Stage stage = (Stage) button_toRegister.getScene().getWindow();
         switchScene("Register", "/fxml/register.fxml", stage);
     }
+
+    /**
+     * event handler for closing current window
+     */
     public void closeWindow() {
         Stage stage = (Stage) button_close.getScene().getWindow();
         stage.close();

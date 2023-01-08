@@ -2,6 +2,12 @@ package ba.unsa.etf.rpr.domain;
 
 import java.util.Objects;
 
+/**
+ * bean for Car
+ *
+ * @author Benjamin Kadic
+ */
+
 public class Car implements Idable{
     private int id;
     private String make;

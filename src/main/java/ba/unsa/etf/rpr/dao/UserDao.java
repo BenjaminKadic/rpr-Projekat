@@ -18,5 +18,12 @@ public interface UserDao extends Dao<User>{
      * @return list of Users
      */
     List<User> searchByUsername(String username) throws RentACarException;
+
+    /**
+     * checks if username and password match in db
+     * @param username to compare with db
+     * @param password to compare with db
+     * @return true if they match in db
+     */
     boolean checkUser(String username, String password);
 }
