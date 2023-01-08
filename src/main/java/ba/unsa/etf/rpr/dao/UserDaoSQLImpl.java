@@ -62,8 +62,8 @@ public class UserDaoSQLImpl extends AbstractDao<User> implements UserDao{
         String sql = "SELECT * FROM Users WHERE username = ? AND password = ?";
         try {
             PreparedStatement s=getConnection().prepareStatement(sql);
-            s.setString(1, "username");
-            s.setString(2, "password");
+            s.setString(1, username);
+            s.setString(2, password);
             ResultSet r = s.executeQuery();
             if(r.next()){
                 return true;

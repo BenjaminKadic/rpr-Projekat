@@ -31,7 +31,6 @@ public class RentDaoSQLImpl extends AbstractDao<Rent> implements RentDao{
             rent.setId(rs.getInt("id"));
             rent.setCar(DaoFactory.carDao().getById(rs.getInt("car_id")));
             rent.setUser(DaoFactory.userDao().getById(rs.getInt("user_id")));
-            rent.setReturned(rs.getBoolean("returned"));
             rent.setStartDate(rs.getDate("start"));
             rent.setEndDate(rs.getDate("end"));
             return rent;
@@ -46,7 +45,6 @@ public class RentDaoSQLImpl extends AbstractDao<Rent> implements RentDao{
         item.put("id", object.getId());
         item.put("car_id", object.getCar().getId());
         item.put("user_id", object.getUser().getId());
-        item.put("returned", object.getReturned());
         item.put("start", object.getStartDate());
         item.put("end", object.getEndDate());
         return item;
