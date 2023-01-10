@@ -59,9 +59,9 @@ public class UserDaoSQLImpl extends AbstractDao<User> implements UserDao{
     }
     @Override
     public boolean checkUser(String username, String password) {
-        String sql = "SELECT * FROM Users WHERE username = ? AND password = ?";
+        String query = "SELECT * FROM Users WHERE username = ? AND password = ?";
         try {
-            PreparedStatement s=getConnection().prepareStatement(sql);
+            PreparedStatement s=getConnection().prepareStatement(query);
             s.setString(1, username);
             s.setString(2, password);
             ResultSet r = s.executeQuery();

@@ -1,6 +1,7 @@
 package ba.unsa.etf.rpr.controller;
 
 import ba.unsa.etf.rpr.domain.Car;
+import ba.unsa.etf.rpr.domain.Rent;
 import ba.unsa.etf.rpr.domain.User;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleObjectProperty;
@@ -30,7 +31,7 @@ public class MainController {
      * @param title title of new window
      * @param file fxml file that contains new window
      */
-    protected void openDialog(String title, String file){
+    protected void openWindow(String title, String file){
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(file));
             Stage stage = new Stage();
@@ -59,6 +60,7 @@ public class MainController {
             new Alert(Alert.AlertType.NONE, e.getMessage(), ButtonType.OK).show();
         }
     }
+
 
     /**
      * Helper Model class that supports 2 way data binding with form for Car management
@@ -105,6 +107,10 @@ public class MainController {
             this.birthdate.set(user.getBirthdate().toLocalDate());
         }
 
+        /**
+         * Helper Model class that supports 2 way data binding with form for Rent management
+         */
+
         public User toUser(){
             User user = new User();
             user.setUsername(this.username.getValue());
@@ -113,6 +119,30 @@ public class MainController {
             user.setPassword(this.password.getValue());
             user.setBirthdate(Date.valueOf(this.birthdate.getValue()));
             return user;
+        }
+    }
+
+    protected static class RentModel{
+
+        public SimpleObjectProperty<Car> car = new SimpleObjectProperty<>();
+        public SimpleObjectProperty<User> user = new SimpleObjectProperty<>();
+        public SimpleObjectProperty<LocalDate> startDate = new SimpleObjectProperty<>();
+        public SimpleObjectProperty<LocalDate> endDate = new SimpleObjectProperty<>();
+
+        public void fromRent(Rent rent){
+            this.car.set(rent.getCar());
+            this.user.set(rent.getUser());
+            this.startDate.set(rent.getStartDate().toLocalDate());
+            this.endDate.set(rent.getEndDate().toLocalDate());
+        }
+
+        public Rent toRent(){
+            Rent rent = new Rent();
+            rent.setCar(this.car.getValue());
+            rent.setUser(this.user.getValue());
+            rent.setStartDate(Date.valueOf(this.startDate.getValue()));
+            rent.setEndDate(Date.valueOf(this.endDate.getValue()));
+            return rent;
         }
     }
 }

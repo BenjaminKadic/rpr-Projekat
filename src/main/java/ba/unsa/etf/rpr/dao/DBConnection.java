@@ -18,7 +18,7 @@ public class DBConnection {
     {
         try {
             FileInputStream in;
-            in = new FileInputStream("C:\\Users\\Thinkpad\\IdeaProjects\\rpr-Projekat\\src\\main\\resources\\DBConnection.properties");
+            in = new FileInputStream("src/main/resources/DBConnection.properties");
             props.load(in);
             in.close();
         } catch (FileNotFoundException e) {
@@ -50,16 +50,5 @@ public class DBConnection {
             instance=new DBConnection();
         }
         return instance;
-    }
-    public static void closeConnection() {
-        System.out.println("Connection is closing...");
-        if(connection!=null) {
-            try {
-                connection.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-                System.out.println("REMOVE CONNECTION METHOD ERROR: Unable to close connection on database");
-            }
-        }
     }
 }

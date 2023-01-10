@@ -28,7 +28,6 @@ public abstract class AbstractDao<T extends Idable> implements Dao<T>{
     public Connection getConnection(){
         return this.connection;
     }
-    public static void closeConnection() { DBConnection.closeConnection(); }
 
     /**
      * Method for mapping ResultSet into Object
