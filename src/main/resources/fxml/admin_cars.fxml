@@ -45,7 +45,7 @@
                                 <Insets top="10.0" />
                             </HBox.margin>
                         </TextField>
-                        <Button fx:id="button_search" minWidth="-Infinity" mnemonicParsing="false" prefHeight="40.0" text="Search" textFill="#f9f9fb">
+                        <Button fx:id="button_search" defaultButton="true" minWidth="-Infinity" mnemonicParsing="false" prefHeight="40.0" text="Search" textFill="#f9f9fb">
                             <padding>
                                 <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
                             </padding>

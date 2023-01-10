@@ -7,6 +7,11 @@
     -fx-background-color: #f9f9fb;
     -fx-text-fill: black;
 }
+.button:focused{
+    -fx-border-color: transparent;
+    -fx-background-color: #f9f9fb;
+    -fx-text-fill: black;
+}
 .text-field {
 	-fx-background-color: transparent;
     -fx-text-fill: #f9f9fb;
@@ -15,5 +20,6 @@
     -fx-text-inner-color: #ffffff;
 }
 .text-field:focused {
-	-fx-background-color: white;
+	-fx-background-color: transparent;
+	-fx-text-inner-color: #ffffff;
 }
