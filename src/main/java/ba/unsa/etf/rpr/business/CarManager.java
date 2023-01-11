@@ -4,9 +4,7 @@ import ba.unsa.etf.rpr.dao.DaoFactory;
 import ba.unsa.etf.rpr.domain.Car;
 import ba.unsa.etf.rpr.exceptions.RentACarException;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 /**
  * Business Logic Layer for management of Cars
@@ -22,13 +20,6 @@ public class CarManager {
     }
     public List<Car> getAll() throws RentACarException {
         return DaoFactory.carDao().getAll();
-    }
-
-    public Set<Car> searchCars(String text) throws RentACarException {
-        Set<Car> cars=new HashSet<>();
-        cars.addAll(DaoFactory.carDao().searchByModel(text));
-        cars.addAll(DaoFactory.carDao().searchByMake(text));
-        return cars;
     }
 
     public void delete(int id) throws RentACarException{
