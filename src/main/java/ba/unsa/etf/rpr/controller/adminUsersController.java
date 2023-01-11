@@ -1,12 +1,21 @@
 package ba.unsa.etf.rpr.controller;
 
-import javafx.scene.control.Button;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import ba.unsa.etf.rpr.business.UserManager;
+import ba.unsa.etf.rpr.domain.User;
+import ba.unsa.etf.rpr.exceptions.RentACarException;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
+import javafx.fxml.FXML;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
+import java.sql.Date;
+
 public class adminUsersController extends MainController{
+    private final UserManager userManager=new UserManager();
     public MenuItem mi_logout;
     public MenuItem mi_close;
     public MenuItem mi_cars;
@@ -17,8 +26,44 @@ public class adminUsersController extends MainController{
     public Button button_edit;
     public Button button_delete;
     public TextField tf_search;
-    public Button button_search;
-    public TableView tv_users;
+    public TableView<User> tv_users;
+    public TableColumn<User, Integer> tc_id;
+    public TableColumn<User, String> tc_username;
+    public TableColumn<User, String> tc_firstName;
+    public TableColumn<User, String> tc_lastName;
+    public TableColumn<User, Date> tc_birthdate;
+    public TableColumn<User, String> tc_password;
+    public ObservableList<User> userObservableList = FXCollections.observableArrayList();
+
+    @FXML
+    public void initialize(){
+        tv_users.setFocusTraversable(false);
+        tc_id.setCellValueFactory(new PropertyValueFactory<>("id"));
+        tc_username.setCellValueFactory(new PropertyValueFactory<>("username"));
+        tc_firstName.setCellValueFactory(new PropertyValueFactory<>("firstName"));
+        tc_lastName.setCellValueFactory(new PropertyValueFactory<>("lastName"));
+        tc_birthdate.setCellValueFactory(new PropertyValueFactory<>("birthdate"));
+        tc_password.setCellValueFactory(new PropertyValueFactory<>("password"));
+        try {
+            userObservableList.addAll(userManager.getAll());
+            tv_users.setItems(userObservableList);
+            tv_users.refresh();
+            FilteredList<User> userFilteredList = new FilteredList<>(userObservableList);
+            tf_search.textProperty().addListener((observable, oldValue, newValue)-> userFilteredList.setPredicate(car->{
+                if(newValue.isEmpty() || newValue.isBlank()) return true;
+                String search = newValue.toLowerCase();
+                if(car.getUsername().toLowerCase().contains(search)) return true;
+                if (car.getFirstName().toLowerCase().contains(search)) return true;
+                if (car.getLastName().toLowerCase().contains(search)) return true;
+                return false;
+            }));
+            SortedList<User> userSortedList=new SortedList<>(userFilteredList);
+            userSortedList.comparatorProperty().bind(tv_users.comparatorProperty());
+            tv_users.setItems(userSortedList);
+        } catch (RentACarException e) {
+            new Alert(Alert.AlertType.NONE, e.getMessage(), ButtonType.OK).show();
+        }
+    }
 
 
     /**
