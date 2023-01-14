@@ -3,6 +3,8 @@ package ba.unsa.etf.rpr.domain;
 import java.sql.Date;
 import java.util.Objects;
 
+import static java.time.temporal.ChronoUnit.DAYS;
+
 /**
  * Holds history of all previous and current rents
  *
@@ -77,5 +79,13 @@ public class Rent implements Idable{
     @Override
     public int hashCode() {
         return Objects.hash(id, car, user, startDate, endDate);
+    }
+
+    public int getRentPrice(){
+
+        long result=DAYS.between(startDate.toLocalDate(), endDate.toLocalDate());
+        return (int) result*this.car.getPrice();
+
+
     }
 }
