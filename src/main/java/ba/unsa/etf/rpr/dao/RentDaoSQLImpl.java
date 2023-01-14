@@ -52,7 +52,13 @@ public class RentDaoSQLImpl extends AbstractDao<Rent> implements RentDao{
 
     @Override
     public List<Rent> getByDateRange(Date start, Date end) throws RentACarException{
-        String query = "SELECT * FROM Rents WHERE start BETWEEN ? and ? AND end BETWEEN ? and ?";
+        String query = "SELECT * FROM Rents WHERE start BETWEEN ? and ? OR end BETWEEN ? and ?";
         return executeQuery(query, new Object[]{start, end, start, end});
+    }
+
+    @Override
+    public List<Rent> getRentedCars(Date date) throws RentACarException{
+        String query = "SELECT * FROM Rents WHERE start < ? and end > ?";
+        return executeQuery(query, new Object[]{date, date});
     }
 }

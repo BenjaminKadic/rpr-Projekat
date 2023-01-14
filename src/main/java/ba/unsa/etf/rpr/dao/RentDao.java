@@ -6,6 +6,7 @@ import ba.unsa.etf.rpr.exceptions.RentACarException;
 import java.sql.Date;
 import java.util.List;
 
+
 /**
  * Dao interface for Rent domain bean
  *
@@ -20,4 +21,10 @@ public interface RentDao extends Dao<Rent>{
      * @return List of rents from rents table
      */
     List<Rent> getByDateRange(Date start, Date end) throws RentACarException;
+
+    /**
+     * method that returns cars that are currently rented
+     * @return List of currently rented cars
+     */
+    List<Rent> getRentedCars(Date date) throws RentACarException;
 }

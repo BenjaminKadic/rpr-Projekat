@@ -29,7 +29,8 @@ public class RentManager {
     }
 
     public void validateRentDate(Car car, Date start, Date end) throws RentACarException {
-        List<Rent> rents= rentDao().getByDateRange(start, end);
+        List<Rent> rents = rentDao().getByDateRange(start, end);
+        rents.addAll(rentDao().getRentedCars(start));
         if (car == null || RentsContainCar(rents, car)) {
             throw new RentACarException("Car already rented in given date range");
         }
@@ -48,11 +49,14 @@ public class RentManager {
     }
 
     public Rent update(Rent rent) throws RentACarException{
-        validateRentDate(rent.getCar(), rent.getStartDate(), rent.getEndDate());
         return DaoFactory.rentDao().update(rent);
     }
 
     public List<Rent> getAll() throws RentACarException{
         return DaoFactory.rentDao().getAll();
+    }
+
+    public List<Rent> getRentedCars() throws RentACarException{
+        return DaoFactory.rentDao().getRentedCars(new Date(System.currentTimeMillis()));
     }
 }
