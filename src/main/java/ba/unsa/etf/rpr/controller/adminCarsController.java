@@ -23,7 +23,6 @@ public class adminCarsController extends MainController{
     public TableView<Car> tv_cars;
     public Button button_return;
     public Button button_rent;
-    public Button button_rented;
     public Button button_add;
     public Button button_edit;
     public Button button_delete;
@@ -103,5 +102,9 @@ public class adminCarsController extends MainController{
     public void goToRents() {
         Stage stage = (Stage) button_add.getScene().getWindow();
         switchScene("Cars", "/fxml/admin_rents.fxml", stage);
+    }
+
+    public void openReturn() {
+        openWindow("Return","/fxml/return_car.fxml");
     }
 }

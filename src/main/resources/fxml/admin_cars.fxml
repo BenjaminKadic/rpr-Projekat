@@ -62,7 +62,7 @@
    <left>
       <VBox alignment="TOP_CENTER" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="button_return" mnemonicParsing="false" prefWidth="205.0" text="Return Car" textAlignment="CENTER" textFill="#f9f9fb">
+            <Button fx:id="button_return" mnemonicParsing="false" onAction="#openReturn" prefWidth="205.0" text="Return/Rented Cars" textAlignment="CENTER" textFill="#f9f9fb">
                <VBox.margin>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </VBox.margin>
@@ -77,14 +77,6 @@
                <font>
                   <Font name="Segoe UI Semilight" size="17.0" />
                </font>
-            </Button>
-            <Button fx:id="button_rented" mnemonicParsing="false" prefWidth="205.0" text="Rented Cars" textAlignment="CENTER" textFill="#f9f9fb">
-               <font>
-                  <Font name="Segoe UI Semilight" size="17.0" />
-               </font>
-               <VBox.margin>
-                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-               </VBox.margin>
             </Button>
             <Button fx:id="button_add" mnemonicParsing="false" prefWidth="205.0" text="Add Car" textAlignment="CENTER" textFill="#f9f9fb">
                <VBox.margin>
