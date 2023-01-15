@@ -60,12 +60,7 @@ public class Rent implements Idable{
 
     @Override
     public String toString() {
-        return "Rent{" +
-                "car=" + car +
-                ", user=" + user +
-                ", startDate=" + startDate +
-                ", endDate=" + endDate +
-                '}';
+        return user + " rented " + car;
     }
 
     @Override

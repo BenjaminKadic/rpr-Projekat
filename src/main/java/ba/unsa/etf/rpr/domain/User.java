@@ -83,9 +83,7 @@ public class User implements Idable{
 
     @Override
     public String toString() {
-        return "User " +
-                "firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'';
+        return firstName + " " + lastName + " username: "+ username;
     }
 
     @Override

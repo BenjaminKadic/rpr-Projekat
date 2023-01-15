@@ -11,6 +11,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <BorderPane style="-fx-background-color: #242424;" stylesheets="@../css/admin.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ba.unsa.etf.rpr.controller.adminCarsController">
     <top>
@@ -43,7 +44,7 @@
                   <Insets bottom="10.0" top="20.0" />
                </VBox.margin>
                   </TextField>
-                <TableView fx:id="tv_cars" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" VBox.vgrow="ALWAYS">
+                <TableView fx:id="tv_cars" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#deleteCar" VBox.vgrow="ALWAYS">
                <columns>
                   <TableColumn fx:id="tc_id" minWidth="30.0" prefWidth="-1.0" text="Id" />
                   <TableColumn fx:id="tc_make" editable="false" minWidth="100.0" prefWidth="-1.0" text="Make" />
@@ -94,14 +95,11 @@
                   <Font name="Segoe UI Semilight" size="17.0" />
                </font>
             </Button>
-            <Button fx:id="button_delete" mnemonicParsing="false" prefWidth="205.0" text="Delete Car" textAlignment="CENTER" textFill="#f9f9fb">
-               <VBox.margin>
-                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-               </VBox.margin>
+            <Text fill="#f9f9fb" strokeType="OUTSIDE" strokeWidth="0.0" text="Double click on car to delete!">
                <font>
-                  <Font name="Segoe UI Semilight" size="17.0" />
+                  <Font name="Segoe UI Semilight" size="16.0" />
                </font>
-            </Button>
+            </Text>
          </children>
          <BorderPane.margin>
             <Insets bottom="30.0" left="10.0" right="10.0" top="10.0" />

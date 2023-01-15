@@ -70,12 +70,7 @@ public class Car implements Idable{
 
     @Override
     public String toString() {
-        return "Car{" +
-                "id=" + id +
-                ", make='" + make + '\'' +
-                ", model='" + model + '\'' +
-                ", color='" + color +
-                '}';
+        return make + " " + model + " registration: " + registration;
     }
     @Override
     public boolean equals(Object o) {

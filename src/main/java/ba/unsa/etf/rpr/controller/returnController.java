@@ -34,9 +34,9 @@ public class returnController extends MainController {
         refreshRented();
     }
 
-    public void returnCarOnClick(MouseEvent event)
+    public void returnCarOnClick(MouseEvent mouseEvent)
     {
-        if (event.getClickCount() == 2)
+        if (mouseEvent.getClickCount() == 2)
         {
             Rent rent=new Rent();
             rent.setId(tv_cars.getSelectionModel().getSelectedItem().getId());

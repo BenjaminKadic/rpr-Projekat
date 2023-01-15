@@ -10,6 +10,7 @@ import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 public class adminCarsController extends MainController{
@@ -25,7 +26,6 @@ public class adminCarsController extends MainController{
     public Button button_rent;
     public Button button_add;
     public Button button_edit;
-    public Button button_delete;
     public TableColumn<Car, Integer> tc_id ;
     public TableColumn<Car, String> tc_make;
     public TableColumn<Car, String> tc_model;
@@ -106,5 +106,33 @@ public class adminCarsController extends MainController{
 
     public void openReturn() {
         openWindow("Return","/fxml/return_car.fxml");
+    }
+
+    public void deleteCar(MouseEvent mouseEvent) {
+        if (mouseEvent.getClickCount() == 2)
+        {
+            int id =tv_cars.getSelectionModel().getSelectedItem().getId();
+            Car car = tv_cars.getSelectionModel().getSelectedItem();
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Delete car");
+            alert.setHeaderText("You're about to delete "+ car);
+            alert.setContentText("Are you sure you want to do this?");
+
+            if(alert.showAndWait().get()==ButtonType.OK){
+                try {
+                    carManager.delete(id);
+                    tf_search.clear();
+                    refreshCars();
+                } catch (RentACarException e) {
+                    new Alert(Alert.AlertType.NONE, e.getMessage(), ButtonType.OK).show();
+                }
+
+            }
+        }
+    }
+
+    private void refreshCars(){
+       carObservableList.clear();
+       initialize();
     }
 }

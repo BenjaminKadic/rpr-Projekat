@@ -49,8 +49,15 @@ public class UserManager {
         }
     }
 
-    public void delete(int categoryId) throws RentACarException{
-        DaoFactory.userDao().delete(categoryId);
+    public void delete(int id) throws RentACarException{
+        try{
+            DaoFactory.userDao().delete(id);
+        }catch (RentACarException e){
+            if (e.getMessage().contains("foreign")){
+                throw new RentACarException("Can't delete user who has rented cars. Remove previous rents first");
+            }
+            throw e;
+        }
     }
 
     public User update(User user) throws RentACarException{

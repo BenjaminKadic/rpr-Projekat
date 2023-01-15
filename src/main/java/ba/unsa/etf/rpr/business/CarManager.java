@@ -23,7 +23,15 @@ public class CarManager {
     }
 
     public void delete(int id) throws RentACarException{
-        DaoFactory.carDao().delete(id);
+        try{
+            DaoFactory.carDao().delete(id);
+        }catch (RentACarException e){
+            if (e.getMessage().contains("foreign")){
+                throw new RentACarException("Can't delete cars that have been rented. Remove previous rents first!");
+            }
+            throw e;
+        }
+
     }
 
     public Car getById(int carId) throws RentACarException{

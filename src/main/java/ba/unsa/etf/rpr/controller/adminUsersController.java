@@ -10,6 +10,7 @@ import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import java.sql.Date;
@@ -24,7 +25,6 @@ public class adminUsersController extends MainController{
     public Button button_UsersWithRents;
     public Button button_add;
     public Button button_edit;
-    public Button button_delete;
     public TextField tf_search;
     public TableView<User> tv_users;
     public TableColumn<User, Integer> tc_id;
@@ -104,5 +104,33 @@ public class adminUsersController extends MainController{
     public void goToRents() {
         Stage stage = (Stage) button_add.getScene().getWindow();
         switchScene("Cars", "/fxml/admin_rents.fxml", stage);
+    }
+
+    public void deleteUser(MouseEvent mouseEvent) {
+        if (mouseEvent.getClickCount() == 2)
+        {
+            int id =tv_users.getSelectionModel().getSelectedItem().getId();
+            User user = tv_users.getSelectionModel().getSelectedItem();
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Delete user");
+            alert.setHeaderText("You're about to delete "+ user);
+            alert.setContentText("Are you sure you want to do this?");
+
+            if(alert.showAndWait().get()==ButtonType.OK){
+                try {
+                    userManager.delete(id);
+                    tf_search.clear();
+                    refreshUsers();
+                } catch (RentACarException e) {
+                    new Alert(Alert.AlertType.NONE, e.getMessage(), ButtonType.OK).show();
+                }
+
+            }
+        }
+    }
+
+    private void refreshUsers(){
+        userObservableList.clear();
+        initialize();
     }
 }
