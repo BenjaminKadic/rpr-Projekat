@@ -135,4 +135,16 @@ public class adminCarsController extends MainController{
        carObservableList.clear();
        initialize();
     }
+
+    public void openAddForm() {
+        openWindow("Add a car","/fxml/add_car.fxml", true);
+    }
+
+    public void openRentForm() {
+    }
+
+    public void openEditForm() {
+          //openWindow("Edit a car","/fxml/edit_car.fxml", true);
+    }
+
 }

@@ -10,7 +10,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.sql.Date;
 import java.time.LocalDate;
@@ -28,14 +30,23 @@ public class MainController {
 
     /**
      * opens a new window
+     */
+    protected void openWindow(String title, String file) {
+        openWindow(title, file, false);
+    }
+
+    /**
+     * opens a new window
      * @param title title of new window
      * @param file fxml file that contains new window
      */
-    protected void openWindow(String title, String file){
+    protected void openWindow(String title, String file, boolean borderless){
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(file));
             Stage stage = new Stage();
+            if(borderless) stage.initStyle(StageStyle.UNDECORATED);
             stage.setScene(new Scene(loader.load(), USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+            stage.getIcons().add(new Image("/img/car-rent.png"));
             stage.setTitle(title);
             stage.show();
         }catch (Exception e){

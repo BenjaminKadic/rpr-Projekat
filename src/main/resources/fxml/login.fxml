@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
@@ -41,6 +42,7 @@
             </Button>
             <HBox alignment="CENTER">
                <children>
+                  <FontAwesomeIconView fill="#f9f9fb" glyphName="USER" size="20" />
                   <TextField fx:id="tf_username" promptText="Username" style="-fx-background-color: transparent; -fx-border-color: #f9f9fb; -fx-border-width: 0px 0px 2px 0px; -fx-text-inner-color: #ffffff;">
                      <font>
                         <Font name="Segoe UI Semilight" size="15.0" />
@@ -53,10 +55,14 @@
             </HBox>
             <HBox alignment="CENTER">
                <children>
+                  <FontAwesomeIconView fill="#f9f9fb" glyphName="LOCK" size="20.0" />
                   <PasswordField fx:id="pf_password" promptText="Password" style="-fx-background-color: transparent; -fx-border-color: #f9f9fb; -fx-border-width: 0px 0px 2px 0px; -fx-text-inner-color: white;">
                      <font>
                         <Font name="Segoe UI Semilight" size="15.0" />
                      </font>
+                     <HBox.margin>
+                        <Insets left="10.0" right="10.0" />
+                     </HBox.margin>
                   </PasswordField>
                </children>
             </HBox>

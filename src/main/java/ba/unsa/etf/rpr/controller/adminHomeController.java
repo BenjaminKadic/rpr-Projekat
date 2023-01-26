@@ -47,7 +47,7 @@ public class adminHomeController extends MainController {
     }
 
     public void returnCar() {
-        openWindow("Return car", "/fxml/returnCar.fxml");
+        openWindow("Return car", "/fxml/return_car.fxml");
     }
 
 }
