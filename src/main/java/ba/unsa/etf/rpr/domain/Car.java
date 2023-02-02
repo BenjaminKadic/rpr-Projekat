@@ -8,7 +8,7 @@ import java.util.Objects;
  * @author Benjamin Kadic
  */
 
-public class Car implements Idable{
+public class Car implements Idable, Comparable<Car> {
     private int id;
     private String make;
     private String model;
@@ -84,4 +84,10 @@ public class Car implements Idable{
     public int hashCode() {
         return Objects.hash(id, make, model, color, registration, price);
     }
+
+    @Override
+    public int compareTo(Car o) {
+        return this.toString().compareTo(o.toString());
+    }
+
 }

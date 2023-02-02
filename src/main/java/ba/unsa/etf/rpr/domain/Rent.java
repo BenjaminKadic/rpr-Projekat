@@ -11,7 +11,7 @@ import static java.time.temporal.ChronoUnit.DAYS;
  * @author Benjamin Kadic
  */
 
-public class Rent implements Idable{
+public class Rent implements Idable, Comparable<Rent>{
     private int id;
     private Car car;
     private User user;
@@ -76,11 +76,13 @@ public class Rent implements Idable{
         return Objects.hash(id, car, user, startDate, endDate);
     }
 
-    public int getRentPrice(){
+    @Override
+    public int compareTo(Rent o) {
+        return this.toString().compareTo(o.toString());
+    }
 
+    public int getRentPrice(){
         long result=DAYS.between(startDate.toLocalDate(), endDate.toLocalDate());
         return (int) result*this.car.getPrice();
-
-
     }
 }

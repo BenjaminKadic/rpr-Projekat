@@ -11,7 +11,7 @@ import java.util.Objects;
  * @author Benjamin Kadic
  */
 
-public class User implements Idable{
+public class User implements Idable, Comparable<User>{
     private int id;
     private String username;
     private String firstName;
@@ -97,5 +97,10 @@ public class User implements Idable{
     @Override
     public int hashCode() {
         return Objects.hash(id, username, firstName, lastName, birthdate, password);
+    }
+
+    @Override
+    public int compareTo(User o) {
+        return this.toString().compareTo(o.toString());
     }
 }
