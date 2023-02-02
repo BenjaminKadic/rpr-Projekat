@@ -8,10 +8,15 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
+
+import static javafx.scene.control.PopupControl.USE_COMPUTED_SIZE;
 
 public class adminCarsController extends MainController{
     private final CarManager carManager=new CarManager();
@@ -137,14 +142,40 @@ public class adminCarsController extends MainController{
     }
 
     public void openAddForm() {
-        openWindow("Add a car","/fxml/add_car.fxml", true);
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/add_car.fxml"));
+            Stage stage = new Stage();
+            stage.setScene(new Scene(loader.load(), USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+            stage.initStyle(StageStyle.UTILITY);
+            stage.setTitle("Add a car");
+            stage.show();
+            stage.setOnHiding(event -> {
+                ((Stage)button_add.getScene().getWindow()).show();
+                refreshCars();
+            });
+        } catch (Exception e){
+            new Alert(Alert.AlertType.NONE, e.getMessage(), ButtonType.OK).show();
+        }
     }
 
     public void openRentForm() {
     }
 
     public void openEditForm() {
-          //openWindow("Edit a car","/fxml/edit_car.fxml", true);
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/edit_car.fxml"));
+            Stage stage = new Stage();
+            stage.setScene(new Scene(loader.load(), USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+            stage.initStyle(StageStyle.UTILITY);
+            stage.setTitle("Edit a car");
+            stage.show();
+            stage.setOnHiding(event -> {
+                ((Stage)button_add.getScene().getWindow()).show();
+                refreshCars();
+            });
+        } catch (Exception e){
+            new Alert(Alert.AlertType.NONE, e.getMessage(), ButtonType.OK).show();
+        }
     }
 
 }

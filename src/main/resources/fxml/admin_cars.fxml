@@ -71,7 +71,7 @@
                   <Font name="Segoe UI Semilight" size="17.0" />
                </font>
             </Button>
-            <Button fx:id="button_rent" mnemonicParsing="false" prefWidth="205.0" text="Rent Car" textAlignment="CENTER" textFill="#f9f9fb">
+            <Button fx:id="button_rent" mnemonicParsing="false" onAction="#openRentForm" prefWidth="205.0" text="Rent Car" textAlignment="CENTER" textFill="#f9f9fb">
                <VBox.margin>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </VBox.margin>
@@ -79,7 +79,7 @@
                   <Font name="Segoe UI Semilight" size="17.0" />
                </font>
             </Button>
-            <Button fx:id="button_add" mnemonicParsing="false" prefWidth="205.0" text="Add Car" textAlignment="CENTER" textFill="#f9f9fb">
+            <Button fx:id="button_add" mnemonicParsing="false" onAction="#openAddForm" prefWidth="205.0" text="Add Car" textAlignment="CENTER" textFill="#f9f9fb">
                <VBox.margin>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </VBox.margin>
@@ -87,7 +87,7 @@
                   <Font name="Segoe UI Semilight" size="17.0" />
                </font>
             </Button>
-            <Button fx:id="button_edit" mnemonicParsing="false" prefWidth="205.0" text="Edit Car" textAlignment="CENTER" textFill="#f9f9fb">
+            <Button fx:id="button_edit" mnemonicParsing="false" onAction="#openEditForm" prefWidth="205.0" text="Edit Car" textAlignment="CENTER" textFill="#f9f9fb">
                <VBox.margin>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </VBox.margin>

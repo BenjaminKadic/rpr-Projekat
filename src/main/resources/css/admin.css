@@ -1,6 +1,7 @@
 .button{
     -fx-background-color: transparent;
     -fx-border-color: #f9f9fb;
+    -fx-text-fill: #f9f9fb;
 }
 .button:hover{
     -fx-border-color: transparent;
@@ -23,3 +24,47 @@
 	-fx-background-color: transparent;
 	-fx-text-inner-color: #ffffff;
 }
+
+.spinner {
+ -fx-background-color: transparent;
+ -fx-text-inner-color: #ffffff;
+}
+.spinner:focused,
+.spinner:contains-focus {
+  -fx-background-color: transparent;
+  -fx-text-inner-color: #ffffff;
+}
+.spinner .increment-arrow-button,
+.spinner .decrement-arrow-button {
+	-fx-background-color: transparent;
+	-fx-border-color: #f9f9fb;
+}
+.spinner .increment-arrow-button:hover,
+.spinner .decrement-arrow-button:hover {
+	-fx-background-color: #f9f9fb;
+}
+.spinner .increment-arrow-button:hover:pressed,
+.spinner .decrement-arrow-button:hover:pressed,
+.spinner .increment-arrow-button:pressed,
+.spinner .decrement-arrow-button:pressed {
+	-fx-background-color: #f9f9fb;
+}
+.spinner .increment-arrow-button .increment-arrow,
+.spinner .decrement-arrow-button .decrement-arrow {
+	-fx-background-color: #f9f9fb;
+}
+.spinner .increment-arrow-button:hover .increment-arrow,
+.spinner .decrement-arrow-button:hover .decrement-arrow {
+	-fx-background-color: black;
+}
+
+.choice-box {
+  -fx-background-color: transparent;
+  -fx-mark-color: #f9f9fb;
+  -fx-border-color: #f9f9fb;
+}
+.choice-box > .label { -fx-text-fill: #f9f9fb; }
+.choice-box .context-menu { -fx-background-color: #242424; }
+.choice-box .menu-item:focused { -fx-background-color: #f9f9fb; }
+.choice-box .menu-item > .label { -fx-text-fill: ##f9f9fb; }
+.choice-box .menu-item:focused > .label { -fx-text-fill: #242424; }
