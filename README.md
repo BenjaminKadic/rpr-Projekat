@@ -5,7 +5,7 @@ and have up to date info about their current rents as well as their previous one
 
 ## Use
 In order to run this app use next two lines in terminal (IntelliJ or cmd):
-mvn clean install
-mvn clean javafx:run
+mvn clean install <br />
+mvn clean javafx:run <br />
 
 
