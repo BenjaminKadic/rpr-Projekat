@@ -8,7 +8,6 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 public class adminRentsController extends MainController{
-    public MenuItem mi_logout;
     public MenuItem mi_close;
     public MenuItem mi_cars;
     public MenuItem mi_users;
@@ -20,14 +19,6 @@ public class adminRentsController extends MainController{
     public Button button_current;
     public Button button_edit;
 
-
-    /**
-     * event handler for logging out
-     */
-    public void logOut() {
-        closeWindow();
-        openWindow("Login","/fxml/login.fxml");
-    }
 
     /**
      * event handler for closing current window
@@ -63,5 +54,8 @@ public class adminRentsController extends MainController{
 
     public void openCurrent() {
         openWindow("Current Rents","/fxml/return_car.fxml");
+    }
+
+    public void deleteRent() {
     }
 }

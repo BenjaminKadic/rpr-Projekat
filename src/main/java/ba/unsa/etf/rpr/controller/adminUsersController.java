@@ -17,7 +17,6 @@ import java.sql.Date;
 
 public class adminUsersController extends MainController{
     private final UserManager userManager=new UserManager();
-    public MenuItem mi_logout;
     public MenuItem mi_close;
     public MenuItem mi_cars;
     public MenuItem mi_users;
@@ -61,15 +60,6 @@ public class adminUsersController extends MainController{
         } catch (RentACarException e) {
             new Alert(Alert.AlertType.NONE, e.getMessage(), ButtonType.OK).show();
         }
-    }
-
-
-    /**
-     * event handler for logging out
-     */
-    public void logOut() {
-        closeWindow();
-        openWindow("Login","/fxml/login.fxml");
     }
 
     /**

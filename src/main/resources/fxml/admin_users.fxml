@@ -19,7 +19,6 @@
             <menus>
                 <Menu mnemonicParsing="false" text="File">
                     <items>
-                        <MenuItem fx:id="mi_logout" mnemonicParsing="false" onAction="#logOut" text="Log out" />
                         <MenuItem fx:id="mi_close" mnemonicParsing="false" onAction="#closeWindow" text="Close" />
                     </items>
                 </Menu>

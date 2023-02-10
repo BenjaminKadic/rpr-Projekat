@@ -5,7 +5,6 @@ import javafx.scene.control.MenuItem;
 import javafx.stage.Stage;
 
 public class adminHomeController extends MainController {
-    public MenuItem mi_logout;
     public MenuItem mi_close;
     public MenuItem mi_cars;
     public MenuItem mi_users;
@@ -15,13 +14,6 @@ public class adminHomeController extends MainController {
     public Button button_rents;
     public Button button_returnCar;
 
-    /**
-     * event handler for logging out
-     */
-    public void logOut() {
-        closeWindow();
-        openWindow("Login","/fxml/login.fxml");
-    }
 
     /**
      * event handler for closing current window

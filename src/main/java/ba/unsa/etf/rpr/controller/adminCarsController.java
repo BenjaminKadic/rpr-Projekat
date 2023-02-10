@@ -20,7 +20,6 @@ import static javafx.scene.control.PopupControl.USE_COMPUTED_SIZE;
 
 public class adminCarsController extends MainController{
     private final CarManager carManager=new CarManager();
-    public MenuItem mi_logout;
     public MenuItem mi_close;
     public MenuItem mi_cars;
     public MenuItem mi_users;
@@ -67,14 +66,6 @@ public class adminCarsController extends MainController{
         } catch (RentACarException e) {
             new Alert(Alert.AlertType.NONE, e.getMessage(), ButtonType.OK).show();
         }
-    }
-
-    /**
-     * event handler for logging out
-     */
-    public void logOut() {
-        closeWindow();
-        openWindow("Login","/fxml/login.fxml");
     }
 
     /**
