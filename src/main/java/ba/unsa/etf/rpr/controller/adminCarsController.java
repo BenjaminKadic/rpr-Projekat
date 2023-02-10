@@ -114,10 +114,11 @@ public class adminCarsController extends MainController{
     }
 
     public void deleteCar(MouseEvent mouseEvent) {
-        if (mouseEvent.getClickCount() == 2)
+        if (mouseEvent.getClickCount() == 2 && tv_cars.getSelectionModel().getSelectedItem()!=null)
         {
             int id =tv_cars.getSelectionModel().getSelectedItem().getId();
             Car car = tv_cars.getSelectionModel().getSelectedItem();
+
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Delete car");
             alert.setHeaderText("You're about to delete "+ car);

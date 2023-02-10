@@ -28,22 +28,20 @@ public class adminUsersController extends MainController{
     public TextField tf_search;
     public TableView<User> tv_users;
     public TableColumn<User, Integer> tc_id;
-    public TableColumn<User, String> tc_username;
+    public TableColumn<User, String> tc_license;
     public TableColumn<User, String> tc_firstName;
     public TableColumn<User, String> tc_lastName;
     public TableColumn<User, Date> tc_birthdate;
-    public TableColumn<User, String> tc_password;
     public ObservableList<User> userObservableList = FXCollections.observableArrayList();
 
     @FXML
     public void initialize(){
         tv_users.setFocusTraversable(false);
         tc_id.setCellValueFactory(new PropertyValueFactory<>("id"));
-        tc_username.setCellValueFactory(new PropertyValueFactory<>("username"));
+        tc_license.setCellValueFactory(new PropertyValueFactory<>("license"));
         tc_firstName.setCellValueFactory(new PropertyValueFactory<>("firstName"));
         tc_lastName.setCellValueFactory(new PropertyValueFactory<>("lastName"));
         tc_birthdate.setCellValueFactory(new PropertyValueFactory<>("birthdate"));
-        tc_password.setCellValueFactory(new PropertyValueFactory<>("password"));
         try {
             userObservableList.addAll(userManager.getAll());
             tv_users.setItems(userObservableList);
@@ -52,7 +50,7 @@ public class adminUsersController extends MainController{
             tf_search.textProperty().addListener((observable, oldValue, newValue)-> userFilteredList.setPredicate(car->{
                 if(newValue.isEmpty() || newValue.isBlank()) return true;
                 String search = newValue.toLowerCase();
-                if(car.getUsername().toLowerCase().contains(search)) return true;
+                if(car.getLicenseNumber().toLowerCase().contains(search)) return true;
                 if (car.getFirstName().toLowerCase().contains(search)) return true;
                 if (car.getLastName().toLowerCase().contains(search)) return true;
                 return false;

@@ -20,7 +20,7 @@ public class returnController extends MainController {
     public TableColumn<Rent, Integer> tc_id;
     public TableColumn<Rent, String> tc_make;
     public TableColumn<Rent, String> tc_model;
-    public TableColumn<Rent, String> tc_username;
+    public TableColumn<Rent, String> tc_license;
 
 
 
@@ -30,7 +30,7 @@ public class returnController extends MainController {
         tc_id.setCellValueFactory(new PropertyValueFactory<>("id"));
         tc_make.setCellValueFactory(param -> new SimpleStringProperty(param.getValue().getCar().getMake()));
         tc_model.setCellValueFactory(param -> new SimpleStringProperty(param.getValue().getCar().getModel()));
-        tc_username.setCellValueFactory(param -> new SimpleStringProperty(param.getValue().getUser().getUsername()));
+        tc_license.setCellValueFactory(param -> new SimpleStringProperty(param.getValue().getUser().getLicenseNumber()));
         refreshRented();
     }
 

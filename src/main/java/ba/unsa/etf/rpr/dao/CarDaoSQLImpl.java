@@ -4,7 +4,6 @@ import ba.unsa.etf.rpr.domain.Car;
 import ba.unsa.etf.rpr.exceptions.RentACarException;
 
 import java.sql.*;
-import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -58,33 +57,6 @@ public class CarDaoSQLImpl extends AbstractDao<Car> implements CarDao{
     }
 
 
-    @Override
-    public List<Car> searchByColor(String color) throws RentACarException {
-        String query = "SELECT * FROM Cars WHERE color = ?";
-        return executeQuery(query, new Object[]{color});
-    }
 
-    @Override
-    public List<Car> searchByMake(String make) throws RentACarException {
-        String query = "SELECT * FROM Cars WHERE UPPER(make) LIKE concat('%', ?, '%')";
-        return executeQuery(query, new Object[]{make.toUpperCase()});
-    }
 
-    @Override
-    public List<Car> searchByModel(String model) throws RentACarException {
-        String query = "SELECT * FROM Cars WHERE UPPER(model) LIKE concat('%', ?, '%')";
-        return executeQuery(query, new Object[]{model.toUpperCase()});
-    }
-
-    @Override
-    public List<Car> searchByPriceRange(int min, int max) throws RentACarException {
-        String query = "SELECT * FROM Cars WHERE price BETWEEN ? and ?";
-        return executeQuery(query, new Object[]{min,max});
-    }
-
-    @Override
-    public List<Car> searchAvailable() throws RentACarException {
-        String query = "SELECT * FROM car c WHERE c.id NOT IN (SELECT r.car_id FROM Rents WHERE r.returned = 0)";
-        return executeQuery(query, new Object[]{});
-    }
 }

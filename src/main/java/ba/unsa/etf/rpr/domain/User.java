@@ -1,7 +1,5 @@
 package ba.unsa.etf.rpr.domain;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.sql.Date;
 import java.util.Objects;
 
@@ -13,25 +11,12 @@ import java.util.Objects;
 
 public class User implements Idable, Comparable<User>{
     private int id;
-    private String username;
+    private String licenseNumber;
     private String firstName;
     private String lastName;
     private Date birthdate;
-    private String password;
 
     public User(){}
-    public User(ResultSet rs){
-        try{
-            this.setId(rs.getInt("id"));
-            this.setUsername(rs.getString("username"));
-            this.setFirstName(rs.getString("first_name"));
-            this.setLastName(rs.getString("last_name"));
-            this.setBirthdate(rs.getDate("birthdate"));
-            this.setPassword(rs.getString("password"));
-        }catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
 
     public int getId() {
         return id;
@@ -41,12 +26,12 @@ public class User implements Idable, Comparable<User>{
         this.id = id;
     }
 
-    public String getUsername() {
-        return username;
+    public String getLicenseNumber() {
+        return licenseNumber;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setLicenseNumber(String licenseNumber) {
+        this.licenseNumber = licenseNumber;
     }
 
     public String getFirstName() {
@@ -73,17 +58,9 @@ public class User implements Idable, Comparable<User>{
         this.birthdate = birthdate;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
     @Override
     public String toString() {
-        return firstName + " " + lastName + " username: "+ username;
+        return firstName + " " + lastName + " license: "+ licenseNumber;
     }
 
     @Override
@@ -96,7 +73,7 @@ public class User implements Idable, Comparable<User>{
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, username, firstName, lastName, birthdate, password);
+        return Objects.hash(id, licenseNumber, firstName, lastName, birthdate);
     }
 
     @Override

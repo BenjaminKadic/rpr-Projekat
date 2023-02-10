@@ -6,7 +6,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 
@@ -24,7 +23,6 @@ public class addCarControler extends MainController implements Initializable {
     public Spinner<Integer> spinner_price;
     public Button button_add;
     public Button button_cancel;
-    public Text text_error;
     public BorderPane pane;
 
     @Override

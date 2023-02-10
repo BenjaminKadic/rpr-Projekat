@@ -85,11 +85,10 @@
                 <TableView fx:id="tv_users" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#deleteUser" VBox.vgrow="ALWAYS">
                     <columns>
                         <TableColumn fx:id="tc_id" minWidth="30.0" prefWidth="-1.0" text="Id" />
-                        <TableColumn fx:id="tc_username" editable="false" minWidth="85.0" prefWidth="-1.0" text="Username" />
+                        <TableColumn fx:id="tc_license" editable="false" minWidth="85.0" prefWidth="-1.0" text="Username" />
                         <TableColumn fx:id="tc_firstName" editable="false" minWidth="100.0" prefWidth="114.66669464111328" text="First Name" />
                         <TableColumn fx:id="tc_lastName" editable="false" minWidth="100.0" prefWidth="-1.0" text="Last name" />
                         <TableColumn fx:id="tc_birthdate" editable="false" minWidth="80.0" prefWidth="-1.0" text="Date of Birth" />
-                  <TableColumn fx:id="tc_password" minWidth="70.0" prefWidth="-1.0" text="Password" />
                     </columns>
                 </TableView>
             </children>
