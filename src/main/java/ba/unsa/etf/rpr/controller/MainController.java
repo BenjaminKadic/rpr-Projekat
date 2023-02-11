@@ -3,6 +3,8 @@ package ba.unsa.etf.rpr.controller;
 import ba.unsa.etf.rpr.domain.Car;
 import ba.unsa.etf.rpr.domain.Rent;
 import ba.unsa.etf.rpr.domain.User;
+import ba.unsa.etf.rpr.exceptions.RentACarException;
+import com.mysql.cj.util.StringUtils;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -80,13 +82,16 @@ public class MainController {
             this.registration.set(car.getRegistration());
             this.price.set(car.getPrice());
         }
-        public Car toCar(){
+        public Car toCar() throws RentACarException {
+            if(StringUtils.isNullOrEmpty(this.model.getValue()) || StringUtils.isNullOrEmpty(this.make.getValue()) || StringUtils.isNullOrEmpty(this.color.getValue()) || StringUtils.isNullOrEmpty(this.registration.getValue()) || price==null)
+                throw new RentACarException("Please fill in all fields");
             Car car = new Car();
             car.setMake(this.make.getValue());
             car.setModel(this.model.getValue());
             car.setColor(this.color.getValue());
             car.setRegistration(this.registration.getValue());
             car.setPrice(this.price.getValue());
+
             return car;
         }
     }
@@ -101,7 +106,7 @@ public class MainController {
         public SimpleObjectProperty<LocalDate> birthdate = new SimpleObjectProperty<>();
 
         public void fromUser(User user){
-            this.license.set(user.getLicenseNumber());
+            this.license.set(user.getLicense());
             this.firstName.set(user.getFirstName());
             this.lastName.set(user.getLastName());
             this.birthdate.set(user.getBirthdate().toLocalDate());
@@ -111,12 +116,15 @@ public class MainController {
          * Helper Model class that supports 2 way data binding with form for Rent management
          */
 
-        public User toUser(){
+        public User toUser() throws RentACarException {
+            if(StringUtils.isNullOrEmpty(this.license.getValue()) || StringUtils.isNullOrEmpty(this.firstName.getValue()) || StringUtils.isNullOrEmpty(this.lastName.getValue()) || birthdate==null)
+                throw new RentACarException("Please fill in all fields");
             User user = new User();
-            user.setLicenseNumber(this.license.getValue());
+            user.setLicense(this.license.getValue());
             user.setFirstName(this.firstName.getValue());
             user.setLastName(this.lastName.getValue());
             user.setBirthdate(Date.valueOf(this.birthdate.getValue()));
+
             return user;
         }
     }
@@ -135,12 +143,15 @@ public class MainController {
             this.endDate.set(rent.getEndDate().toLocalDate());
         }
 
-        public Rent toRent(){
+        public Rent toRent() throws RentACarException {
+            if(car==null || user==null || startDate==null || endDate==null)
+                throw new RentACarException("Please fill in all fields");
             Rent rent = new Rent();
             rent.setCar(this.car.getValue());
             rent.setUser(this.user.getValue());
             rent.setStartDate(Date.valueOf(this.startDate.getValue()));
             rent.setEndDate(Date.valueOf(this.endDate.getValue()));
+
             return rent;
         }
     }
