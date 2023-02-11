@@ -133,3 +133,51 @@
 .date-picker-popup .spinner .button:hover .right-arrow {
 	-fx-background-color: #242424;
 }
+
+.table-view {
+    -fx-background-color: transparent;
+}
+.table-view .corner {
+    -fx-background-color: transparent;
+}
+.table-view .column-header,
+.table-view .column-header .filler{
+    -fx-background-color:transparent;
+}
+.table-view .column-header-background{
+    -fx-background-color: linear-gradient(#f9f9fb 80%, #242424 100%);
+    -fx-text-color: #242424;
+}
+
+.table-view .table-cell{
+    -fx-border-color: #f9f9fb;
+    -fx-border-width: 0px 1px 1px 1px;
+    -fx-alignment: CENTER;
+}
+.table-row-cell: hover {
+    -fx-background-color: #93f9b911;
+    -fx-text-background-color: red;
+}
+.table-row-cell{
+    -fx-background-color: #242424;
+    -fx-text-background-color: #f9f9fb;
+}
+.table-view .virtual-flow .scroll-bar:vertical,
+.table-view .virtual-flow .scroll-bar:vertical .track,
+.table-view .virtual-flow .scroll-bar:vertical .track-background,
+.table-view .virtual-flow .scroll-bar:horizontal,
+.table-view .virtual-flow .scroll-bar:horizontal .track,
+.table-view .virtual-flow .scroll-bar:horizontal .track-background {
+    -fx-background-color: transparent;
+}
+.table-view .virtual-flow .scroll-bar .increment-button,
+.table-view .virtual-flow .scroll-bar .decrement-button {
+    -fx-opacity: 0;
+    -fx-padding: 2;
+}
+.table-view .virtual-flow .scroll-bar:vertical .thumb{
+    -fx-background-color:  #f9f9fb;
+}
+.table-view .virtual-flow .scroll-bar:horizontal .thumb {
+    -fx-background-color:  #f9f9fb;
+}
