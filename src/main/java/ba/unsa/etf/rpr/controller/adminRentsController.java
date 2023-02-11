@@ -41,7 +41,7 @@ public class adminRentsController extends MainController{
      */
     public void goToUsers() {
         Stage stage = (Stage) button_add.getScene().getWindow();
-        switchScene("Cars", "/fxml/admin_users.fxml", stage);
+        switchScene("Users", "/fxml/admin_users.fxml", stage);
     }
 
     /**
@@ -49,7 +49,7 @@ public class adminRentsController extends MainController{
      */
     public void goToRents() {
         Stage stage = (Stage) button_add.getScene().getWindow();
-        switchScene("Cars", "/fxml/admin_rents.fxml", stage);
+        switchScene("Rents", "/fxml/admin_rents.fxml", stage);
     }
 
     public void openCurrent() {

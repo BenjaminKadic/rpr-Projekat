@@ -30,7 +30,7 @@ public class returnController extends MainController {
         tc_id.setCellValueFactory(new PropertyValueFactory<>("id"));
         tc_make.setCellValueFactory(param -> new SimpleStringProperty(param.getValue().getCar().getMake()));
         tc_model.setCellValueFactory(param -> new SimpleStringProperty(param.getValue().getCar().getModel()));
-        tc_license.setCellValueFactory(param -> new SimpleStringProperty(param.getValue().getUser().getLicenseNumber()));
+        tc_license.setCellValueFactory(param -> new SimpleStringProperty(param.getValue().getUser().getLicense()));
         refreshRented();
     }
 

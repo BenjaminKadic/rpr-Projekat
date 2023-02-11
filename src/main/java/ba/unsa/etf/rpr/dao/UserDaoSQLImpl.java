@@ -28,7 +28,7 @@ public class UserDaoSQLImpl extends AbstractDao<User> implements UserDao{
         try{
             User user = new User();
             user.setId(rs.getInt("id"));
-            user.setLicenseNumber(rs.getString("license"));
+            user.setLicense(rs.getString("license"));
             user.setFirstName(rs.getString("first_name"));
             user.setLastName(rs.getString("last_name"));
             user.setBirthdate(rs.getDate("birthdate"));
@@ -42,7 +42,7 @@ public class UserDaoSQLImpl extends AbstractDao<User> implements UserDao{
     public Map<String, Object> object2row(User object) {
         Map<String, Object> item = new TreeMap<>();
         item.put("id", object.getId());
-        item.put("license", object.getLicenseNumber());
+        item.put("license", object.getLicense());
         item.put("first_name", object.getFirstName());
         item.put("last_name", object.getLastName());
         item.put("birthdate", object.getBirthdate());

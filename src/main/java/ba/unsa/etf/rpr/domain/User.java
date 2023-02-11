@@ -11,7 +11,7 @@ import java.util.Objects;
 
 public class User implements Idable, Comparable<User>{
     private int id;
-    private String licenseNumber;
+    private String license;
     private String firstName;
     private String lastName;
     private Date birthdate;
@@ -26,12 +26,12 @@ public class User implements Idable, Comparable<User>{
         this.id = id;
     }
 
-    public String getLicenseNumber() {
-        return licenseNumber;
+    public String getLicense() {
+        return license;
     }
 
-    public void setLicenseNumber(String licenseNumber) {
-        this.licenseNumber = licenseNumber;
+    public void setLicense(String license) {
+        this.license = license;
     }
 
     public String getFirstName() {
@@ -60,7 +60,7 @@ public class User implements Idable, Comparable<User>{
 
     @Override
     public String toString() {
-        return firstName + " " + lastName + " license: "+ licenseNumber;
+        return firstName + " " + lastName + " license: "+ license;
     }
 
     @Override
@@ -73,7 +73,7 @@ public class User implements Idable, Comparable<User>{
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, licenseNumber, firstName, lastName, birthdate);
+        return Objects.hash(id, license, firstName, lastName, birthdate);
     }
 
     @Override

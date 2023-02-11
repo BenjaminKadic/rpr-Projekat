@@ -66,5 +66,70 @@
 .choice-box > .label { -fx-text-fill: #f9f9fb; }
 .choice-box .context-menu { -fx-background-color: #242424; }
 .choice-box .menu-item:focused { -fx-background-color: #f9f9fb; }
-.choice-box .menu-item > .label { -fx-text-fill: ##f9f9fb; }
+.choice-box .menu-item > .label { -fx-text-fill: #f9f9fb; }
 .choice-box .menu-item:focused > .label { -fx-text-fill: #242424; }
+
+.date-picker{
+    -fx-background-color: white;
+    -fx-text-fill: white;
+}
+.date-picker .text-field{
+    -fx-background-color: #242424;
+    -fx-font-family: Segoe UI Semilight;
+    -fx-font-size: 14px
+    -fx-prompt-text-fill: white;
+    -fx-text-fill: white;
+}
+.date-picker .arrow-button {
+	-fx-background-color: #242424;
+	-fx-background-radius: 0;
+}
+.date-picker .arrow-button .arrow {
+ 	-fx-background-color: white;
+}
+.date-picker .arrow-button:hover {
+	-fx-background-color: white;
+}
+.date-picker .arrow-button:hover .arrow {
+	-fx-background-color: #242424;
+}
+.date-picker .cell {
+	-fx-background-color: #242424;
+	-fx-text-fill: white;
+}
+.date-picker .cell:hover {
+	-fx-background-color: white;
+	-fx-text-fill: #242424;
+}
+.date-picker .cell:focused {
+	-fx-background-color: grey;
+	-fx-text-fill: white
+}
+.date-picker .selected {
+	-fx-background-color: grey;
+	-fx-text-fill: white;
+}
+.date-picker .selected:focused {
+	-fx-background-color: grey;
+	-fx-text-fill: white;
+}
+.date-picker-popup  {
+	-fx-border-color: transparent;
+}
+.date-picker-popup .month-year-pane {
+	-fx-background-color: #242424;
+}
+.date-picker-popup .month-year-pane .label {
+	-fx-text-fill: white;
+}
+.date-picker-popup .week-number-cell {
+	-fx-text-fill: white;
+}
+.date-picker-popup .spinner .button .left-arrow,
+.date-picker-popup .spinner .button .right-arrow {
+	-fx-background-color: white;
+}
+.date-picker-popup .spinner .button:hover .left-arrow,
+.date-picker-popup .spinner .button:hover .right-arrow {
+	-fx-background-color: #242424;
+}

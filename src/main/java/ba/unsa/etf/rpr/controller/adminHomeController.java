@@ -30,12 +30,12 @@ public class adminHomeController extends MainController {
 
     public void goToUsers() {
         Stage stage = (Stage) button_cars.getScene().getWindow();
-        switchScene("Cars", "/fxml/admin_users.fxml", stage);
+        switchScene("Users", "/fxml/admin_users.fxml", stage);
     }
 
     public void goToRents() {
         Stage stage = (Stage) button_cars.getScene().getWindow();
-        switchScene("Cars", "/fxml/admin_rents.fxml", stage);
+        switchScene("Rents", "/fxml/admin_rents.fxml", stage);
     }
 
     public void returnCar() {

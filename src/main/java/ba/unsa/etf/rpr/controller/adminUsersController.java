@@ -8,12 +8,18 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.sql.Date;
+import java.text.SimpleDateFormat;
+
+import static javafx.scene.control.PopupControl.USE_COMPUTED_SIZE;
 
 public class adminUsersController extends MainController{
     private final UserManager userManager=new UserManager();
@@ -37,9 +43,9 @@ public class adminUsersController extends MainController{
     public void initialize(){
         tv_users.setFocusTraversable(false);
         tc_id.setCellValueFactory(new PropertyValueFactory<>("id"));
-        tc_license.setCellValueFactory(new PropertyValueFactory<>("license"));
         tc_firstName.setCellValueFactory(new PropertyValueFactory<>("firstName"));
         tc_lastName.setCellValueFactory(new PropertyValueFactory<>("lastName"));
+        tc_license.setCellValueFactory(new PropertyValueFactory<>("license"));
         tc_birthdate.setCellValueFactory(new PropertyValueFactory<>("birthdate"));
         try {
             userObservableList.addAll(userManager.getAll());
@@ -49,7 +55,7 @@ public class adminUsersController extends MainController{
             tf_search.textProperty().addListener((observable, oldValue, newValue)-> userFilteredList.setPredicate(car->{
                 if(newValue.isEmpty() || newValue.isBlank()) return true;
                 String search = newValue.toLowerCase();
-                if(car.getLicenseNumber().toLowerCase().contains(search)) return true;
+                if(car.getLicense().toLowerCase().contains(search)) return true;
                 if (car.getFirstName().toLowerCase().contains(search)) return true;
                 if (car.getLastName().toLowerCase().contains(search)) return true;
                 return false;
@@ -57,6 +63,18 @@ public class adminUsersController extends MainController{
             SortedList<User> userSortedList=new SortedList<>(userFilteredList);
             userSortedList.comparatorProperty().bind(tv_users.comparatorProperty());
             tv_users.setItems(userSortedList);
+            tc_birthdate.setCellFactory(column -> new TableCell<>() {
+                private final SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy.");
+                @Override
+                protected void updateItem(Date item, boolean empty) {
+                    super.updateItem(item, empty);
+                    if (empty) {
+                        setText(null);
+                    } else {
+                        setText(format.format(item));
+                    }
+                }
+            });
         } catch (RentACarException e) {
             new Alert(Alert.AlertType.NONE, e.getMessage(), ButtonType.OK).show();
         }
@@ -83,7 +101,7 @@ public class adminUsersController extends MainController{
      */
     public void goToUsers() {
         Stage stage = (Stage) button_add.getScene().getWindow();
-        switchScene("Cars", "/fxml/admin_users.fxml", stage);
+        switchScene("Users", "/fxml/admin_users.fxml", stage);
     }
 
     /**
@@ -91,7 +109,7 @@ public class adminUsersController extends MainController{
      */
     public void goToRents() {
         Stage stage = (Stage) button_add.getScene().getWindow();
-        switchScene("Cars", "/fxml/admin_rents.fxml", stage);
+        switchScene("Rents", "/fxml/admin_rents.fxml", stage);
     }
 
     public void deleteUser(MouseEvent mouseEvent) {
@@ -120,5 +138,39 @@ public class adminUsersController extends MainController{
     private void refreshUsers(){
         userObservableList.clear();
         initialize();
+    }
+
+    public void openAddForm() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/add_user.fxml"));
+            Stage stage = new Stage();
+            stage.setScene(new Scene(loader.load(), USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+            stage.initStyle(StageStyle.UTILITY);
+            stage.setTitle("Add a car");
+            stage.show();
+            stage.setOnHiding(event -> {
+                ((Stage)button_add.getScene().getWindow()).show();
+                refreshUsers();
+            });
+        } catch (Exception e){
+            new Alert(Alert.AlertType.NONE, e.getMessage(), ButtonType.OK).show();
+        }
+    }
+
+    public void openEditForm() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/edit_user.fxml"));
+            Stage stage = new Stage();
+            stage.setScene(new Scene(loader.load(), USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+            stage.initStyle(StageStyle.UTILITY);
+            stage.setTitle("Edit a user");
+            stage.show();
+            stage.setOnHiding(event -> {
+                ((Stage)button_add.getScene().getWindow()).show();
+                refreshUsers();
+            });
+        } catch (Exception e){
+            new Alert(Alert.AlertType.NONE, e.getMessage(), ButtonType.OK).show();
+        }
     }
 }
