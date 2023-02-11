@@ -5,7 +5,6 @@ import ba.unsa.etf.rpr.domain.Car;
 import ba.unsa.etf.rpr.exceptions.RentACarException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
@@ -16,7 +15,7 @@ import javafx.stage.Stage;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class editCarControler extends MainController implements Initializable {
+public class editCarController extends MainController implements Initializable {
 
     private final CarManager carManager=new CarManager();
     private CarModel carModel=new CarModel();
@@ -60,19 +59,17 @@ public class editCarControler extends MainController implements Initializable {
             });
         } catch (RentACarException e) {
             new Alert(Alert.AlertType.NONE, e.getMessage(), ButtonType.OK).show();
-            System.out.println(e.getMessage());
         }
     }
 
     public void applyEdit() {
-        Car car=carModel.toCar();
-        car.setId(carId);
         try {
+            Car car=carModel.toCar();
+            car.setId(carId);
             carManager.update(car);
             button_apply.getScene().getWindow().hide();
         } catch (RentACarException e) {
             new Alert(Alert.AlertType.NONE, e.getMessage(), ButtonType.OK).show();
-            System.out.println(e.getMessage());
         }
     }
 

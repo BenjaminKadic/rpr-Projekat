@@ -12,10 +12,10 @@ import javafx.stage.Stage;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class addCarControler extends MainController implements Initializable {
+public class addCarController extends MainController implements Initializable {
 
     private final CarManager carManager=new CarManager();
-    private CarModel carModel =new CarModel();
+    private CarModel model =new CarModel();
     public TextField tf_make;
     public TextField tf_model;
     public TextField tf_color;
@@ -32,16 +32,16 @@ public class addCarControler extends MainController implements Initializable {
         SpinnerValueFactory<Integer> valueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(30,1000);
         valueFactory.setValue(50);
         spinner_price.setValueFactory(valueFactory);
-        tf_make.textProperty().bindBidirectional(carModel.make);
-        tf_model.textProperty().bindBidirectional(carModel.model);
-        tf_color.textProperty().bindBidirectional(carModel.color);
-        tf_registration.textProperty().bindBidirectional(carModel.registration);
-        spinner_price.getValueFactory().valueProperty().bindBidirectional(carModel.price.asObject());
+        tf_make.textProperty().bindBidirectional(model.make);
+        tf_model.textProperty().bindBidirectional(model.model);
+        tf_color.textProperty().bindBidirectional(model.color);
+        tf_registration.textProperty().bindBidirectional(model.registration);
+        spinner_price.getValueFactory().valueProperty().bindBidirectional(model.price.asObject());
     }
 
     public void addCar() {
         try{
-            carManager.add(carModel.toCar());
+            carManager.add(model.toCar());
             button_add.getScene().getWindow().hide();
         } catch (RentACarException e) {
             new Alert(Alert.AlertType.NONE, e.getMessage(), ButtonType.OK).show();
