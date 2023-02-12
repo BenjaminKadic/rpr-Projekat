@@ -75,13 +75,6 @@ public class MainController {
         public SimpleStringProperty color = new SimpleStringProperty("");
         public SimpleStringProperty registration = new SimpleStringProperty("");
         public SimpleIntegerProperty price = new SimpleIntegerProperty();
-        public void fromCar(Car car){
-            this.make.set(car.getMake());
-            this.model.set(car.getModel());
-            this.color.set(car.getColor());
-            this.registration.set(car.getRegistration());
-            this.price.set(car.getPrice());
-        }
         public Car toCar() throws RentACarException {
             if(StringUtils.isNullOrEmpty(this.model.getValue()) || StringUtils.isNullOrEmpty(this.make.getValue()) || StringUtils.isNullOrEmpty(this.color.getValue()) || StringUtils.isNullOrEmpty(this.registration.getValue()) || price==null)
                 throw new RentACarException("Please fill in all fields");
@@ -105,17 +98,6 @@ public class MainController {
         public SimpleStringProperty lastName = new SimpleStringProperty("");
         public SimpleObjectProperty<LocalDate> birthdate = new SimpleObjectProperty<>();
 
-        public void fromUser(User user){
-            this.license.set(user.getLicense());
-            this.firstName.set(user.getFirstName());
-            this.lastName.set(user.getLastName());
-            this.birthdate.set(user.getBirthdate().toLocalDate());
-        }
-
-        /**
-         * Helper Model class that supports 2 way data binding with form for Rent management
-         */
-
         public User toUser() throws RentACarException {
             if(StringUtils.isNullOrEmpty(this.license.getValue()) || StringUtils.isNullOrEmpty(this.firstName.getValue()) || StringUtils.isNullOrEmpty(this.lastName.getValue()) || birthdate==null)
                 throw new RentACarException("Please fill in all fields");
@@ -129,19 +111,15 @@ public class MainController {
         }
     }
 
+    /**
+     * Helper Model class that supports 2 way data binding with form for Rent management
+     */
     protected static class RentModel{
 
         public SimpleObjectProperty<Car> car = new SimpleObjectProperty<>();
         public SimpleObjectProperty<User> user = new SimpleObjectProperty<>();
         public SimpleObjectProperty<LocalDate> startDate = new SimpleObjectProperty<>();
         public SimpleObjectProperty<LocalDate> endDate = new SimpleObjectProperty<>();
-
-        public void fromRent(Rent rent){
-            this.car.set(rent.getCar());
-            this.user.set(rent.getUser());
-            this.startDate.set(rent.getStartDate().toLocalDate());
-            this.endDate.set(rent.getEndDate().toLocalDate());
-        }
 
         public Rent toRent() throws RentACarException {
             if(car==null || user==null || startDate==null || endDate==null)
@@ -151,7 +129,6 @@ public class MainController {
             rent.setUser(this.user.getValue());
             rent.setStartDate(Date.valueOf(this.startDate.getValue()));
             rent.setEndDate(Date.valueOf(this.endDate.getValue()));
-
             return rent;
         }
     }
