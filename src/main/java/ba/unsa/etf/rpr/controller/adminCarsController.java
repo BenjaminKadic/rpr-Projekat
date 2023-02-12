@@ -42,6 +42,7 @@ public class adminCarsController extends MainController{
     @FXML
     public void initialize(){
         tv_cars.setFocusTraversable(false);
+        tv_cars.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
         tc_id.setCellValueFactory(new PropertyValueFactory<>("id"));
         tc_make.setCellValueFactory(new PropertyValueFactory<>("make"));
         tc_model.setCellValueFactory(new PropertyValueFactory<>("model"));
@@ -151,6 +152,20 @@ public class adminCarsController extends MainController{
     }
 
     public void openRentForm() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/add_rent.fxml"));
+            Stage stage = new Stage();
+            stage.setScene(new Scene(loader.load(), USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+            stage.initStyle(StageStyle.UTILITY);
+            stage.setTitle("Rent a car");
+            stage.show();
+            stage.setOnHiding(event -> {
+                ((Stage)button_add.getScene().getWindow()).show();
+                refreshCars();
+            });
+        } catch (Exception e){
+            new Alert(Alert.AlertType.NONE, e.getMessage(), ButtonType.OK).show();
+        }
     }
 
     public void openEditForm() {

@@ -42,6 +42,7 @@ public class adminUsersController extends MainController{
     @FXML
     public void initialize(){
         tv_users.setFocusTraversable(false);
+        tv_users.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
         tc_id.setCellValueFactory(new PropertyValueFactory<>("id"));
         tc_firstName.setCellValueFactory(new PropertyValueFactory<>("firstName"));
         tc_lastName.setCellValueFactory(new PropertyValueFactory<>("lastName"));
@@ -52,12 +53,12 @@ public class adminUsersController extends MainController{
             tv_users.setItems(userObservableList);
             tv_users.refresh();
             FilteredList<User> userFilteredList = new FilteredList<>(userObservableList);
-            tf_search.textProperty().addListener((observable, oldValue, newValue)-> userFilteredList.setPredicate(car->{
+            tf_search.textProperty().addListener((observable, oldValue, newValue)-> userFilteredList.setPredicate(user->{
                 if(newValue.isEmpty() || newValue.isBlank()) return true;
                 String search = newValue.toLowerCase();
-                if(car.getLicense().toLowerCase().contains(search)) return true;
-                if (car.getFirstName().toLowerCase().contains(search)) return true;
-                if (car.getLastName().toLowerCase().contains(search)) return true;
+                if(user.getLicense().toLowerCase().contains(search)) return true;
+                if (user.getFirstName().toLowerCase().contains(search)) return true;
+                if (user.getLastName().toLowerCase().contains(search)) return true;
                 return false;
             }));
             SortedList<User> userSortedList=new SortedList<>(userFilteredList);
