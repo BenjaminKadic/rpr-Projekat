@@ -9,10 +9,15 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
+
+import static javafx.scene.control.PopupControl.USE_COMPUTED_SIZE;
 
 public class adminRentsController extends MainController{
     private final RentManager rentManager = new RentManager();
@@ -129,5 +134,40 @@ public class adminRentsController extends MainController{
     private void refreshRents(){
         rentsObservableList.clear();
         initialize();
+    }
+
+
+    public void openAddForm () {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/add_rent.fxml"));
+            Stage stage = new Stage();
+            stage.setScene(new Scene(loader.load(), USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+            stage.initStyle(StageStyle.UTILITY);
+            stage.setTitle("Rent a car");
+            stage.show();
+            stage.setOnHiding(event -> {
+                ((Stage)button_add.getScene().getWindow()).show();
+                refreshRents();
+            });
+        } catch (Exception e){
+            new Alert(Alert.AlertType.NONE, e.getMessage(), ButtonType.OK).show();
+        }
+    }
+
+    public void openEditForm() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/edit_rent.fxml"));
+            Stage stage = new Stage();
+            stage.setScene(new Scene(loader.load(), USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+            stage.initStyle(StageStyle.UTILITY);
+            stage.setTitle("Edit a rent");
+            stage.show();
+            stage.setOnHiding(event -> {
+                ((Stage)button_add.getScene().getWindow()).show();
+                refreshRents();
+            });
+        } catch (Exception e){
+            new Alert(Alert.AlertType.NONE, e.getMessage(), ButtonType.OK).show();
+        }
     }
 }
