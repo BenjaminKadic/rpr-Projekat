@@ -17,7 +17,7 @@
                   <TableColumn fx:id="tc_id" minWidth="50.0" prefWidth="-1.0" text="Rent id" />
                   <TableColumn fx:id="tc_make" editable="false" minWidth="100.0" prefWidth="-1.0" text="Car Make" />
                   <TableColumn fx:id="tc_model" editable="false" minWidth="100.0" prefWidth="-1.0" text="Car Model" />
-                  <TableColumn fx:id="tc_license" editable="false" minWidth="75.0" prefWidth="-1.0" text="Username" />
+                  <TableColumn fx:id="tc_license" editable="false" minWidth="75.0" prefWidth="-1.0" text="License" />
                </columns>
                <VBox.margin>
                   <Insets bottom="30.0" top="15.0" />

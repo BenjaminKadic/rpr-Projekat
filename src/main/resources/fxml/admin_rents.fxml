@@ -5,12 +5,13 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <BorderPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #242424;" stylesheets="@../css/admin.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ba.unsa.etf.rpr.controller.adminRentsController">
     <top>
@@ -18,50 +19,39 @@
             <menus>
                 <Menu mnemonicParsing="false" text="File">
                     <items>
-                        <MenuItem fx:id="mi_logout" mnemonicParsing="false" text="Log out" />
-                        <MenuItem fx:id="mi_close" mnemonicParsing="false" text="Close" />
+                        <MenuItem fx:id="mi_close" mnemonicParsing="false" onAction="#closeWindow" text="Close" />
                     </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="Edit">
                     <items>
-                        <MenuItem mnemonicParsing="false" text="Cars" />
-                        <MenuItem fx:id="mi_users" mnemonicParsing="false" text="Users" />
-                        <MenuItem fx:id="mi_rents" mnemonicParsing="false" text="Rents" />
+                        <MenuItem fx:id="mi_cars" mnemonicParsing="false" onAction="#goToCars" text="Cars" />
+                        <MenuItem fx:id="mi_users" mnemonicParsing="false" onAction="#goToUsers" text="Users" />
+                        <MenuItem fx:id="mi_rents" mnemonicParsing="false" onAction="#goToRents" text="Rents" />
                     </items>
                 </Menu>
             </menus>
         </MenuBar>
     </top>
     <center>
-        <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+        <VBox alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" BorderPane.alignment="CENTER">
             <children>
-                <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
-                    <children>
-                        <TextField fx:id="tf_search" prefHeight="39.0" prefWidth="161.0" promptText="🔎">
-                            <font>
-                                <Font name="Segoe UI Semilight" size="17.0" />
-                            </font>
-                            <HBox.margin>
-                                <Insets top="10.0" />
-                            </HBox.margin>
-                        </TextField>
-                        <Button fx:id="button_search" defaultButton="true" minWidth="-Infinity" mnemonicParsing="false" prefHeight="40.0" text="Search" textFill="#f9f9fb">
-                            <padding>
-                                <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
-                            </padding>
-                            <HBox.margin>
-                                <Insets left="5.0" top="10.0" />
-                            </HBox.margin>
-                            <font>
-                                <Font name="Segoe UI Semilight" size="12.0" />
-                            </font>
-                        </Button>
-                    </children>
+                <TextField fx:id="tf_search" maxWidth="1.7976931348623157E308" minWidth="375.0" promptText="🔎">
+                    <font>
+                        <Font name="Segoe UI Semilight" size="17.0" />
+                    </font>
                     <VBox.margin>
-                        <Insets bottom="10.0" top="10.0" />
+                        <Insets bottom="10.0" top="20.0" />
                     </VBox.margin>
-                </HBox>
-                <TableView fx:id="tv_users" minWidth="200.0" prefWidth="200.0" />
+                </TextField>
+                <TableView fx:id="tv_rents" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#deleteRent" VBox.vgrow="ALWAYS">
+                    <columns>
+                        <TableColumn fx:id="tc_id" minWidth="30.0" prefWidth="-1.0" text="Id" />
+                        <TableColumn fx:id="tc_make" editable="false" minWidth="100.0" prefWidth="-1.0" text="Make" />
+                        <TableColumn fx:id="tc_model" editable="false" minWidth="100.0" prefWidth="-1.0" text="Model" />
+                        <TableColumn fx:id="tc_license" editable="false" minWidth="60.0" prefWidth="-1.0" text="License" />
+                        <TableColumn fx:id="tc_lastName" editable="false" minWidth="75.0" prefWidth="-1.0" text="Last Name" />
+                    </columns>
+                </TableView>
             </children>
             <BorderPane.margin>
                 <Insets bottom="30.0" right="30.0" />
@@ -79,7 +69,7 @@
                         <Font name="Segoe UI Semilight" size="17.0" />
                     </font>
                 </Button>
-            <Button fx:id="button_current" mnemonicParsing="false" prefWidth="205.0" text="Current Rents" textFill="#f9f9fb">
+            <Button fx:id="button_current" mnemonicParsing="false" onAction="#openCurrent" prefWidth="205.0" text="Current Rents" textFill="#f9f9fb">
                <font>
                   <Font name="Segoe UI Semilight" size="17.0" />
                </font>
@@ -95,14 +85,11 @@
                         <Font name="Segoe UI Semilight" size="17.0" />
                     </font>
                 </Button>
-                <Button fx:id="button_delete" mnemonicParsing="false" prefWidth="205.0" text="Delete Rent" textFill="#f9f9fb">
-                    <VBox.margin>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                    </VBox.margin>
-                    <font>
-                        <Font name="Segoe UI Semilight" size="17.0" />
-                    </font>
-                </Button>
+            <Text fill="#f9f9fb" strokeType="OUTSIDE" strokeWidth="0.0" text="Double click on rent to delete!">
+               <font>
+                  <Font name="Segoe UI Semilight" size="16.0" />
+               </font>
+            </Text>
             </children>
             <BorderPane.margin>
                 <Insets bottom="30.0" left="10.0" right="10.0" top="10.0" />

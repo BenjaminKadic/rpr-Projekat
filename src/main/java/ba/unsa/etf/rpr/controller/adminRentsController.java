@@ -1,13 +1,21 @@
 package ba.unsa.etf.rpr.controller;
 
+import ba.unsa.etf.rpr.business.RentManager;
 import ba.unsa.etf.rpr.domain.Rent;
-import javafx.scene.control.Button;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import ba.unsa.etf.rpr.exceptions.RentACarException;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
+import javafx.fxml.FXML;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 public class adminRentsController extends MainController{
+    private final RentManager rentManager = new RentManager();
     public MenuItem mi_close;
     public MenuItem mi_cars;
     public MenuItem mi_users;
@@ -15,10 +23,46 @@ public class adminRentsController extends MainController{
     public TextField tf_search;
 
     public TableView<Rent> tv_rents;
+    public TableColumn<Rent, Integer> tc_id;
+    public TableColumn<Rent, String> tc_make;
+    public TableColumn<Rent, String> tc_model;
+    public TableColumn<Rent, String> tc_license;
+    public TableColumn<Rent, String> tc_lastName;
     public Button button_add;
     public Button button_current;
     public Button button_edit;
+    public ObservableList<Rent> rentsObservableList = FXCollections.observableArrayList();
 
+    @FXML
+    public void initialize(){
+        tv_rents.setFocusTraversable(false);
+        tv_rents.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+        tc_id.setCellValueFactory(new PropertyValueFactory<>("id"));
+        tc_make.setCellValueFactory(param -> new SimpleStringProperty(param.getValue().getCar().getMake()));
+        tc_model.setCellValueFactory(param -> new SimpleStringProperty(param.getValue().getCar().getModel()));
+        tc_license.setCellValueFactory(param -> new SimpleStringProperty(param.getValue().getUser().getLicense()));
+        tc_lastName.setCellValueFactory(param -> new SimpleStringProperty(param.getValue().getUser().getLastName()));
+        try {
+            rentsObservableList.addAll(rentManager.getAll());
+            tv_rents.setItems(rentsObservableList);
+            tv_rents.refresh();
+            FilteredList<Rent> rentsFilteredList = new FilteredList<>(rentsObservableList);
+            tf_search.textProperty().addListener((observable, oldValue, newValue)-> rentsFilteredList.setPredicate(rent->{
+                if(newValue.isEmpty() || newValue.isBlank()) return true;
+                String search = newValue.toLowerCase();
+                if(rent.getUser().getLicense().toLowerCase().contains(search)) return true;
+                if (rent.getUser().getLastName().toLowerCase().contains(search)) return true;
+                if(rent.getCar().getMake().toLowerCase().contains(search)) return true;
+                if (rent.getCar().getModel().toLowerCase().contains(search)) return true;
+                return false;
+            }));
+            SortedList<Rent> rentsSortedList=new SortedList<>(rentsFilteredList);
+            rentsSortedList.comparatorProperty().bind(tv_rents.comparatorProperty());
+            tv_rents.setItems(rentsSortedList);
+        } catch (RentACarException e) {
+            new Alert(Alert.AlertType.NONE, e.getMessage(), ButtonType.OK).show();
+        }
+    }
 
     /**
      * event handler for closing current window
@@ -56,6 +100,34 @@ public class adminRentsController extends MainController{
         openWindow("Current Rents","/fxml/return_car.fxml");
     }
 
-    public void deleteRent() {
+    public void deleteRent(MouseEvent mouseEvent) {
+        if (mouseEvent.getClickCount() == 2 && tv_rents.getSelectionModel().getSelectedItem()!=null)
+        {
+            int id =tv_rents.getSelectionModel().getSelectedItem().getId();
+            Rent rent = tv_rents.getSelectionModel().getSelectedItem();
+
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Delete rent");
+            alert.setHeaderText("You're about to delete "+ rent);
+            alert.setContentText("Are you sure you want to do this?");
+
+            if(alert.showAndWait().get()==ButtonType.OK){
+                try {
+                    rentManager.delete(id);
+                    tf_search.clear();
+                    refreshRents();
+                } catch (RentACarException e) {
+                    new Alert(Alert.AlertType.NONE, e.getMessage(), ButtonType.OK).show();
+                }
+            }
+        }
+    }
+
+    /**
+     * fetch rented cars from DB
+     */
+    private void refreshRents(){
+        rentsObservableList.clear();
+        initialize();
     }
 }

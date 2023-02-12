@@ -34,6 +34,9 @@ public class RentManager {
         if (car == null || RentsContainCar(rents, car)) {
             throw new RentACarException("Car already rented in given date range");
         }
+        if(start.after(end)) {
+            throw new RentACarException("End date cannot be before start date");
+        }
     }
 
     public Rent add(Rent rent) throws RentACarException {

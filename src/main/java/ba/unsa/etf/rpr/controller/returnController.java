@@ -27,6 +27,7 @@ public class returnController extends MainController {
     @FXML
     public void initialize(){
         tv_cars.setFocusTraversable(false);
+        tv_cars.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
         tc_id.setCellValueFactory(new PropertyValueFactory<>("id"));
         tc_make.setCellValueFactory(param -> new SimpleStringProperty(param.getValue().getCar().getMake()));
         tc_model.setCellValueFactory(param -> new SimpleStringProperty(param.getValue().getCar().getModel()));
