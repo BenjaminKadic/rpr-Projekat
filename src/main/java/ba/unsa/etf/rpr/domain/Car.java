@@ -17,6 +17,15 @@ public class Car implements Idable, Comparable<Car> {
     private int price;
     public Car(){}
 
+    public Car(int id, String make, String model, String color, String registration, int price) {
+        this.id = id;
+        this.make = make;
+        this.model = model;
+        this.color = color;
+        this.registration = registration;
+        this.price = price;
+    }
+
     public int getId() {
         return id;
     }

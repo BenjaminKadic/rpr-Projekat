@@ -18,6 +18,14 @@ public class User implements Idable, Comparable<User>{
 
     public User(){}
 
+    public User(int id, String license, String firstName, String lastName, Date birthdate) {
+        this.id = id;
+        this.license = license;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.birthdate = birthdate;
+    }
+
     public int getId() {
         return id;
     }
