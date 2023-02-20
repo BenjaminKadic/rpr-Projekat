@@ -20,7 +20,7 @@ public class AppFX extends Application {
     public void start(Stage stage) throws Exception {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/admin_home.fxml"));
         Parent root = fxmlLoader.load();
-        stage.setTitle("Login");
+        stage.setTitle("Home");
         stage.getIcons().add(new Image("/img/car-rent.png"));
         stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
         stage.show();
