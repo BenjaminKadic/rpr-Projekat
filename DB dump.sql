@@ -52,7 +52,7 @@ DROP TABLE IF EXISTS `Rents`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `Rents` (
-  `id` int NOT NULL,
+  `id` int NOT NULL AUTO_INCREMENT,
   `car_id` int NOT NULL,
   `user_id` int NOT NULL,
   `start` date NOT NULL,
@@ -62,7 +62,7 @@ CREATE TABLE `Rents` (
   KEY `User_id_idx` (`user_id`),
   CONSTRAINT `car_id` FOREIGN KEY (`car_id`) REFERENCES `Cars` (`id`),
   CONSTRAINT `user_id` FOREIGN KEY (`user_id`) REFERENCES `Users` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -102,6 +102,10 @@ LOCK TABLES `Users` WRITE;
 INSERT INTO `Users` VALUES (1,'123456','Benjamin','Kadic','2001-12-21'),(2,'764521','Eman','Alibalic','2002-09-30'),(3,'876345','Amar','Tahirovic','2001-12-21'),(4,'098743','Merima','Duric','2002-08-26'),(5,'927423','Aida','Zametica','2001-12-14'),(6,'639563','Lejla','Heleg','2001-12-11'),(9,'376346','Eldar','Muratovic','2002-07-10');
 /*!40000 ALTER TABLE `Users` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Dumping routines for database 'freedb_RentACar'
+--
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -112,4 +116,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-02-20 16:51:42
+-- Dump completed on 2023-02-21 19:10:26
