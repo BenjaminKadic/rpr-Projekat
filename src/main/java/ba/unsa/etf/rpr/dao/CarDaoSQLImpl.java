@@ -23,11 +23,6 @@ public class CarDaoSQLImpl extends AbstractDao<Car> implements CarDao{
         return instance;
     }
 
-    public static void removeInstance(){
-        if(instance!=null)
-            instance=null;
-    }
-
     @Override
     public Car row2object(ResultSet rs) throws RentACarException {
         try {

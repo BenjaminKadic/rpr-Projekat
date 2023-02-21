@@ -12,8 +12,11 @@ import javafx.scene.input.MouseEvent;
 
 import java.sql.Date;
 
-
-
+/**
+ * JavaFX controller for car returning
+ *
+ * @author Benjamin Kadic
+ */
 public class returnController extends MainController {
     final private RentManager rentManager = new RentManager();
     public TableView<Rent> tv_cars;
@@ -35,6 +38,9 @@ public class returnController extends MainController {
         refreshRented();
     }
 
+    /**
+     * event handler for returning a car that is currently rented
+     */
     public void returnCarOnClick(MouseEvent mouseEvent)
     {
         if (mouseEvent.getClickCount() == 2)
@@ -44,12 +50,14 @@ public class returnController extends MainController {
             rent.setCar(tv_cars.getSelectionModel().getSelectedItem().getCar());
             rent.setUser(tv_cars.getSelectionModel().getSelectedItem().getUser());
             rent.setStartDate(tv_cars.getSelectionModel().getSelectedItem().getStartDate());
+            rent.setEndDate(tv_cars.getSelectionModel().getSelectedItem().getEndDate());
+            int previousRent=rent.getRentPrice();
             rent.setEndDate(new Date(System.currentTimeMillis()));
 
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Return car");
             alert.setHeaderText("You're about to return a car!");
-            alert.setContentText("Price: "+ rent.getRentPrice());
+            alert.setContentText("You should return " + (previousRent-rent.getRentPrice()) + " to customer!");
 
             if(alert.showAndWait().get()==ButtonType.OK){
                 try {

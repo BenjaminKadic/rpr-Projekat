@@ -12,6 +12,12 @@ import javafx.stage.Stage;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+
+/**
+ * JavaFX controller for adding a car
+ *
+ * @author Benjamin Kadic
+ */
 public class addCarController extends MainController implements Initializable {
 
     private final CarManager carManager=new CarManager();
@@ -39,6 +45,9 @@ public class addCarController extends MainController implements Initializable {
         spinner_price.getValueFactory().valueProperty().bindBidirectional(model.price.asObject());
     }
 
+    /**
+     * event handler for adding a new car to DB
+     */
     public void addCar() {
         try{
             carManager.add(model.toCar());
@@ -48,6 +57,9 @@ public class addCarController extends MainController implements Initializable {
         }
     }
 
+    /**
+     * event handler for closing add a car window
+     */
     public void closeWindow() {
         Stage stage = (Stage) button_cancel.getScene().getWindow();
         stage.close();

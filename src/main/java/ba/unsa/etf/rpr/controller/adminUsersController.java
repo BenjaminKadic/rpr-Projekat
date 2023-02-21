@@ -21,13 +21,18 @@ import java.text.SimpleDateFormat;
 
 import static javafx.scene.control.PopupControl.USE_COMPUTED_SIZE;
 
+/**
+ * JavaFX controller for users management
+ *
+ * @author Benjamin Kadic
+ */
 public class adminUsersController extends MainController{
     private final UserManager userManager=new UserManager();
     public MenuItem mi_close;
     public MenuItem mi_cars;
     public MenuItem mi_users;
     public MenuItem mi_rents;
-    public Button button_UsersWithRents;
+
     public Button button_add;
     public Button button_edit;
     public TextField tf_search;
@@ -113,6 +118,9 @@ public class adminUsersController extends MainController{
         switchScene("Rents", "/fxml/admin_rents.fxml", stage);
     }
 
+    /**
+     * event handler for deleting a user from DB
+     */
     public void deleteUser(MouseEvent mouseEvent) {
         if (mouseEvent.getClickCount() == 2)
         {
@@ -136,11 +144,17 @@ public class adminUsersController extends MainController{
         }
     }
 
+    /**
+     * fetch users from DB
+     */
     private void refreshUsers(){
         userObservableList.clear();
         initialize();
     }
 
+    /**
+     * event handler for opening a form to add a user to DB
+     */
     public void openAddForm() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/add_user.fxml"));
@@ -158,6 +172,9 @@ public class adminUsersController extends MainController{
         }
     }
 
+    /**
+     * event handler for opening a form to edit a user from DB
+     */
     public void openEditForm() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/edit_user.fxml"));

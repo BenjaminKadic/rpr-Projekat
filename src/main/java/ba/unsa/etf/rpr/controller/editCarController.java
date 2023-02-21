@@ -15,6 +15,11 @@ import javafx.stage.Stage;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/**
+ * JavaFX controller for car editing
+ *
+ * @author Benjamin Kadic
+ */
 public class editCarController extends MainController implements Initializable {
 
     private final CarManager carManager=new CarManager();
@@ -62,6 +67,9 @@ public class editCarController extends MainController implements Initializable {
         }
     }
 
+    /**
+     * event handler for editing a car in DB
+     */
     public void applyEdit() {
         try {
             Car car=carModel.toCar();
@@ -73,6 +81,9 @@ public class editCarController extends MainController implements Initializable {
         }
     }
 
+    /**
+     * event handler for closing current window
+     */
     public void closeWindow() {
         Stage stage = (Stage) button_cancel.getScene().getWindow();
         stage.close();

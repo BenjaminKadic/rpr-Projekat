@@ -19,11 +19,6 @@ public class RentDaoSQLImpl extends AbstractDao<Rent> implements RentDao{
         return instance;
     }
 
-    public static void removeInstance(){
-        if(instance!=null)
-            instance=null;
-    }
-
     @Override
     public Rent row2object(ResultSet rs) throws RentACarException {
         try{
@@ -58,7 +53,7 @@ public class RentDaoSQLImpl extends AbstractDao<Rent> implements RentDao{
 
     @Override
     public List<Rent> getRentedCars(Date date) throws RentACarException{
-        String query = "SELECT * FROM Rents WHERE start < ? and end > ?";
+        String query = "SELECT * FROM Rents WHERE start <= ? and end > ?";
         return executeQuery(query, new Object[]{date, date});
     }
 }

@@ -18,11 +18,6 @@ public class UserDaoSQLImpl extends AbstractDao<User> implements UserDao{
         return instance;
     }
 
-    public static void removeInstance(){
-        if(instance!=null)
-            instance=null;
-    }
-
     @Override
     public User row2object(ResultSet rs) throws RentACarException {
         try{

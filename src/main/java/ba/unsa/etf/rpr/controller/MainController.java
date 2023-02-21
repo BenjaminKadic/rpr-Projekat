@@ -1,7 +1,6 @@
 package ba.unsa.etf.rpr.controller;
 
 import ba.unsa.etf.rpr.domain.Car;
-import ba.unsa.etf.rpr.domain.Rent;
 import ba.unsa.etf.rpr.domain.User;
 import ba.unsa.etf.rpr.exceptions.RentACarException;
 import com.mysql.cj.util.StringUtils;
@@ -108,28 +107,6 @@ public class MainController {
             user.setBirthdate(Date.valueOf(this.birthdate.getValue()));
 
             return user;
-        }
-    }
-
-    /**
-     * Helper Model class that supports 2 way data binding with form for Rent management
-     */
-    protected static class RentModel{
-
-        public SimpleObjectProperty<Car> car = new SimpleObjectProperty<>();
-        public SimpleObjectProperty<User> user = new SimpleObjectProperty<>();
-        public SimpleObjectProperty<LocalDate> startDate = new SimpleObjectProperty<>();
-        public SimpleObjectProperty<LocalDate> endDate = new SimpleObjectProperty<>();
-
-        public Rent toRent() throws RentACarException {
-            if(car==null || user==null || startDate==null || endDate==null)
-                throw new RentACarException("Please fill in all fields");
-            Rent rent = new Rent();
-            rent.setCar(this.car.getValue());
-            rent.setUser(this.user.getValue());
-            rent.setStartDate(Date.valueOf(this.startDate.getValue()));
-            rent.setEndDate(Date.valueOf(this.endDate.getValue()));
-            return rent;
         }
     }
 }

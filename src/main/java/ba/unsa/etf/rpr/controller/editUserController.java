@@ -17,6 +17,11 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 
+/**
+ * JavaFX controller for user editing
+ *
+ * @author Benjamin Kadic
+ */
 public class editUserController extends MainController implements Initializable {
     private final UserManager userManager=new UserManager();
     private UserModel userModel= new UserModel();
@@ -73,6 +78,10 @@ public class editUserController extends MainController implements Initializable 
             new Alert(Alert.AlertType.NONE, e.getMessage(), ButtonType.OK).show();
         }
     }
+
+    /**
+     * event handler for editing a user in DB
+     */
     public void applyEdit() {
         try {
             User user=userModel.toUser();
@@ -83,6 +92,10 @@ public class editUserController extends MainController implements Initializable 
             new Alert(Alert.AlertType.NONE, e.getMessage(), ButtonType.OK).show();
         }
     }
+
+    /**
+     * event handler for closing current window
+     */
     public void closeWindow() {
         Stage stage = (Stage) button_cancel.getScene().getWindow();
         stage.close();

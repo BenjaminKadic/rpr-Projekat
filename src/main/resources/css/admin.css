@@ -181,3 +181,34 @@
 .table-view .virtual-flow .scroll-bar:horizontal .thumb {
     -fx-background-color:  #f9f9fb;
 }
+
+.combo-box {
+  -fx-background-color: transparent;
+  -fx-mark-color: #f9f9fb;
+  -fx-border-color: #f9f9fb;
+}
+.combo-box .list-cell:selected:filled .text{
+    -fx-fill: #f9f9fb
+}
+.combo-box .arrow{
+    -fx-background-color: #f9f9fb;
+}
+.combo-box .arrow-button{
+    -fx-background-color:#242424;
+    -fx-border-style:none;
+}
+.combo-box .list-view:vertical{
+    -fx-background-color:#242424;
+    -fx-text-fill: #f9f9fb
+}
+.combo-box-popup .list-cell {
+    -fx-background-color: #242424;
+    -fx-text-fill: #f9f9fb;
+}
+.combo-box-popup .list-cell:hover {
+    -fx-background-color: #f9f9fb;
+    -fx-text-fill: #242424;
+}
+.combo-box-popup .scroll-bar:vertical {
+    -fx-background-color: #242424;
+}

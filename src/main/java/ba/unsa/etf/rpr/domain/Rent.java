@@ -17,6 +17,14 @@ public class Rent implements Idable, Comparable<Rent>{
     private User user;
     private Date startDate;
     private Date endDate;
+    public Rent(){}
+
+    public Rent(Car car, User user, Date startDate, Date endDate) {
+        this.car = car;
+        this.user = user;
+        this.startDate = startDate;
+        this.endDate = endDate;
+    }
 
     public int getId() {
         return id;
@@ -81,6 +89,11 @@ public class Rent implements Idable, Comparable<Rent>{
         return this.toString().compareTo(o.toString());
     }
 
+    /**
+     * function that calculates ammount of money to be paid by a customer
+     * for renting the given car in the given time frame
+     * @return price of rent
+     */
     public int getRentPrice(){
         long result=DAYS.between(startDate.toLocalDate(), endDate.toLocalDate());
         return (int) result*this.car.getPrice();

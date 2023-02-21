@@ -17,8 +17,16 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
+import java.sql.Date;
+import java.text.SimpleDateFormat;
+
 import static javafx.scene.control.PopupControl.USE_COMPUTED_SIZE;
 
+/**
+ * JavaFX controller for rents management
+ *
+ * @author Benjamin Kadic
+ */
 public class adminRentsController extends MainController{
     private final RentManager rentManager = new RentManager();
     public MenuItem mi_close;
@@ -33,10 +41,12 @@ public class adminRentsController extends MainController{
     public TableColumn<Rent, String> tc_model;
     public TableColumn<Rent, String> tc_license;
     public TableColumn<Rent, String> tc_lastName;
+    public TableColumn<Rent, Date> tc_start;
+    public TableColumn<Rent, Date> tc_end;
     public Button button_add;
     public Button button_current;
-    public Button button_edit;
     public ObservableList<Rent> rentsObservableList = FXCollections.observableArrayList();
+
 
     @FXML
     public void initialize(){
@@ -47,6 +57,30 @@ public class adminRentsController extends MainController{
         tc_model.setCellValueFactory(param -> new SimpleStringProperty(param.getValue().getCar().getModel()));
         tc_license.setCellValueFactory(param -> new SimpleStringProperty(param.getValue().getUser().getLicense()));
         tc_lastName.setCellValueFactory(param -> new SimpleStringProperty(param.getValue().getUser().getLastName()));
+        tc_start.setCellValueFactory(new PropertyValueFactory<>("startDate"));
+        tc_start.setCellFactory(column -> new TableCell<>() {
+            @Override
+            protected void updateItem(Date item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty) {
+                    setText(null);
+                } else {
+                    this.setText(new SimpleDateFormat("dd.MM.yyyy.").format(item));
+                }
+            }
+        });
+        tc_end.setCellValueFactory(new PropertyValueFactory<>("endDate"));
+        tc_end.setCellFactory(column -> new TableCell<>() {
+            @Override
+            protected void updateItem(Date item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty) {
+                    setText(null);
+                } else {
+                    this.setText(new SimpleDateFormat("dd.MM.yyyy.").format(item));
+                }
+            }
+        });
         try {
             rentsObservableList.addAll(rentManager.getAll());
             tv_rents.setItems(rentsObservableList);
@@ -101,10 +135,16 @@ public class adminRentsController extends MainController{
         switchScene("Rents", "/fxml/admin_rents.fxml", stage);
     }
 
+    /**
+     * event handler for opening current rents window
+     */
     public void openCurrent() {
         openWindow("Current Rents","/fxml/return_car.fxml");
     }
 
+    /**
+     * event handler for deleting a rent
+     */
     public void deleteRent(MouseEvent mouseEvent) {
         if (mouseEvent.getClickCount() == 2 && tv_rents.getSelectionModel().getSelectedItem()!=null)
         {
@@ -136,7 +176,9 @@ public class adminRentsController extends MainController{
         initialize();
     }
 
-
+    /**
+     * event handler for opening a form for adding a new rent
+     */
     public void openAddForm () {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/add_rent.fxml"));
@@ -151,23 +193,8 @@ public class adminRentsController extends MainController{
             });
         } catch (Exception e){
             new Alert(Alert.AlertType.NONE, e.getMessage(), ButtonType.OK).show();
-        }
-    }
-
-    public void openEditForm() {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/edit_rent.fxml"));
-            Stage stage = new Stage();
-            stage.setScene(new Scene(loader.load(), USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
-            stage.initStyle(StageStyle.UTILITY);
-            stage.setTitle("Edit a rent");
-            stage.show();
-            stage.setOnHiding(event -> {
-                ((Stage)button_add.getScene().getWindow()).show();
-                refreshRents();
-            });
-        } catch (Exception e){
-            new Alert(Alert.AlertType.NONE, e.getMessage(), ButtonType.OK).show();
+            System.out.println(e.getMessage());
+            e.printStackTrace();
         }
     }
 }

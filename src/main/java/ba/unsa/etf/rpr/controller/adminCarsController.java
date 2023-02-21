@@ -18,6 +18,11 @@ import javafx.stage.StageStyle;
 
 import static javafx.scene.control.PopupControl.USE_COMPUTED_SIZE;
 
+/**
+ * JavaFX controller for car management
+ *
+ * @author Benjamin Kadic
+ */
 public class adminCarsController extends MainController{
     private final CarManager carManager=new CarManager();
     public MenuItem mi_close;
@@ -101,10 +106,16 @@ public class adminCarsController extends MainController{
         switchScene("Rents", "/fxml/admin_rents.fxml", stage);
     }
 
+    /**
+     * event handler for opening current rents/return a car window
+     */
     public void openReturn() {
         openWindow("Return","/fxml/return_car.fxml");
     }
 
+    /**
+     * event handler for deleting a car from DB
+     */
     public void deleteCar(MouseEvent mouseEvent) {
         if (mouseEvent.getClickCount() == 2 && tv_cars.getSelectionModel().getSelectedItem()!=null)
         {
@@ -129,11 +140,17 @@ public class adminCarsController extends MainController{
         }
     }
 
+    /**
+     * fetch cars from DB
+     */
     private void refreshCars(){
        carObservableList.clear();
        initialize();
     }
 
+    /**
+     * event handler for opening a form for adding a new car
+     */
     public void openAddForm() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/add_car.fxml"));
@@ -151,6 +168,9 @@ public class adminCarsController extends MainController{
         }
     }
 
+    /**
+     *  event handler for opening a form for adding a new rent
+     */
     public void openRentForm() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/add_rent.fxml"));
@@ -168,6 +188,9 @@ public class adminCarsController extends MainController{
         }
     }
 
+    /**
+     *  event handler for opening a form for editing an existing car in DB
+     */
     public void openEditForm() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/edit_car.fxml"));

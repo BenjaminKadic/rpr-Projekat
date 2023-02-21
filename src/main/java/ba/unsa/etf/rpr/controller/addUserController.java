@@ -13,6 +13,11 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 
+/**
+ * JavaFX controller for adding a user
+ *
+ * @author Benjamin Kadic
+ */
 public class addUserController extends MainController implements Initializable {
 
     private final UserManager userManager = new UserManager();
@@ -51,6 +56,9 @@ public class addUserController extends MainController implements Initializable {
         dp_birthdate.valueProperty().bindBidirectional(model.birthdate);
     }
 
+    /**
+     * event handler for adding a new user to DB
+     */
     public void addUser() {
         try{
             userManager.add(model.toUser());
@@ -60,6 +68,9 @@ public class addUserController extends MainController implements Initializable {
         }
     }
 
+    /**
+     * event handler for closing add a user window
+     */
     public void closeWindow() {
         Stage stage = (Stage) button_cancel.getScene().getWindow();
         stage.close();
