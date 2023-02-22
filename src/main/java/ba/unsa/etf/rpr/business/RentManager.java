@@ -62,4 +62,8 @@ public class RentManager {
     public List<Rent> getRentedCars() throws RentACarException{
         return DaoFactory.rentDao().getRentedCars(new Date(System.currentTimeMillis()));
     }
+
+    public Rent getById(int rentId) throws RentACarException{
+        return DaoFactory.rentDao().getById(rentId);
+    }
 }
